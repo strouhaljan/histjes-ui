@@ -135,7 +135,7 @@ function App() {
               <div className="logo">
                 {/* <h2>Virtuální knihovna zapomenuté historie</h2> */}
                 {/* <h1>Horské lesy Jeseníků</h1> */}
-                <svg viewBox="0 0 102 21" width="100%">
+                <svg viewBox="0 0 102 21">
                   <text className="logo_h1" x="0" y="13">
                     Horské lesy Jeseníků
                 </text>

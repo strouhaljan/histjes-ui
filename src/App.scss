@@ -34,6 +34,11 @@ $secondaryColor: #5e5e73;
 
   .logo {
     display: flex;
+
+    svg {
+      height: 60px;
+      width: 100%;
+    }
   
     .logo_h1 {
       font-family: "Font", cursive;
