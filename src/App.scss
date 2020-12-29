@@ -1,0 +1,128 @@
+$primaryColor: #222256;
+$secondaryColor: #5e5e73;
+
+.histjes-main {
+  min-width: 1280px;
+  overflow-y: hidden;
+}
+
+.histjes-map {
+  .history-slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    padding-left: .5rem;
+    z-index: 99;
+    background-color: #fff;
+  }
+
+  .reference-layer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    background-color: #fff;
+  }
+}
+
+.histjes-panel {
+  padding: 0;
+  z-index: 2;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+
+  .logo {
+    display: flex;
+  
+    .logo_h1 {
+      font-family: "Font", cursive;
+      fill: $primaryColor;
+    }
+  
+    .logo_h2 {
+      font-size: .4rem;
+      fill: $secondaryColor;
+    }
+  
+    .back-arrow {
+      fill: $secondaryColor;
+    }
+  }
+
+  .back {
+    position: absolute;
+    top: 1rem;
+    left: -1.75rem;
+    height: 2.5rem;
+    width: 9.5rem;
+    background-color: #fff;
+    border-radius: .5rem 0 0 .5rem;
+    padding: 0 .25rem;
+    box-sizing: border-box;
+    display: flex;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+    align-items: center;
+    
+    span {
+      margin-left: .25rem;
+    }
+
+    .back-arrow {
+      height: 1.25rem;
+      width: 1.25rem;
+
+      .back-arrow-svg {
+        flex: 1 1 auto;
+        transition: fill 250ms ease-in-out;
+        fill: $secondaryColor;
+      }
+    }
+    
+
+    &:hover {
+      left: -9.5rem;
+
+      .back-arrow-svg {
+        fill: $primaryColor;
+      }
+    }
+  }
+
+  .histjes-panel-inner {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: .75rem 1.25rem;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    h4 {
+      color: $secondaryColor;
+
+      &:first-of-type {
+        margin-top: .5rem;
+      }
+    }
+
+    .checkbox-stack-inner {
+      border-left: 1px solid #ebebf3;
+      padding-left: 1.25rem;
+      margin-left: 0.25rem;
+    }
+
+    .copy {
+      color: $secondaryColor;
+      font-size: 0.6rem;
+      margin-top: auto;
+      text-align: center;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}
