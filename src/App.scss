@@ -2,11 +2,16 @@ $primaryColor: #222256;
 $secondaryColor: #5e5e73;
 
 .histjes-main {
-  min-width: 1280px;
+  min-width: 1024px;
+  display: flex;
   overflow-y: hidden;
 }
 
 .histjes-map {
+  flex: 1 1 auto;
+  position: relative;
+  padding: 0;
+
   .history-slider {
     width: 700px;
     height: 44px;
@@ -34,6 +39,7 @@ $secondaryColor: #5e5e73;
 }
 
 .histjes-panel {
+  flex: 0 0 300px;
   padding: 0;
   z-index: 2;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
@@ -109,8 +115,6 @@ $secondaryColor: #5e5e73;
     display: flex;
     position: relative;
     flex-direction: column;
-    // padding: 0.75rem 1.25rem;
-    // padding: 1rem 1.25rem;
     height: 100vh;
     box-sizing: border-box;
     background-color: #fff;
@@ -133,7 +137,6 @@ $secondaryColor: #5e5e73;
     }
 
     .checkbox-stack-inner {
-      // border-left: 1px solid #ebebf3;
       padding-left: 0.5rem;
       margin-left: 0.25rem;
     }
@@ -163,6 +166,32 @@ $secondaryColor: #5e5e73;
         margin-bottom: 0.5rem;
         display: block;
       }
+    }
+  }
+
+  .object-detail {
+    padding: 0.5rem 1rem;
+
+    &.empty {
+      text-align: center;
+      padding: 0 4rem;
+      padding-top: 10rem;
+
+      .icon {
+        color: $primaryColor;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    h2 {
+      margin-top: 0;
+      color: $primaryColor;
+    }
+
+    p {
+      margin: 0 0.5rem;
+      text-align: justify;
     }
   }
 }

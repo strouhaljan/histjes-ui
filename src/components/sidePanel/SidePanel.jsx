@@ -1,16 +1,8 @@
-import React, { useCallback } from "react";
-import {
-  Checkbox,
-  Stack,
-  PivotItem,
-  Pivot,
-  Label,
-  ActionButton,
-} from "@fluentui/react";
+import React from "react";
+import { PivotItem, Pivot, Label, ActionButton } from "@fluentui/react";
 
-import { LayerOpacitySlider } from "./LayerOpacitySlider";
-
-const stackTokens = { childrenGap: ".5rem" };
+import { LayersSection } from "./LayersSection";
+import { ObjectDetail } from "./ObjectDetail";
 
 // const referenceLayers = [
 //   { key: "a", text: "Orientační mapa", bg: "" },
@@ -34,42 +26,26 @@ const stackTokens = { childrenGap: ".5rem" };
 //   return <ChoiceGroup defaultSelectedKey="B" options={referenceLayers} />;
 // };
 
-const LayersSection = ({ section }) => {
-  const { name, identifier, layers } = section;
-  const handleOnLayerOpacityChange = useCallback((layerId, opacity) =>
-    alert(`Layer ${layerId} opacity: ${opacity}`)
-  );
+const BackHomeButton = ({ onClick }) => (
+  <ActionButton
+    className="backButton"
+    iconProps={{ iconName: "ChevronLeftSmall" }}
+    onClick={onClick}
+  >
+    Zpět na rozcestník
+  </ActionButton>
+);
 
-  return (
-    <div key={identifier}>
-      <h4>{name}</h4>
-      <Stack className="checkbox-stack-inner" tokens={stackTokens}>
-        {layers.map(({ name, identifier, enabled, opacity }) => (
-          <div>
-            <Checkbox label={name} checked={enabled} />
-            {enabled && (
-              <LayerOpacitySlider
-                layerId={identifier}
-                opacity={opacity}
-                onChange={handleOnLayerOpacityChange}
-              />
-            )}
-          </div>
-        ))}
-      </Stack>
-    </div>
-  );
-};
-
-export const SidePanel = ({ layers }) => {
+export const SidePanel = ({
+  layers,
+  onBackHomeClick,
+  onLayerSelected,
+  onLayerOpacityChange,
+  selectedObject,
+}) => {
   return (
     <div className="histjes-panel-inner">
-      <ActionButton
-        className="backButton"
-        iconProps={{ iconName: "ChevronLeftSmall" }}
-      >
-        Zpět na rozcestník
-      </ActionButton>
+      <BackHomeButton onClick={onBackHomeClick} />
       <Pivot
         styles={{
           root: { display: "flex" },
@@ -88,10 +64,11 @@ export const SidePanel = ({ layers }) => {
                     </Stack>
                     <div className="separator" /> */}
             {layers.map((layerSection, index) => (
-              <div>
+              <div key={layerSection.identifier}>
                 <LayersSection
-                  key={layerSection.identifier}
                   section={layerSection}
+                  onLayerSelected={onLayerSelected}
+                  onLayerOpacityChange={onLayerOpacityChange}
                 />
                 {index !== layers.length - 1 && <div className="separator" />}
               </div>
@@ -99,7 +76,9 @@ export const SidePanel = ({ layers }) => {
           </Label>
         </PivotItem>
         <PivotItem headerText="Detail objektu" itemIcon="POISolid">
-          <Label>Detail objektu</Label>
+          <Label className="detail">
+            <ObjectDetail object={selectedObject} />
+          </Label>
         </PivotItem>
       </Pivot>
       <div className="copy">

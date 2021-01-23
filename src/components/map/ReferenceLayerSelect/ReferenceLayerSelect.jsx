@@ -10,27 +10,35 @@ import layer_3_bg from "./assets/1930_voj.png";
 import layer_4_bg from "./assets/2019_zagabed.png";
 
 const referenceLayers = [
-  { key: "a", text: "Orientační mapa", bg: "" },
-  { key: "b", text: "1840 - II. vojenské mapování", bg: layer_1_bg },
+  { key: "a", identifier: "orientacni", text: "Orientační mapa", bg: "" },
+  {
+    key: "b",
+    identifier: "1840_voj",
+    text: "1840 - II. vojenské mapování",
+    bg: layer_1_bg,
+  },
   {
     key: "c",
+    identifier: "1917_voj",
     text: "1917 - III. vojenské mapování",
     bg: layer_2_bg,
   },
   {
     key: "d",
+    identifier: "1930_voj",
     text: "1930 - III. vojenské mapování",
     selected: true,
     bg: layer_3_bg,
   },
   {
     key: "e",
+    identifier: "2019_zagabed",
     text: "2019 - Zabaged (vizualizace ZM10)",
     bg: layer_4_bg,
   },
 ];
 
-export const ReferenceLayerSelect = () => {
+export const ReferenceLayerSelect = ({ onChanged }) => {
   const [isOpened, setIsOpened] = useState(false);
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -50,23 +58,28 @@ export const ReferenceLayerSelect = () => {
         >
           <div className="reference-layer-picker-inner">
             <Stack className="checkbox-stack-inner" tokens={stackTokens}>
-              {referenceLayers.map(({ key, text, selected, bg }) => (
-                <div
-                  key={key}
-                  className={`${styles.referenceLayer} ${
-                    selected ? styles.referenceLayerSelected : ""
-                  }`}
-                  style={{ backgroundImage: `url(${bg})` }}
-                >
+              {referenceLayers.map(
+                ({ key, identifier, text, selected, bg }) => (
                   <div
-                    className={`${styles.referenceLayerContent} ${
-                      selected ? styles.referenceLayerContentSelected : ""
+                    onClick={() => {
+                      onChanged(identifier);
+                    }}
+                    key={key}
+                    className={`${styles.referenceLayer} ${
+                      selected ? styles.referenceLayerSelected : ""
                     }`}
+                    style={{ backgroundImage: `url(${bg})` }}
                   >
-                    <div className={styles.referenceLayerLabel}>{text}</div>
+                    <div
+                      className={`${styles.referenceLayerContent} ${
+                        selected ? styles.referenceLayerContentSelected : ""
+                      }`}
+                    >
+                      <div className={styles.referenceLayerLabel}>{text}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             </Stack>
           </div>
         </Callout>
