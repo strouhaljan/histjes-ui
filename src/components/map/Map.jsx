@@ -1,20 +1,14 @@
 import React from "react";
 
-import { Map as Mapycz, MouseControl, BaseLayers } from "react-mapycz";
-
+import MapContainer from "./MapContainer";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
 import { HistorySlider } from "./HistorySlider";
 
 export const Map = ({ selectedBaseLayer, onHistoryChanged, onReferenceLayerChanged }) => (
   <div>
-    <Mapycz
-      height="100vh"
-      width="100%"
-      center={{ lat: 50.0830764, lng: 17.2309767 }}
-      baseLayers={[BaseLayers.OPHOTO]}
-    >
-      <MouseControl pan wheel zoom />
-    </Mapycz>
+    <div style={{height: '100vh', width: '100%', display: 'flex'}}>
+      <MapContainer />
+    </div>
     <ReferenceLayerSelect
       selectedLayer={selectedBaseLayer}
       onChanged={onReferenceLayerChanged}
