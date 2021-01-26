@@ -5,7 +5,7 @@ import { Map as Mapycz, MouseControl, BaseLayers } from "react-mapycz";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
 import { HistorySlider } from "./HistorySlider";
 
-export const Map = ({ onHistoryChanged, onReferenceLayerChanged }) => (
+export const Map = ({ selectedBaseLayer, onHistoryChanged, onReferenceLayerChanged }) => (
   <div>
     <Mapycz
       height="100vh"
@@ -15,7 +15,10 @@ export const Map = ({ onHistoryChanged, onReferenceLayerChanged }) => (
     >
       <MouseControl pan wheel zoom />
     </Mapycz>
-    <ReferenceLayerSelect onChanged={onReferenceLayerChanged} />
+    <ReferenceLayerSelect
+      selectedLayer={selectedBaseLayer}
+      onChanged={onReferenceLayerChanged}
+    />
     <HistorySlider onChanged={onHistoryChanged} />
   </div>
 );

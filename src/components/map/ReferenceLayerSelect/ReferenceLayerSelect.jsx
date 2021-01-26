@@ -10,7 +10,6 @@ import layer_3_bg from "./assets/1930_voj.png";
 import layer_4_bg from "./assets/2019_zagabed.png";
 
 const referenceLayers = [
-  { key: "a", identifier: "orientacni", text: "Orientační mapa", bg: "" },
   {
     key: "b",
     identifier: "1840_voj",
@@ -27,7 +26,6 @@ const referenceLayers = [
     key: "d",
     identifier: "1930_voj",
     text: "1930 - III. vojenské mapování",
-    selected: true,
     bg: layer_3_bg,
   },
   {
@@ -38,7 +36,7 @@ const referenceLayers = [
   },
 ];
 
-export const ReferenceLayerSelect = ({ onChanged }) => {
+export const ReferenceLayerSelect = ({ selectedLayer, onChanged }) => {
   const [isOpened, setIsOpened] = useState(false);
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -59,20 +57,20 @@ export const ReferenceLayerSelect = ({ onChanged }) => {
           <div className="reference-layer-picker-inner">
             <Stack className="checkbox-stack-inner" tokens={stackTokens}>
               {referenceLayers.map(
-                ({ key, identifier, text, selected, bg }) => (
+                ({ key, identifier, text, bg }) => (
                   <div
                     onClick={() => {
                       onChanged(identifier);
                     }}
                     key={key}
                     className={`${styles.referenceLayer} ${
-                      selected ? styles.referenceLayerSelected : ""
+                      (identifier === selectedLayer) ? styles.referenceLayerSelected : ""
                     }`}
                     style={{ backgroundImage: `url(${bg})` }}
                   >
                     <div
                       className={`${styles.referenceLayerContent} ${
-                        selected ? styles.referenceLayerContentSelected : ""
+                        (identifier === selectedLayer) ? styles.referenceLayerContentSelected : ""
                       }`}
                     >
                       <div className={styles.referenceLayerLabel}>{text}</div>

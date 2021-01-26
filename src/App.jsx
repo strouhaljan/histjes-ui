@@ -96,6 +96,7 @@ function App() {
       <div className="histjes-main">
         <div className="histjes-map">
           <Map
+            selectedBaseLayer="2019_zagabed"
             onHistoryChanged={onHistoryChanged}
             onReferenceLayerChanged={onReferenceLayerChanged}
           />
