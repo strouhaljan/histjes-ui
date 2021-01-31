@@ -56,28 +56,32 @@ export const ReferenceLayerSelect = ({ selectedLayer, onChanged }) => {
         >
           <div className="reference-layer-picker-inner">
             <Stack className="checkbox-stack-inner" tokens={stackTokens}>
-              {referenceLayers.map(
-                ({ key, identifier, text, bg }) => (
+              {referenceLayers.map(({ key, identifier, text, bg }) => (
+                <div
+                  onClick={() => {
+                    onChanged(identifier);
+                  }}
+                  key={key}
+                  className={`${styles.referenceLayer} ${
+                    identifier === selectedLayer
+                      ? styles.referenceLayerSelected
+                      : ""
+                  }`}
+                  style={{ backgroundImage: `url(${bg})` }}
+                >
                   <div
-                    onClick={() => {
-                      onChanged(identifier);
-                    }}
-                    key={key}
-                    className={`${styles.referenceLayer} ${
-                      (identifier === selectedLayer) ? styles.referenceLayerSelected : ""
+                    className={`${styles.referenceLayerContent} ${
+                      identifier === selectedLayer
+                        ? styles.referenceLayerContentSelected
+                        : ""
                     }`}
-                    style={{ backgroundImage: `url(${bg})` }}
                   >
-                    <div
-                      className={`${styles.referenceLayerContent} ${
-                        (identifier === selectedLayer) ? styles.referenceLayerContentSelected : ""
-                      }`}
-                    >
-                      <div className={styles.referenceLayerLabel}>{text}</div>
+                    <div className={`${styles.referenceLayerLabel} label`}>
+                      {text}
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </Stack>
           </div>
         </Callout>

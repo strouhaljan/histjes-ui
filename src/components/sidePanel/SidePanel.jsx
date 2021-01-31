@@ -1,5 +1,5 @@
 import React from "react";
-import { PivotItem, Pivot, Label, ActionButton } from "@fluentui/react";
+import { PivotItem, Pivot, ActionButton } from "@fluentui/react";
 
 import { LayersSection } from "./LayersSection";
 import { ObjectDetail } from "./ObjectDetail";

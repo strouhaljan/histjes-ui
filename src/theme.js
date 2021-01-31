@@ -3,7 +3,7 @@ import { createTheme, loadTheme } from "@fluentui/react";
 
 export const theme = createTheme({
     palette: {
-      themePrimary: "#2e2e78",
+      themePrimary: "#222256",
       themeLighterAlt: "#f3f3fa",
       themeLighter: "#d2d2e9",
       themeLight: "#afafd6",

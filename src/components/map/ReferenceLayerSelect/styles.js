@@ -5,11 +5,8 @@ const referenceLayerLabel = mergeStyleSets({
   lineHeight: "1.25rem",
   padding: ".5rem",
   color: "#fff",
-  backgroundColor: "#222256",
+  backgroundColor: "#0008",
   width: "100%",
-  // "&:hover": {
-  //   backgroundColor: "#222256",
-  // },
 });
 
 const getStyles = (theme) =>
@@ -19,24 +16,28 @@ const getStyles = (theme) =>
       width: 500,
       backgroundColor: "#fff",
       padding: ".5rem",
+      zIndex: 99,
     },
     referenceLayer: {
       position: "relative",
       width: "100%",
       height: "7rem",
-      border: "2px solid #f4f4f8",
+      border: "2px solid #fff",
       boxSizing: "border-box",
       transition: "all .1s ease-in-out",
       backgroundSize: "contain",
       "&:hover": {
         borderColor: theme.palette.themePrimary,
-        // referenceLayerLabel: {
-        //   backgroundColor: "#fff",
-        // },
+        ".label": {
+          backgroundColor: theme.palette.themePrimary,
+        },
       },
     },
     referenceLayerSelected: {
       borderColor: theme.palette.themePrimary,
+      ".label": {
+        backgroundColor: theme.palette.themePrimary,
+      },
     },
     referenceLayerLabel,
     referenceLayerContent: {

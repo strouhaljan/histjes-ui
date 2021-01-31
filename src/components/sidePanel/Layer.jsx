@@ -3,14 +3,9 @@ import { Checkbox } from "@fluentui/react";
 
 import { LayerOpacitySlider } from "./LayerOpacitySlider";
 
-const LayerCheckbox = ({ label, enabled, identifier, onChange }) => {
-  const [checked, setChecked] = useState(enabled, [enabled]);
-  const handleOnChange = (_event, isChecked) => {
-    setChecked(isChecked);
-    onChange(identifier, isChecked);
-  };
-  return <Checkbox label={label} checked={checked} onChange={handleOnChange} />;
-};
+const LayerCheckbox = ({ label, checked, onChange }) => (
+  <Checkbox label={label} checked={checked} onChange={onChange} />
+);
 
 export const Layer = ({
   onLayerSelected,
@@ -19,20 +14,28 @@ export const Layer = ({
   name,
   enabled,
   opacity,
-}) => (
-  <div>
-    <LayerCheckbox
-      identifier={identifier}
-      label={name}
-      enabled={enabled}
-      onChange={onLayerSelected}
-    />
-    {enabled && (
-      <LayerOpacitySlider
-        layerId={identifier}
-        opacity={opacity}
-        onChanged={onLayerOpacityChange}
+}) => {
+  const [checked, setChecked] = useState(enabled, [enabled]);
+  const handleOnChange = (_event, isChecked) => {
+    setChecked(isChecked);
+    onLayerSelected(identifier, isChecked);
+  };
+
+  return (
+    <div>
+      <LayerCheckbox
+        identifier={identifier}
+        label={name}
+        checked={checked}
+        onChange={handleOnChange}
       />
-    )}
-  </div>
-);
+      {checked && (
+        <LayerOpacitySlider
+          layerId={identifier}
+          opacity={opacity}
+          onChanged={onLayerOpacityChange}
+        />
+      )}
+    </div>
+  );
+};
