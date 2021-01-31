@@ -4,28 +4,6 @@ import { PivotItem, Pivot, Label, ActionButton } from "@fluentui/react";
 import { LayersSection } from "./LayersSection";
 import { ObjectDetail } from "./ObjectDetail";
 
-// const referenceLayers = [
-//   { key: "a", text: "Orientační mapa", bg: "" },
-//   { key: "b", text: "1840 - II. vojenské mapování" },
-//   {
-//     key: "c",
-//     text: "1917 - III. vojenské mapování",
-//   },
-//   {
-//     key: "d",
-//     text: "1930 - III. vojenské mapování",
-//     selected: true,
-//   },
-//   {
-//     key: "e",
-//     text: "2019 - Zabaged (vizualizace ZM10)",
-//   },
-// ];
-
-// export const ReferenceLayerPicker: React.FunctionComponent = () => {
-//   return <ChoiceGroup defaultSelectedKey="B" options={referenceLayers} />;
-// };
-
 const BackHomeButton = ({ onClick }) => (
   <ActionButton
     className="backButton"
@@ -45,6 +23,11 @@ export const SidePanel = ({
 }) => {
   return (
     <div className="histjes-panel-inner">
+      <div className="copy">
+        <h2 className="logo_h2">Virtuální knihovna zapomenuté historie</h2>
+        <h1 className="logo_h1">Horské lesy Jeseníků</h1>
+        <span className="logo_subtitle">fotohledač</span>
+      </div>
       <BackHomeButton onClick={onBackHomeClick} />
       <Pivot
         styles={{
@@ -55,14 +38,6 @@ export const SidePanel = ({
       >
         <PivotItem headerText="Vrstvy" itemIcon="Nav2DMapView">
           <Label className="tab">
-            {/* <h4>Referenční vrstva</h4>
-                    <Stack
-                      className="checkbox-stack-inner"
-                      tokens={stackTokens}
-                    >
-                      <ReferenceLayerPicker />
-                    </Stack>
-                    <div className="separator" /> */}
             {layers.map((layerSection, index) => (
               <div key={layerSection.identifier}>
                 <LayersSection
@@ -81,10 +56,6 @@ export const SidePanel = ({
           </Label>
         </PivotItem>
       </Pivot>
-      <div className="copy">
-        <h1 className="logo_h1">Horské lesy Jeseníků</h1>
-        <span>Virtuální knihovna zapomenuté historie</span>
-      </div>
     </div>
   );
 };

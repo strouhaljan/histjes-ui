@@ -1,16 +1,9 @@
 import React from "react";
-import { Stack, Checkbox } from "@fluentui/react";
+import { Stack } from "@fluentui/react";
 
-import { LayerOpacitySlider } from "./LayerOpacitySlider";
+import { Layer } from "./Layer";
 
 const stackTokens = { childrenGap: ".5rem" };
-
-const LayerCheckbox = ({ label, enabled, identifier, onChange }) => {
-  const handleOnChange = (_event, checked) => {
-    onChange(identifier, checked);
-  };
-  return <Checkbox label={label} checked={enabled} onChange={handleOnChange} />;
-};
 
 export const LayersSection = ({
   section,
@@ -24,21 +17,14 @@ export const LayersSection = ({
       <h4>{name}</h4>
       <Stack className="checkbox-stack-inner" tokens={stackTokens}>
         {layers.map(({ name, identifier, enabled, opacity }) => (
-          <div key={identifier}>
-            <LayerCheckbox
-              identifier={identifier}
-              label={name}
-              enabled={enabled}
-              onChange={onLayerSelected}
-            />
-            {enabled && (
-              <LayerOpacitySlider
-                layerId={identifier}
-                opacity={opacity}
-                onChanged={onLayerOpacityChange}
-              />
-            )}
-          </div>
+          <Layer
+            identifier={identifier}
+            name={name}
+            enabled={enabled}
+            opacity={opacity}
+            onLayerSelected={onLayerSelected}
+            onLayerOpacityChange={onLayerOpacityChange}
+          />
         ))}
       </Stack>
     </div>

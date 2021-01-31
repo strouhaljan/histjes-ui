@@ -20,7 +20,7 @@ const defaultLayersState = [
       {
         identifier: "katastr",
         name: "Katastrální",
-        enabled: true,
+        enabled: false,
         opacity: 50,
       },
     ],
@@ -81,6 +81,12 @@ function App() {
   const onLayerOpacityChange = (layerId, opacity) => {
     alert(`Layer ${layerId} opacity changed: ${opacity}`);
   };
+  const onZoomIn = () => {
+    alert(`Zoomed in`);
+  };
+  const onZoomOut = () => {
+    alert(`Zoomed out`);
+  };
 
   const selectedObject = {
     name: "Chata",
@@ -99,6 +105,8 @@ function App() {
             selectedBaseLayer="2019_zagabed"
             onHistoryChanged={onHistoryChanged}
             onReferenceLayerChanged={onReferenceLayerChanged}
+            onZoomIn={onZoomIn}
+            onZoomOut={onZoomOut}
           />
         </div>
         <div className="histjes-panel">
@@ -107,7 +115,7 @@ function App() {
             onBackHomeClick={onBackHomeClick}
             onLayerSelected={onLayerSelected}
             onLayerOpacityChange={onLayerOpacityChange}
-            selectedObject={selectedObject}
+            // selectedObject={selectedObject}
           />
         </div>
       </div>

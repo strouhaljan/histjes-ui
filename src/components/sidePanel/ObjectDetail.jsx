@@ -1,5 +1,4 @@
 import React from "react";
-import { Slider } from "@fluentui/react";
 
 export const ObjectDetail = ({ object }) => {
   if (!object) {

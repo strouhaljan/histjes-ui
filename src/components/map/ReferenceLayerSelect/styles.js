@@ -1,5 +1,17 @@
 import { mergeStyleSets } from "@fluentui/react";
 
+const referenceLayerLabel = mergeStyleSets({
+  fontSize: "1.25rem",
+  lineHeight: "1.25rem",
+  padding: ".5rem",
+  color: "#fff",
+  backgroundColor: "#222256",
+  width: "100%",
+  // "&:hover": {
+  //   backgroundColor: "#222256",
+  // },
+});
+
 const getStyles = (theme) =>
   mergeStyleSets({
     buttonArea: {},
@@ -18,18 +30,15 @@ const getStyles = (theme) =>
       backgroundSize: "contain",
       "&:hover": {
         borderColor: theme.palette.themePrimary,
+        // referenceLayerLabel: {
+        //   backgroundColor: "#fff",
+        // },
       },
     },
     referenceLayerSelected: {
       borderColor: theme.palette.themePrimary,
     },
-    referenceLayerLabel: {
-      fontSize: "1.25rem",
-      lineHeight: "1.25rem",
-      padding: ".5rem",
-      backgroundColor: "#fffb",
-      width: "100%",
-    },
+    referenceLayerLabel,
     referenceLayerContent: {
       display: "flex",
       alignItems: "flex-end",
