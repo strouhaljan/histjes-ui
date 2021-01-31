@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Slider } from "@fluentui/react";
 
-export const LayerOpacitySlider = ({ layerId, onChanged, opacity }) => {
-  const onChangeHandler = (_event, opacity) => {
+export const LayerOpacitySlider = ({
+  layerId,
+  onChanged,
+  opacity: defaultOpacity,
+}) => {
+  const [value, setValue] = useState(defaultOpacity, [defaultOpacity]);
+  const onChangeHandler = useCallback((_event, opacity) => {
+    setValue(opacity);
     onChanged(layerId, opacity);
-  };
+  }, []);
 
   return (
     <div className="layer-slider-wrapper">
@@ -13,7 +19,7 @@ export const LayerOpacitySlider = ({ layerId, onChanged, opacity }) => {
         showValue={false}
         min={0}
         max={100}
-        value={opacity}
+        value={value}
         styles={{
           root: { width: "8rem" },
           slideBox: { padding: 0 },

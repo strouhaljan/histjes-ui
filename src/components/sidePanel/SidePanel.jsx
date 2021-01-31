@@ -37,7 +37,7 @@ export const SidePanel = ({
         }}
       >
         <PivotItem headerText="Vrstvy" itemIcon="Nav2DMapView">
-          <Label className="tab">
+          <div className="tab">
             {layers.map((layerSection, index) => (
               <div key={layerSection.identifier}>
                 <LayersSection
@@ -48,12 +48,12 @@ export const SidePanel = ({
                 {index !== layers.length - 1 && <div className="separator" />}
               </div>
             ))}
-          </Label>
+          </div>
         </PivotItem>
         <PivotItem headerText="Detail objektu" itemIcon="POISolid">
-          <Label className="detail">
+          <div className="detail">
             <ObjectDetail object={selectedObject} />
-          </Label>
+          </div>
         </PivotItem>
       </Pivot>
     </div>

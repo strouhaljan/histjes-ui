@@ -18,6 +18,7 @@ export const LayersSection = ({
       <Stack className="checkbox-stack-inner" tokens={stackTokens}>
         {layers.map(({ name, identifier, enabled, opacity }) => (
           <Layer
+            key={`layer_${identifier}`}
             identifier={identifier}
             name={name}
             enabled={enabled}

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "@fluentui/react";
 
 import { LayerOpacitySlider } from "./LayerOpacitySlider";
 
 const LayerCheckbox = ({ label, enabled, identifier, onChange }) => {
-  const handleOnChange = (_event, checked) => {
-    onChange(identifier, checked);
+  const [checked, setChecked] = useState(enabled, [enabled]);
+  const handleOnChange = (_event, isChecked) => {
+    setChecked(isChecked);
+    onChange(identifier, isChecked);
   };
-  return <Checkbox label={label} checked={enabled} onChange={handleOnChange} />;
+  return <Checkbox label={label} checked={checked} onChange={handleOnChange} />;
 };
 
 export const Layer = ({
