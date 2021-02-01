@@ -26,7 +26,7 @@ export const SidePanel = ({
       <div className="copy">
         <h2 className="logo_h2">Virtuální knihovna zapomenuté historie</h2>
         <h1 className="logo_h1">Horské lesy Jeseníků</h1>
-        <span className="logo_subtitle">fotohledač</span>
+        <span className="logo_subtitle">ČasoMapa</span>
       </div>
       <BackHomeButton onClick={onBackHomeClick} />
       <Pivot
