@@ -1,10 +1,11 @@
 import React from "react";
+import { FontIcon } from "@fluentui/react";
 
 export const ObjectDetail = ({ object }) => {
   if (!object) {
     return (
       <div className="object-detail empty">
-        <i class="ms-Icon ms-Icon--POISolid icon" aria-hidden="true"></i>
+        <FontIcon className="icon" iconName="POISolid" />
         <h2>Vyberte objekt na mapě</h2>
       </div>
     );
