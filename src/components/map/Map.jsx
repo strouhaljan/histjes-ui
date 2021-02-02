@@ -8,13 +8,14 @@ import { HistorySlider } from "./HistorySlider";
 export const Map = ({
   selectedBaseLayer,
   onHistoryChanged,
+  onObjectClick,
   onReferenceLayerChanged,
   onZoomIn,
   onZoomOut,
 }) => (
   <div>
     <div style={{ height: "100vh", width: "100%", display: "flex" }}>
-      <MapContainer />
+      <MapContainer onObjectClick={onObjectClick} />
     </div>
     <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
     <ReferenceLayerSelect
