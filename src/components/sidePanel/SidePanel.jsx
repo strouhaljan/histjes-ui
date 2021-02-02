@@ -19,7 +19,9 @@ export const SidePanel = ({
   onBackHomeClick,
   onLayerSelected,
   onLayerOpacityChange,
+  onTabClick,
   selectedObject,
+  selectedTab
 }) => {
   return (
     <div className="histjes-panel-inner">
@@ -35,8 +37,10 @@ export const SidePanel = ({
           link: { flex: "0 0 50%", margin: 0, padding: 0 },
           linkIsSelected: { flex: "0 0 50%", margin: 0, padding: 0 },
         }}
+        selectedKey={selectedTab}
+        onLinkClick={onTabClick}
       >
-        <PivotItem headerText="Vrstvy" itemIcon="Nav2DMapView">
+        <PivotItem headerText="Vrstvy" itemIcon="Nav2DMapView" itemKey="layers">
           <div className="tab">
             {layers.map((layerSection, index) => (
               <div key={layerSection.identifier}>
@@ -50,7 +54,7 @@ export const SidePanel = ({
             ))}
           </div>
         </PivotItem>
-        <PivotItem headerText="Detail objektu" itemIcon="POISolid">
+        <PivotItem headerText="Detail objektu" itemIcon="POISolid" itemKey="detail">
           <div className="detail">
             <ObjectDetail object={selectedObject} />
           </div>
