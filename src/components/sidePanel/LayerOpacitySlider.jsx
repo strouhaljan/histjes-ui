@@ -10,7 +10,8 @@ export const LayerOpacitySlider = ({
   const onChangeHandler = useCallback((_event, opacity) => {
     setValue(opacity);
     onChanged(layerId, opacity);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   return (
     <div className="layer-slider-wrapper">
