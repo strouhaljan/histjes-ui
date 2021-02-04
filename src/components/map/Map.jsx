@@ -4,6 +4,7 @@ import MapContainer from "./MapContainer";
 import { ZoomControl } from "./ZoomControl";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
 import { HistorySlider } from "./HistorySlider";
+import { Help } from "./Help";
 
 export const Map = ({
   selectedBaseLayer,
@@ -17,11 +18,12 @@ export const Map = ({
     <div style={{ height: "100vh", width: "100%", display: "flex" }}>
       <MapContainer onObjectClick={onObjectClick} />
     </div>
-    <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
     <ReferenceLayerSelect
       selectedLayer={selectedBaseLayer}
       onChanged={onReferenceLayerChanged}
     />
+    <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
+    <Help />
     <HistorySlider onChanged={onHistoryChanged} />
   </div>
 );
