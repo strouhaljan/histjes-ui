@@ -19,6 +19,7 @@ const getStyles = (theme) =>
       zIndex: 99,
     },
     referenceLayer: {
+      cursor: "pointer",
       position: "relative",
       width: "100%",
       height: "7rem",

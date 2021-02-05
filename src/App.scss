@@ -183,7 +183,8 @@ $secondaryColor: #5e5e73;
   }
 
   .object-detail {
-    padding: 0.5rem 1rem;
+    position: relative;
+    padding: 1rem 1.5rem;
 
     &.empty {
       text-align: center;
@@ -203,7 +204,6 @@ $secondaryColor: #5e5e73;
     }
 
     p {
-      margin: 0 0.5rem;
       text-align: justify;
     }
   }

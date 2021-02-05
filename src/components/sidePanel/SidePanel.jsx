@@ -21,7 +21,8 @@ export const SidePanel = ({
   onLayerOpacityChange,
   onTabClick,
   selectedObject,
-  selectedTab
+  selectedTab,
+  onDetailCancel,
 }) => {
   return (
     <div className="histjes-panel-inner">
@@ -54,9 +55,13 @@ export const SidePanel = ({
             ))}
           </div>
         </PivotItem>
-        <PivotItem headerText="Detail objektu" itemIcon="POISolid" itemKey="detail">
+        <PivotItem
+          headerText="Detail objektu"
+          itemIcon="POISolid"
+          itemKey="detail"
+        >
           <div className="detail">
-            <ObjectDetail object={selectedObject} />
+            <ObjectDetail object={selectedObject} onCancel={onDetailCancel} />
           </div>
         </PivotItem>
       </Pivot>

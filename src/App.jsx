@@ -87,6 +87,9 @@ function App() {
   const onZoomOut = () => {
     alert(`Zoomed out`);
   };
+  const onDetailCancel = () => {
+    alert(`Detail cancelled`);
+  };
 
   const selectedObject = {
     name: "Chata",
@@ -116,6 +119,7 @@ function App() {
             onLayerSelected={onLayerSelected}
             onLayerOpacityChange={onLayerOpacityChange}
             // selectedObject={selectedObject}
+            onDetailCancel={onDetailCancel}
           />
         </div>
       </div>

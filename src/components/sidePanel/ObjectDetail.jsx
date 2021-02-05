@@ -1,7 +1,11 @@
 import React from "react";
-import { FontIcon } from "@fluentui/react";
+import { FontIcon, IconButton } from "@fluentui/react";
 
-export const ObjectDetail = ({ object }) => {
+const cancelButtonStyles = {
+  root: { position: "absolute", top: "1rem", right: "1.5rem" },
+};
+
+export const ObjectDetail = ({ object, onCancel }) => {
   if (!object) {
     return (
       <div className="object-detail empty">
@@ -14,6 +18,12 @@ export const ObjectDetail = ({ object }) => {
   return (
     <div className="object-detail">
       <h2>{object.name}</h2>
+      <IconButton
+        styles={cancelButtonStyles}
+        iconProps={{ iconName: "Cancel" }}
+        title="Zpět"
+        onClick={onCancel}
+      />
       <p>{object.description}</p>
     </div>
   );
