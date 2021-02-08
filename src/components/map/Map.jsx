@@ -7,6 +7,7 @@ import { HistorySlider } from "./HistorySlider";
 import { Help } from "./Help";
 
 export const Map = ({
+  historyYear,
   selectedBaseLayer,
   onHistoryChanged,
   onObjectClick,
@@ -24,6 +25,6 @@ export const Map = ({
     />
     <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
     <Help />
-    <HistorySlider onChanged={onHistoryChanged} />
+    <HistorySlider value={historyYear} onChanged={onHistoryChanged} />
   </div>
 );

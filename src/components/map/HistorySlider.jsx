@@ -1,7 +1,7 @@
 import React from "react";
 import { Slider } from "@fluentui/react";
 
-export const HistorySlider = ({ onChanged }) => {
+export const HistorySlider = ({ value, onChanged }) => {
   const handleOnChanged = (_event, value) => onChanged(value);
   return (
     <div className="history-slider">
@@ -9,7 +9,7 @@ export const HistorySlider = ({ onChanged }) => {
         min={1800}
         max={2020}
         step={10}
-        defaultValue={2000}
+        value={value}
         showValue
         onChanged={handleOnChanged}
       />
