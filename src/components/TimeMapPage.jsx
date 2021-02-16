@@ -1,10 +1,8 @@
 import React from "react";
 
-import { Map } from "./components/map/Map";
-import { SidePanel } from "./components/sidePanel/SidePanel";
+import { View } from "./timeMapView/View";
 
-
-const defaultLayersState = [
+const layers = [
   {
     name: "Pozemkové mapy",
     identifier: "pozemkove_mapy",
@@ -55,7 +53,7 @@ const defaultLayersState = [
   },
 ];
 
-function CasoMapaPage() {
+export function TimeMapPage() {
   // const [layers, setLayers] = useState(defaultLayersState);
 
   const onHistoryChanged = (year) => {
@@ -93,28 +91,18 @@ function CasoMapaPage() {
   };
 
   return (
-    <div className="histjes-main">
-      <div className="histjes-map">
-        <Map
-          selectedBaseLayer="2019_zagabed"
-          onHistoryChanged={onHistoryChanged}
-          onReferenceLayerChanged={onReferenceLayerChanged}
-          onZoomIn={onZoomIn}
-          onZoomOut={onZoomOut}
-        />
-      </div>
-      <div className="histjes-panel">
-        <SidePanel
-          layers={defaultLayersState}
-          onBackHomeClick={onBackHomeClick}
-          onLayerSelected={onLayerSelected}
-          onLayerOpacityChange={onLayerOpacityChange}
-          // selectedObject={selectedObject}
-          onDetailCancel={onDetailCancel}
-        />
-      </div>
-    </div>
+    <View
+      onHistoryChanged={onHistoryChanged}
+      onReferenceLayerChanged={onReferenceLayerChanged}
+      onBackHomeClick={onBackHomeClick}
+      onLayerSelected={onLayerSelected}
+      onLayerOpacityChange={onLayerOpacityChange}
+      onZoomIn={onZoomIn}
+      onZoomOut={onZoomOut}
+      onDetailCancel={onDetailCancel}
+      selectedObject={selectedObject}
+      selectedBaseLayer="2019_zagabed"
+      layers={layers}
+    />
   );
 }
-
-export default CasoMapaPage;

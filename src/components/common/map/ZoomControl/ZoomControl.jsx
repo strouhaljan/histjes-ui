@@ -9,7 +9,7 @@ export const ZoomControl = ({ onZoomIn, onZoomOut }) => {
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
-    <div className={styles.zoomControl}>
+    <div className={`zoomControl ${styles.zoomControl}`}>
       <DefaultButton
         className={styles.button}
         iconProps={{ iconName: "Add" }}

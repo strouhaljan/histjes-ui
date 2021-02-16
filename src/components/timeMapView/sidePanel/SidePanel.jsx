@@ -1,18 +1,10 @@
 import React from "react";
-import { PivotItem, Pivot, ActionButton } from "@fluentui/react";
+import { PivotItem, Pivot } from "@fluentui/react";
+
+import { Panel } from "../../common/panel/Panel";
 
 import { LayersSection } from "./LayersSection";
 import { ObjectDetail } from "./ObjectDetail";
-
-const BackHomeButton = ({ onClick }) => (
-  <ActionButton
-    className="backButton"
-    iconProps={{ iconName: "ChevronLeftSmall" }}
-    onClick={onClick}
-  >
-    Zpět na rozcestník
-  </ActionButton>
-);
 
 export const SidePanel = ({
   layers,
@@ -25,13 +17,7 @@ export const SidePanel = ({
   onDetailCancel,
 }) => {
   return (
-    <div className="histjes-panel-inner">
-      <div className="copy">
-        <h2 className="logo_h2">Virtuální knihovna zapomenuté historie</h2>
-        <h1 className="logo_h1">Horské lesy Jeseníků</h1>
-        <span className="logo_subtitle">ČasoMapa</span>
-      </div>
-      <BackHomeButton onClick={onBackHomeClick} />
+    <Panel onBackHomeClick={onBackHomeClick} appTitle={"ČasoMapa"}>
       <Pivot
         styles={{
           root: { display: "flex" },
@@ -65,6 +51,6 @@ export const SidePanel = ({
           </div>
         </PivotItem>
       </Pivot>
-    </div>
+    </Panel>
   );
 };

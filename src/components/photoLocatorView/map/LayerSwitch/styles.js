@@ -2,12 +2,11 @@ import { mergeStyleSets } from "@fluentui/react";
 
 const getStyles = (theme) =>
   mergeStyleSets({
-    zoomControl: {
+    layerSwitch: {
         position: "absolute",
         top: "1rem",
         left: "7rem",
         zIndex: 99,
-        width: "5rem",
         display: "flex",
     },
     button: {

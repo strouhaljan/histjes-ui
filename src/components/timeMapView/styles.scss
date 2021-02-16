@@ -1,0 +1,121 @@
+$primaryColor: #222256;
+$secondaryColor: #5e5e73;
+
+.histjes-main {
+  min-width: 1024px;
+  display: flex;
+  overflow-y: hidden;
+}
+
+.histjes-map {
+  flex: 1 1 auto;
+  position: relative;
+  padding: 0;
+
+  .history-slider {
+    width: 700px;
+    height: 44px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 8px 8px 0 24px;
+  }
+
+  .reference-layer-picker {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 99;
+
+    .reference-layer-picker-inner {
+      width: 500px;
+      height: 300px;
+    }
+  }
+
+  .zoomControl {
+    margin-left: 6rem;
+  }
+}
+
+.histjes-panel {
+  flex: 0 0 330px;
+  padding: 0;
+  z-index: 2;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+
+  .layer-slider-wrapper {
+    margin-left: 28px;
+  }
+
+  .histjes-panel-inner {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    .tab {
+      padding: 0.5rem 1rem;
+    }
+
+    h4 {
+      color: $secondaryColor;
+      margin-bottom: 0.75rem;
+
+      &:first-of-type {
+        margin-top: 0.5rem;
+      }
+    }
+
+    .checkbox-stack-inner {
+      padding-left: 0.5rem;
+      margin-left: 0.25rem;
+    }
+
+    .separator {
+      margin-top: 1rem;
+      height: 1px;
+      width: 100%;
+      border-top: 1px solid #ebebf3;
+    }
+  }
+
+  .object-detail {
+    position: relative;
+    padding: 1rem 1.5rem;
+
+    &.empty {
+      text-align: center;
+      padding: 0 4rem;
+      padding-top: 10rem;
+
+      .icon {
+        color: $primaryColor;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+      }
+
+      h2 {
+        color: $primaryColor;
+        margin-top: 0;
+      }
+    }
+
+    .object-name {
+      margin-top: 0;
+      margin-right: 2rem;
+      color: $primaryColor;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+}

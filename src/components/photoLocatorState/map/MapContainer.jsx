@@ -4,7 +4,7 @@ import { Map as Mapycz, MouseControl, BaseLayers } from "react-mapycz";
 
 const MapContainer = () => (
     <Mapycz
-        height="100vh"
+        height="100%"
         width="100%"
         center={{ lat: 50.0830764, lng: 17.2309767 }}
         baseLayers={[BaseLayers.OPHOTO]}

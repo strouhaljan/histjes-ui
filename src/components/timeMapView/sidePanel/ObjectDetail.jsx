@@ -17,7 +17,7 @@ export const ObjectDetail = ({ object, onCancel }) => {
 
   return (
     <div className="object-detail">
-      <h2>{object.name}</h2>
+      <h2 className="object-name">{object.name}</h2>
       <IconButton
         styles={cancelButtonStyles}
         iconProps={{ iconName: "Cancel" }}
