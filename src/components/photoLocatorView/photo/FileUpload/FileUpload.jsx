@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { useDropzone } from "react-dropzone";
+import classnames from "classnames";
 import { FontIcon } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
@@ -22,7 +23,11 @@ export const FileUpload = () => {
     <div className={styles.fileUploadWrapper}>
       <div className={styles.fileUpload} {...getRootProps()}>
         <input {...getInputProps()} />
-        <div className={styles.fileUploadContent}>
+        <div
+          className={classnames(styles.fileUploadContent, {
+            [styles.fileUploadContentDragging]: isDragActive,
+          })}
+        >
           <FontIcon className={styles.icon} iconName="CloudUpload" />
           <h2 className={styles.text}>Nahrejte fotografii</h2>
         </div>
