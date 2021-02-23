@@ -1,16 +1,75 @@
-import React from "react";
-import { PrimaryButton } from "office-ui-fabric-react";
+import React, { useMemo } from "react";
+import {
+  PrimaryButton,
+  DefaultButton,
+  Icon,
+  Separator,
+} from "office-ui-fabric-react";
+import { useTheme } from "@fluentui/react-theme-provider";
 
 import { Panel } from "../../common/panel/Panel";
+import { Points } from "./Points/Points";
 
-export const SidePanel = ({ onBackHomeClick }) => {
+import getStyles from "./styles";
+
+const CalculateButton = ({ points, styles }) => (
+  <PrimaryButton
+    className={styles.calculateButton}
+    disabled={points.length < 3}
+    text="Přepočítat"
+  />
+);
+
+const SectionSeparator = ({ icon, label, styles }) => (
+  <Separator className={styles.sectionSeparator} alignContent="start">
+    <div className={styles.sectionLabel}>
+      <Icon className={styles.sectionIcon} iconName={icon} />
+      <span className={styles.sectionText}>{label}</span>
+    </div>
+  </Separator>
+);
+
+export const SidePanel = ({
+  onBackHomeClick,
+  points,
+  onAddPoint,
+  onRemovePoint,
+}) => {
+  const theme = useTheme();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+
   return (
-    <Panel onBackHomeClick={onBackHomeClick} appTitle={"FotoUmisťovač"}>
-      <PrimaryButton
-        className="calculate"
-        styles={{ root: { padding: "1.5rem 2rem", margin: "1rem" } }}
-        text="Přepočítat"
+    <Panel
+      onBackHomeClick={onBackHomeClick}
+      appTitle={"FotoUmisťovač"}
+      customContentStyles={styles.panelContent}
+    >
+      <div className={styles.projectButtonsWrapper}>
+        <DefaultButton
+          className={styles.projectButton}
+          onClick={() => {}}
+          text={"Nový projekt"}
+          iconProps={{ iconName: "Add" }}
+        />
+        <DefaultButton
+          className={styles.projectButton}
+          onClick={() => {}}
+          text={"Otevřít projekt"}
+          iconProps={{ iconName: "OpenFolderHorizontal" }}
+        />
+      </div>
+      <SectionSeparator
+        icon="BullseyeTargetEdit"
+        label="Vlícovací body"
+        styles={styles}
       />
+      <Points
+        points={points}
+        onAddPoint={onAddPoint}
+        onRemovePoint={onRemovePoint}
+      />
+      <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
+      <CalculateButton points={points} styles={styles} />
     </Panel>
   );
 };

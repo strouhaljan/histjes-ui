@@ -21,9 +21,10 @@ export const FileUpload = () => {
 
   return (
     <div className={styles.fileUploadWrapper}>
-      <div className={styles.fileUpload} {...getRootProps()}>
+      <div className={styles.fileUpload}>
         <input {...getInputProps()} />
         <div
+          {...getRootProps()}
           className={classnames(styles.fileUploadContent, {
             [styles.fileUploadContentDragging]: isDragActive,
           })}

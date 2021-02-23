@@ -19,7 +19,12 @@ const BackHomeButton = ({ onClick }) => {
   );
 };
 
-export const Panel = ({ onBackHomeClick, appTitle, children }) => {
+export const Panel = ({
+  onBackHomeClick,
+  appTitle,
+  children,
+  customContentStyles = "",
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -34,7 +39,9 @@ export const Panel = ({ onBackHomeClick, appTitle, children }) => {
           <span className={styles.appTitle}>{appTitle}</span>
         </div>
         <BackHomeButton onClick={onBackHomeClick} />
-        {children}
+        <div className={`${styles.content} ${customContentStyles}`}>
+          {children}
+        </div>
       </div>
     </div>
   );
