@@ -6,13 +6,15 @@ import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
 
-export const FileUpload = () => {
+export const FileUpload = ({onAcceptFile}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
-  }, []);
+    if (onAcceptFile) {
+      onAcceptFile(acceptedFiles);
+    }
+  }, [onAcceptFile]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: "image/jpeg, image/png",

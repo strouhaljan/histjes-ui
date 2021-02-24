@@ -8,16 +8,42 @@ import { ViewSwitch } from "./ViewSwitch";
 
 import getStyles from "./styles";
 
-export const Map = ({ onZoomIn, onZoomOut }) => {
+export const Map = ({
+  selectedBaseLayer,
+  selectedView,
+  onChangeBaseLayer,
+  onChangeView,
+  onZoomIn,
+  onZoomOut
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
     <div className={styles.map}>
-      <MapContainer />
-      <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
-      <LayerSwitch />
-      <ViewSwitch />
+      {(selectedView === '2D')
+        ? <>
+          <div style={{ height: "100vh", width: "100%", display: "flex" }}>
+            <MapContainer
+              selectedLayer={selectedBaseLayer}
+            />
+          </div>
+          <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
+          <LayerSwitch
+            selectedLayer={selectedBaseLayer}
+            onChangeLayer={onChangeBaseLayer}
+          />
+        </>
+        : <>
+          <div style={{ height: "100vh", width: "100%", display: "flex" }}>
+            3D
+          </div>
+        </>
+      }
+      <ViewSwitch
+        selectedView={selectedView}
+        onChangeView={onChangeView}
+      />
     </div>
   );
 };

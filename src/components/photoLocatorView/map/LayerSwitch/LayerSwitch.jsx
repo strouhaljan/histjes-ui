@@ -4,22 +4,49 @@ import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
 
-export const LayerSwitch = ({ onZoomIn, onZoomOut }) => {
+const LayerButton = ({title, layerId, selected, styles, onChangeLayer}) => {
+  const handleChangeLayer = (layerId) => {
+    if (onChangeLayer) {
+      onChangeLayer(layerId);
+    }
+  }
+
+  return selected
+    ? <PrimaryButton
+      className={styles.button}
+      onClick={() => handleChangeLayer(layerId)}
+      text={title}
+    />
+    : <DefaultButton
+      className={styles.button}
+      onClick={() => handleChangeLayer(layerId)}
+      text={title}
+    />;
+}
+
+export const LayerSwitch = ({ selectedLayer, onChangeLayer }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
+  const LAYERS = [
+    {title: 'Mapa', layerId: 'base_zm'},
+    {title: 'Ortofoto', layerId: 'base_orto'}
+  ];
+
   return (
     <div className={`layerSwitch ${styles.layerSwitch}`}>
-      <DefaultButton
-        className={styles.button}
-        onClick={onZoomIn}
-        text={"Mapa"}
-      />
-      <PrimaryButton
-        className={styles.button}
-        onClick={onZoomOut}
-        text={"Ortofoto"}
-      />
+      {LAYERS.map(item => {
+        return (
+          <LayerButton
+            key={item.layerId}
+            title={item.title}
+            layerId={item.layerId}
+            selected={selectedLayer === item.layerId}
+            styles={styles}
+            onChangeLayer={onChangeLayer}
+          />
+        );
+      })}
     </div>
   );
 };

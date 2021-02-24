@@ -11,8 +11,16 @@ export const View = ({
   onBackHomeClick,
   file,
   points,
+  selectedBaseLayer,
+  selectedView,
+  onAcceptFile,
   onAddPoint,
+  onNewProject,
   onRemovePoint,
+  onChangeBaseLayer,
+  onChangeView,
+  onZoomIn,
+  onZoomOut
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -20,14 +28,26 @@ export const View = ({
   return (
     <div className={styles.main}>
       <SidePanel
-        onBackHomeClick={onBackHomeClick}
+        fileLoaded={!!file}
         points={points}
         onAddPoint={onAddPoint}
+        onBackHomeClick={onBackHomeClick}
+        onNewProject={onNewProject}
         onRemovePoint={onRemovePoint}
       />
       <div className={styles.locator}>
-        <Photo file={file} />
-        <Map />
+        <Photo
+          file={file}
+          onAcceptFile={onAcceptFile}
+        />
+        <Map
+          selectedBaseLayer={selectedBaseLayer}
+          selectedView={selectedView}
+          onChangeBaseLayer={onChangeBaseLayer}
+          onChangeView={onChangeView}
+          onZoomIn={onZoomIn}
+          onZoomOut={onZoomOut}
+        />
       </div>
     </div>
   );

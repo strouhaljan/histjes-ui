@@ -83,11 +83,11 @@ export const Points = ({ points, onAddPoint, onRemovePoint }) => {
           key={point.identifier}
           point={point}
           index={index}
-          canBeRemoved={points.length > 3}
+          canBeRemoved={true}
           onRemovePoint={onRemovePoint}
         />
       ))}
-      {points.length < 10 && (
+      {points.length < 3 && (
         <ActionButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}

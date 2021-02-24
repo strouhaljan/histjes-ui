@@ -30,9 +30,11 @@ const SectionSeparator = ({ icon, label, styles }) => (
 );
 
 export const SidePanel = ({
-  onBackHomeClick,
+  fileLoaded,
   points,
   onAddPoint,
+  onBackHomeClick,
+  onNewProject,
   onRemovePoint,
 }) => {
   const theme = useTheme();
@@ -47,7 +49,7 @@ export const SidePanel = ({
       <div className={styles.projectButtonsWrapper}>
         <DefaultButton
           className={styles.projectButton}
-          onClick={() => {}}
+          onClick={onNewProject}
           text={"Nový projekt"}
           iconProps={{ iconName: "Add" }}
         />
@@ -58,18 +60,22 @@ export const SidePanel = ({
           iconProps={{ iconName: "OpenFolderHorizontal" }}
         />
       </div>
-      <SectionSeparator
-        icon="BullseyeTargetEdit"
-        label="Vlícovací body"
-        styles={styles}
-      />
-      <Points
-        points={points}
-        onAddPoint={onAddPoint}
-        onRemovePoint={onRemovePoint}
-      />
-      <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
-      <CalculateButton points={points} styles={styles} />
+      {fileLoaded &&
+        <>
+          <SectionSeparator
+            icon="BullseyeTargetEdit"
+            label="Vlícovací body"
+            styles={styles}
+          />
+          <Points
+            points={points}
+            onAddPoint={onAddPoint}
+            onRemovePoint={onRemovePoint}
+          />
+          <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
+          <CalculateButton points={points} styles={styles} />
+        </>
+      }
     </Panel>
   );
 };
