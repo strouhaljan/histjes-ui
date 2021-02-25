@@ -1,12 +1,13 @@
 import React from "react";
+import { Stack } from "@fluentui/react";
 import MapContainer3D from "../../photoLocatorState/map/MapContainer3D";
 
 export const Map3D = () => {
   return (
-    <>
-      <div style={{ height: "100vh", width: "100%", display: "flex" }}>
+    <Stack verticalFill>
+      <Stack.Item grow>
         <MapContainer3D />
-      </div>
-    </>
-  );
+      </Stack.Item>
+    </Stack>
+ );
 };
