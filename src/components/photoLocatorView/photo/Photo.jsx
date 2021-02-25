@@ -2,10 +2,9 @@ import React, { useMemo } from "react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { FileUpload } from "./FileUpload";
+import PhotoContainer from "../../photoLocatorState/photo/PhotoContainer";
 
 import getStyles from "./styles";
-
-const Canvas = ({ file }) => `Canvas ${file ? file.fileName : ''}`;
 
 export const Photo = ({ file, onAcceptFile }) => {
   const theme = useTheme();
@@ -13,7 +12,9 @@ export const Photo = ({ file, onAcceptFile }) => {
 
   return (
     <div className={styles.photo}>
-      {file ? <Canvas file={file} /> : <FileUpload onAcceptFile={onAcceptFile} />}
+      {file
+        ? <PhotoContainer file={file} />
+        : <FileUpload onAcceptFile={onAcceptFile} />}
     </div>
   );
 };

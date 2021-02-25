@@ -2,7 +2,7 @@ import React from "react";
 
 import { Map as Mapycz, MouseControl, BaseLayers } from "react-mapycz";
 
-const MapContainer = () => (
+const MapContainer2D = () => (
     <Mapycz
         height="100%"
         width="100%"
@@ -13,4 +13,4 @@ const MapContainer = () => (
     </Mapycz>
 );
 
-export default MapContainer;
+export default MapContainer2D;

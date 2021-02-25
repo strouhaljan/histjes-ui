@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
-import MapContainer from "../../photoLocatorState/map/MapContainer";
-import { ZoomControl } from "../../common/map/ZoomControl";
-import { LayerSwitch } from "./LayerSwitch";
 import { ViewSwitch } from "./ViewSwitch";
+import { Map2D } from "./Map2D";
+import { Map3D } from "./Map3D";
 
 import getStyles from "./styles";
 
@@ -22,23 +21,13 @@ export const Map = ({
   return (
     <div className={styles.map}>
       {(selectedView === '2D')
-        ? <>
-          <div style={{ height: "100vh", width: "100%", display: "flex" }}>
-            <MapContainer
-              selectedLayer={selectedBaseLayer}
-            />
-          </div>
-          <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
-          <LayerSwitch
+        ? <Map2D
+            onZoomIn={onZoomIn}
+            onZoomOut={onZoomOut}
             selectedLayer={selectedBaseLayer}
             onChangeLayer={onChangeBaseLayer}
-          />
-        </>
-        : <>
-          <div style={{ height: "100vh", width: "100%", display: "flex" }}>
-            3D
-          </div>
-        </>
+        />
+        : <Map3D />
       }
       <ViewSwitch
         selectedView={selectedView}
