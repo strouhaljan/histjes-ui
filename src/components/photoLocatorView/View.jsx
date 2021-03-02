@@ -8,13 +8,14 @@ import { Map } from "./map/Map";
 import getStyles from "./styles";
 
 export const View = ({
-  onBackHomeClick,
   file,
+  loadingDmt,
   points,
   selectedBaseLayer,
   selectedView,
   onAcceptFile,
   onAddPoint,
+  onBackHomeClick,
   onNewProject,
   onRemovePoint,
   onChangeBaseLayer,
@@ -29,6 +30,7 @@ export const View = ({
     <div className={styles.main}>
       <SidePanel
         fileLoaded={!!file}
+        loadingDmt={loadingDmt}
         points={points}
         onAddPoint={onAddPoint}
         onBackHomeClick={onBackHomeClick}

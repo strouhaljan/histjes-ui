@@ -72,7 +72,7 @@ const Point = ({ point, index, canBeRemoved, onRemovePoint }) => {
   );
 };
 
-export const Points = ({ points, onAddPoint, onRemovePoint }) => {
+export const Points = ({ loadingDmt, points, onAddPoint, onRemovePoint }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -87,7 +87,7 @@ export const Points = ({ points, onAddPoint, onRemovePoint }) => {
           onRemovePoint={onRemovePoint}
         />
       ))}
-      {points.length < 3 && (
+      {!loadingDmt && (points.length < 3) && (
         <ActionButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}
@@ -95,6 +95,7 @@ export const Points = ({ points, onAddPoint, onRemovePoint }) => {
           onClick={onAddPoint}
         />
       )}
+      {loadingDmt && <div>Probíhá zpracování...</div>}
     </div>
   );
 };

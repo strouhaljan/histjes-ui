@@ -31,6 +31,7 @@ const SectionSeparator = ({ icon, label, styles }) => (
 
 export const SidePanel = ({
   fileLoaded,
+  loadingDmt,
   points,
   onAddPoint,
   onBackHomeClick,
@@ -68,6 +69,7 @@ export const SidePanel = ({
             styles={styles}
           />
           <Points
+            loadingDmt={loadingDmt}
             points={points}
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
