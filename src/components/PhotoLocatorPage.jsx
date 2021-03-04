@@ -26,6 +26,8 @@ export const PhotoLocatorPage = () => {
   const [points, setPoints] = useState([
     {
       identifier: uuidv4(),
+      color: 'rgb(255, 0, 0)',
+      lock: false,
       photo: {
         x: 9999,
         y: 0,
@@ -38,6 +40,8 @@ export const PhotoLocatorPage = () => {
     },
     {
       identifier: uuidv4(),
+      color: 'rgb(0, 255, 0)',
+      lock: false,
       photo: {
         x: 0,
         y: 0,
@@ -50,6 +54,8 @@ export const PhotoLocatorPage = () => {
     },
     {
       identifier: uuidv4(),
+      color: 'rgb(0, 0, 255)',
+      lock: false,
       photo: {
         x: 0,
         y: 0,
