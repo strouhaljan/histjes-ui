@@ -1,13 +1,8 @@
-import React, { useMemo, useCallback } from "react";
-import {
-  ActionButton,
-  FontIcon,
-  IconButton,
-  TextField,
-} from "office-ui-fabric-react";
+import React, { useMemo } from "react";
+import { ActionButton, FontIcon, IconButton } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
-import getStyles from "./styles";
+import { getPointStyles, getStyles } from "./styles";
 
 const PointValue = ({ label, value, styles }) => {
   return (
@@ -20,7 +15,11 @@ const PointValue = ({ label, value, styles }) => {
 
 const Point = ({ point, index, onRemovePoint, onEditPoint }) => {
   const theme = useTheme();
-  const styles = useMemo(() => getStyles(theme, index), [theme, index]);
+  const styles = useMemo(() => getPointStyles(theme, index, point), [
+    theme,
+    index,
+    point,
+  ]);
 
   const onRemovePointHandler = () => {
     onRemovePoint(point.identifier);
@@ -66,11 +65,9 @@ export const Points = ({
   onRemovePoint,
   onEditPoint,
 }) => {
-  const theme = useTheme();
-  const styles = useMemo(() => getStyles(theme), [theme]);
-
+  const styles = useMemo(() => getStyles(), []);
   return (
-    <div className={styles.points}>
+    <div>
       {points.map((point, index) => (
         <Point
           key={point.identifier}

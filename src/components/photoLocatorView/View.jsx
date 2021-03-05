@@ -19,6 +19,7 @@ export const View = ({
   onBackHomeClick,
   onNewProject,
   onOpenProject,
+  getProjectData,
   onRemovePoint,
   onChangeBaseLayer,
   onChangeView,
@@ -43,6 +44,7 @@ export const View = ({
         onBackHomeClick={onBackHomeClick}
         onNewProject={onNewProject}
         onOpenProject={onOpenProject}
+        getProjectData={getProjectData}
         onRemovePoint={onRemovePoint}
         onEditPoint={setEditedPoint}
       />

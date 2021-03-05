@@ -2,20 +2,18 @@ import React, { useMemo, useCallback } from "react";
 import classnames from "classnames";
 import {
   Dialog,
-  SpinButton,
-  ComboBox,
   TextField,
-  FontIcon,
   DialogFooter,
   PrimaryButton,
   DefaultButton,
   ChoiceGroup,
+  Separator,
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
 
-const PointInput = ({ label, value, onChange, styles }) => {
+const PointInput = ({ label, value, onChange, styles, suffix }) => {
   const onChangeHandler = useCallback((_event, value) => {
     console.log("XX", value);
   }, []);
@@ -27,6 +25,7 @@ const PointInput = ({ label, value, onChange, styles }) => {
         className={styles.inputFieldWrapper}
         value={value}
         onChange={onChangeHandler}
+        suffix={suffix}
       />
     </div>
   );
@@ -161,6 +160,15 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
       dialogContentProps={dialogContentProps}
     >
       <ChoiceGroup defaultSelectedKey="A" options={options} />
+      <Separator />
+      <div className={styles.optionContent}>
+        <PointInput
+          styles={styles}
+          label={"Nadmořská výška:"}
+          value={point?.map?.height}
+          suffix={"m"}
+        />
+      </div>
       <DialogFooter>
         <PrimaryButton onClick={onSetPoint} text="Nastavit" />
         <DefaultButton onClick={onDismiss} text="Zrušit" />

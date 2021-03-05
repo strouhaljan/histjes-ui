@@ -97,8 +97,8 @@ export const PhotoLocatorPage = () => {
     console.log(`Opened project: ${file?.name || "empty"}`);
   };
 
-  const onSaveProject = (file) => {
-    console.log(`Saved project: ${file?.name || "empty"}`);
+  const getProjectData = () => {
+    return "TEST DATA TO BE SAVED";
   };
 
   const onChangeBaseLayer = (layerId) => {
@@ -136,6 +136,7 @@ export const PhotoLocatorPage = () => {
       onAddPoint={onAddPoint}
       onNewProject={onNewProject}
       onOpenProject={onOpenProject}
+      getProjectData={getProjectData}
       onRemovePoint={onRemovePoint}
       onChangeBaseLayer={onChangeBaseLayer}
       onChangeView={onChangeView}

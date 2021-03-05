@@ -1,15 +1,13 @@
-import React, { useMemo, useRef } from "react";
-import {
-  PrimaryButton,
-  DefaultButton,
-  Icon,
-  Separator,
-} from "office-ui-fabric-react";
+import React, { useMemo } from "react";
+import { PrimaryButton, Icon, Separator } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { Panel } from "../../common/panel/Panel";
 import { Points } from "./Points";
 import { Parameters } from "./Parameters";
+import { NewProjectButton } from "./projectButtons/NewProjectButton";
+import { OpenProjectButton } from "./projectButtons/OpenProjectButton";
+import { SaveProjectButton } from "./projectButtons/SaveProjectButton";
 
 import getStyles from "./styles";
 
@@ -30,36 +28,6 @@ const SectionSeparator = ({ icon, label, styles }) => (
   </Separator>
 );
 
-const OpenProjectButton = ({ styles, onOpenProject }) => {
-  const fileUploadInput = useRef(null);
-  const handleOpenProject = (e) => {
-    onOpenProject(e?.target?.files[0] || undefined);
-  };
-  const clickUpload = () => {
-    if (fileUploadInput.current) {
-      fileUploadInput.current.click();
-    }
-  };
-  return (
-    <div>
-      <DefaultButton
-        className={styles.projectButton}
-        type="file"
-        onClick={clickUpload}
-        text={"Otevřít"}
-        iconProps={{ iconName: "OpenFolderHorizontal" }}
-      />
-      <input
-        ref={fileUploadInput}
-        style={{ display: "none" }}
-        type="file"
-        accept="application/json"
-        onChange={handleOpenProject}
-      />
-    </div>
-  );
-};
-
 export const SidePanel = ({
   fileLoaded,
   loadingDmt,
@@ -68,6 +36,7 @@ export const SidePanel = ({
   onBackHomeClick,
   onNewProject,
   onOpenProject,
+  getProjectData,
   onRemovePoint,
   onEditPoint,
 }) => {
@@ -86,19 +55,12 @@ export const SidePanel = ({
         styles={styles}
       />
       <div className={styles.projectButtonsWrapper}>
-        <DefaultButton
-          className={styles.projectButton}
-          onClick={onNewProject}
-          text={"Nový"}
-          iconProps={{ iconName: "Add" }}
-        />
-        <OpenProjectButton onOpenProject={onOpenProject} styles={styles} />
-        <DefaultButton
-          className={styles.projectButton}
-          onClick={() => {}}
-          text={"Uložit"}
+        <NewProjectButton onClick={onNewProject} styles={styles} />
+        <OpenProjectButton onClick={onOpenProject} styles={styles} />
+        <SaveProjectButton
+          getProjectData={getProjectData}
+          styles={styles}
           disabled={!fileLoaded}
-          iconProps={{ iconName: "Save" }}
         />
       </div>
       {fileLoaded && (

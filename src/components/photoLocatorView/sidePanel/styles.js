@@ -7,7 +7,15 @@ const getStyles = (theme) =>
       flexWrap: "wrap",
       gap: ".25rem",
     },
-    projectButton: { padding: "0 .5rem", flex: "1 1 auto" },
+    projectButton: {
+      flex: "1 1 auto",
+      selectors: {
+        ".ms-Button": {
+          padding: "0 .5rem",
+          width: "100%",
+        },
+      },
+    },
     panelContent: {
       display: "flex",
       flexDirection: "column",
