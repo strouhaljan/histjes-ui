@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { DefaultButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { FileUpload } from "./FileUpload";
@@ -7,7 +8,19 @@ import PhotoContainer from "../../photoLocatorState/photo/PhotoContainer";
 
 import getStyles from "./styles";
 
-export const Photo = ({ file, onAcceptFile, onZoomIn, onZoomOut }) => {
+const FitScreenButton = ({ onClick, styles }) => (
+  <div className={styles.fitScreenButton}>
+    <DefaultButton onClick={onClick} iconProps={{ iconName: "FitPage" }} />
+  </div>
+);
+
+export const Photo = ({
+  file,
+  onAcceptFile,
+  onZoomIn,
+  onZoomOut,
+  onFitScreen,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -16,6 +29,7 @@ export const Photo = ({ file, onAcceptFile, onZoomIn, onZoomOut }) => {
       {file ? (
         <div>
           <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
+          <FitScreenButton onClick={onFitScreen} styles={styles} />
           <PhotoContainer file={file} />
         </div>
       ) : (

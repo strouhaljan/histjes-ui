@@ -1,6 +1,6 @@
 import { mergeStyleSets } from "@fluentui/react";
 
-const getStyles = (theme) =>
+export const getMapStyles = () =>
   mergeStyleSets({
     map: {
       position: "relative",
@@ -10,4 +10,21 @@ const getStyles = (theme) =>
     },
   });
 
-export default getStyles;
+export const getMoveControlStyles = () =>
+  mergeStyleSets({
+    moveControl: {
+      position: "absolute",
+      top: "1rem",
+      left: "1rem",
+      zIndex: 99,
+      width: "5rem",
+      display: "flex",
+    },
+    button: {
+      minWidth: 0,
+      flex: "0 0 50%",
+      "&:nth-child(2)": {
+        marginLeft: "-1px",
+      },
+    },
+  });

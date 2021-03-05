@@ -6,7 +6,7 @@ import { View } from "./photoLocatorView/View";
 export const PhotoLocatorPage = () => {
   const [baseLayer, setBaseLayer] = useState("base_zm");
   const [view, setView] = useState("2D");
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("xxx");
 
   const onBackHomeClick = () => {
     alert("Back home clicked");
@@ -125,6 +125,18 @@ export const PhotoLocatorPage = () => {
     alert("Photo ZoomOut");
   };
 
+  const onPhotoFitScreen = () => {
+    alert("Photo FitScreen");
+  };
+
+  const on3DViewMoveForward = () => {
+    alert("3D MoveForward");
+  };
+
+  const on3DViewMoveBack = () => {
+    alert("3D MoveBack");
+  };
+
   return (
     <View
       file={file}
@@ -144,6 +156,9 @@ export const PhotoLocatorPage = () => {
       onZoomOut={onZoomOut}
       onPhotoZoomIn={onPhotoZoomIn}
       onPhotoZoomOut={onPhotoZoomOut}
+      onPhotoFitScreen={onPhotoFitScreen}
+      on3DViewMoveBack={on3DViewMoveBack}
+      on3DViewMoveForward={on3DViewMoveForward}
     />
   );
 };

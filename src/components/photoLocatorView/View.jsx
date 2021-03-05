@@ -27,6 +27,9 @@ export const View = ({
   onZoomOut,
   onPhotoZoomIn,
   onPhotoZoomOut,
+  onPhotoFitScreen,
+  on3DViewMoveForward,
+  on3DViewMoveBack,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -54,6 +57,7 @@ export const View = ({
           onAcceptFile={onAcceptFile}
           onZoomIn={onPhotoZoomIn}
           onZoomOut={onPhotoZoomOut}
+          onFitScreen={onPhotoFitScreen}
         />
         <Map
           selectedBaseLayer={selectedBaseLayer}
@@ -62,6 +66,8 @@ export const View = ({
           onChangeView={onChangeView}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
+          onMoveForward={on3DViewMoveForward}
+          onMoveBack={on3DViewMoveBack}
         />
       </div>
       <EditPointDialog
