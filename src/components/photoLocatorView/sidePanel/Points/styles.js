@@ -2,11 +2,7 @@ import { mergeStyleSets } from "@fluentui/react";
 
 const getStyles = (theme, index) =>
   mergeStyleSets({
-    points: {
-      marginBottom: "1rem",
-      flex: "1 0 18rem",
-      overflow: "auto",
-    },
+    points: {},
     point: {
       padding: ".5rem .75rem",
       position: "relative",
@@ -17,40 +13,33 @@ const getStyles = (theme, index) =>
           ? theme.palette.neutralLighterAlt
           : theme.palette.neutralLight,
       selectors: {
-        ":hover .removeButton": {
+        ":hover .editButtons": {
           display: "block",
         },
       },
     },
-    pointIndex: {},
     icon: {
       alignSelf: "center",
+      display: "block",
     },
-    input: {
-      width: "4.25rem",
-      marginLeft: "1rem",
-      selectors: {
-        ".ms-Label": {
-          marginRight: ".25rem",
-          paddingLeft: ".25rem",
-        },
-        ".ms-TextField-field": {
-          padding: "0",
-          textAlign: "right",
-          backgroundColor:
-            index % 2 === 0
-              ? theme.palette.neutralLighterAlt
-              : theme.palette.neutralLight,
-        },
-      },
-    },
-    photo: {
+    pointValueWrapper: {
+      width: "5rem",
+      marginLeft: ".5rem",
       display: "flex",
     },
-    map: {
-      display: "flex",
+    pointValueLabel: {
+      fontWeight: "bold",
     },
-    removeButton: {
+    pointValue: {
+      marginLeft: ".25rem",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    pointValues: {
+      display: "flex",
+      marginTop: ".25rem",
+    },
+    editButtons: {
       display: "none",
       position: "absolute",
       right: 0,

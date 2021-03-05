@@ -20,8 +20,12 @@ const getStyles = (theme) =>
       width: "100%",
     },
     sectionSeparator: {
-      marginTop: "1rem",
+      padding: 0,
+      margin: "1rem 0 .5rem",
       selectors: {
+        ":first-of-type": {
+          marginTop: 0,
+        },
         "::before": {
           backgroundColor: theme.palette.themeLighter,
         },
@@ -35,13 +39,13 @@ const getStyles = (theme) =>
     },
     sectionIcon: {
       alignSelf: "center",
-      fontSize: "1.25rem",
+      fontSize: ".9rem",
       color: theme.palette.themePrimary,
     },
     sectionText: {
       alignSelf: "center",
-      marginLeft: ".5rem",
-      fontSize: "1rem",
+      marginLeft: ".25rem",
+      fontSize: ".9rem",
       color: theme.palette.themePrimary,
     },
   });

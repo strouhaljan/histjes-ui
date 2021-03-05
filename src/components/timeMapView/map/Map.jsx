@@ -1,7 +1,7 @@
 import React from "react";
 
 import MapContainer from "../../timeMapState/map/MapContainer";
-import { ZoomControl } from "../../common/map/ZoomControl";
+import { ZoomControl } from "../../common/ZoomControl/ZoomControl";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
 import { HistorySlider } from "./HistorySlider";
 import { Help } from "./Help";

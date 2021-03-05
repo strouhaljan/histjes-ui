@@ -14,33 +14,33 @@ export const PhotoLocatorPage = () => {
 
   const onAcceptFile = (acceptedFiles) => {
     if (acceptedFiles.length > 0) {
-        let file = acceptedFiles[0];
-        let reader = new FileReader();
-        reader.onload = () => {
-            setFile({fileName: file.name});
-        };
-        reader.readAsDataURL(file);
+      let file = acceptedFiles[0];
+      let reader = new FileReader();
+      reader.onload = () => {
+        setFile({ fileName: file.name });
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const [points, setPoints] = useState([
     {
       identifier: uuidv4(),
-      color: 'rgb(255, 0, 0)',
+      color: "rgb(255, 0, 0)",
       lock: false,
       photo: {
         x: 9999,
-        y: 0,
+        y: 123456789,
       },
       map: {
-        x: 0,
+        x: 1.23456789,
         y: 0,
         z: 0,
       },
     },
     {
       identifier: uuidv4(),
-      color: 'rgb(0, 255, 0)',
+      color: "rgb(0, 255, 0)",
       lock: false,
       photo: {
         x: 0,
@@ -54,7 +54,7 @@ export const PhotoLocatorPage = () => {
     },
     {
       identifier: uuidv4(),
-      color: 'rgb(0, 0, 255)',
+      color: "rgb(0, 0, 255)",
       lock: false,
       photo: {
         x: 0,
@@ -91,15 +91,23 @@ export const PhotoLocatorPage = () => {
   const onNewProject = () => {
     setFile();
     setPoints([]);
-  }
+  };
+
+  const onOpenProject = (file) => {
+    console.log(`Opened project: ${file?.name || "empty"}`);
+  };
+
+  const onSaveProject = (file) => {
+    console.log(`Saved project: ${file?.name || "empty"}`);
+  };
 
   const onChangeBaseLayer = (layerId) => {
     setBaseLayer(layerId);
-  }
+  };
 
   const onChangeView = (viewId) => {
     setView(viewId);
-  }
+  };
 
   const onZoomIn = () => {
     alert("ZoomIn");
@@ -107,6 +115,14 @@ export const PhotoLocatorPage = () => {
 
   const onZoomOut = () => {
     alert("ZoomOut");
+  };
+
+  const onPhotoZoomIn = () => {
+    alert("Photo ZoomIn");
+  };
+
+  const onPhotoZoomOut = () => {
+    alert("Photo ZoomOut");
   };
 
   return (
@@ -119,11 +135,14 @@ export const PhotoLocatorPage = () => {
       onAcceptFile={onAcceptFile}
       onAddPoint={onAddPoint}
       onNewProject={onNewProject}
+      onOpenProject={onOpenProject}
       onRemovePoint={onRemovePoint}
       onChangeBaseLayer={onChangeBaseLayer}
       onChangeView={onChangeView}
       onZoomIn={onZoomIn}
       onZoomOut={onZoomOut}
-/>
+      onPhotoZoomIn={onPhotoZoomIn}
+      onPhotoZoomOut={onPhotoZoomOut}
+    />
   );
 };

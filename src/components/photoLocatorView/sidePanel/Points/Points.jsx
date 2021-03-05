@@ -9,36 +9,16 @@ import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
 
-const PointInput = ({ label, value, onChange, styles }) => {
-  const onChangeHandler = useCallback((_event, value) => {
-    console.log("XX", value);
-  }, []);
-
+const PointValue = ({ label, value, styles }) => {
   return (
-    <TextField
-      underlined
-      className={styles.input}
-      type="number"
-      label={label}
-      value={value}
-      onChange={onChangeHandler}
-    />
-    // <SpinButton
-    //   styles={{
-    //     root: { minWidth: 0 },
-    //     input: { minWidth: 0 },
-    //     spinButtonWrapper: { minWidth: 0 },
-    //   }}
-    //   defaultValue="0"
-    //   label={label}
-    //   step={1}
-    //   value={value}
-    //   className={styles.input}
-    // />
+    <div className={styles.pointValueWrapper}>
+      <span className={styles.pointValueLabel}>{label}</span>
+      <span className={styles.pointValue}>{value}</span>
+    </div>
   );
 };
 
-const Point = ({ point, index, canBeRemoved, onRemovePoint }) => {
+const Point = ({ point, index, onRemovePoint, onEditPoint }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme, index), [theme, index]);
 
@@ -46,33 +26,46 @@ const Point = ({ point, index, canBeRemoved, onRemovePoint }) => {
     onRemovePoint(point.identifier);
   };
 
+  const onEditPointHandler = () => {
+    onEditPoint(point.identifier);
+  };
+
   return (
     <div className={styles.point}>
       <div>
-        <div className={styles.photo}>
+        <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="ImageCrosshair" />
-          <PointInput styles={styles} label={"X:"} value={point.photo.x} />
-          <PointInput styles={styles} label={"Y:"} value={point.photo.y} />
+          <PointValue styles={styles} label={"X:"} value={point.photo.x} />
+          <PointValue styles={styles} label={"Y:"} value={point.photo.y} />
         </div>
-        <div className={styles.map}>
+        <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="Nav2DMapView" />
-          <PointInput styles={styles} label={"X:"} value={point.map.x} />
-          <PointInput styles={styles} label={"Y:"} value={point.map.y} />
-          <PointInput styles={styles} label={"Z:"} value={point.map.z} />
+          <PointValue styles={styles} label={"X:"} value={point.map.x} />
+          <PointValue styles={styles} label={"Y:"} value={point.map.y} />
+          <PointValue styles={styles} label={"Z:"} value={point.map.z} />
         </div>
       </div>
-      {canBeRemoved && (
+      <div className={`${styles.editButtons} editButtons`}>
         <IconButton
-          className={`${styles.removeButton} removeButton`}
+          iconProps={{ iconName: "Edit" }}
+          onClick={onEditPointHandler}
+        />
+        <IconButton
           iconProps={{ iconName: "RemoveFilter" }}
           onClick={onRemovePointHandler}
         />
-      )}
+      </div>
     </div>
   );
 };
 
-export const Points = ({ loadingDmt, points, onAddPoint, onRemovePoint }) => {
+export const Points = ({
+  loadingDmt,
+  points,
+  onAddPoint,
+  onRemovePoint,
+  onEditPoint,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -83,11 +76,11 @@ export const Points = ({ loadingDmt, points, onAddPoint, onRemovePoint }) => {
           key={point.identifier}
           point={point}
           index={index}
-          canBeRemoved={true}
           onRemovePoint={onRemovePoint}
+          onEditPoint={onEditPoint}
         />
       ))}
-      {!loadingDmt && (points.length < 3) && (
+      {!loadingDmt && points.length < 3 && (
         <ActionButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}
