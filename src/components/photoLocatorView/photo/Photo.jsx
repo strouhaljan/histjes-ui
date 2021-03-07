@@ -27,7 +27,7 @@ export const Photo = ({
   return (
     <div className={styles.photo}>
       {file ? (
-        <div>
+        <div className={styles.photoWrapper}>
           <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
           <FitScreenButton onClick={onFitScreen} styles={styles} />
           <PhotoContainer file={file} />

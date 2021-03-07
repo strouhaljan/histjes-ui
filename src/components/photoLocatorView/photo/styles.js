@@ -2,6 +2,10 @@ import { mergeStyleSets } from "@fluentui/react";
 
 const getStyles = (theme) =>
   mergeStyleSets({
+    photoWrapper: {
+      display: "flex",
+      width: "100%",
+    },
     photo: {
       display: "flex",
       flex: "1 1 50%",
