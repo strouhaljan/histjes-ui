@@ -18,11 +18,12 @@ export const View = ({
   selectedView,
   onAcceptFile,
   onAddPoint,
+  onRemovePoint,
+  onLockPoint,
   onBackHomeClick,
   onNewProject,
   onOpenProject,
   getProjectData,
-  onRemovePoint,
   onChangeBaseLayer,
   onChangeView,
   onZoomIn,
@@ -55,7 +56,8 @@ export const View = ({
         getProjectData={getProjectData}
         onRemovePoint={onRemovePoint}
         onEditPoint={setEditedPoint}
-        onCalculateClick={onCalculateClick}
+        onLockPoint={onLockPoint}
+		onCalculateClick={onCalculateClick}
       />
       <div className={styles.locator}>
         <Photo

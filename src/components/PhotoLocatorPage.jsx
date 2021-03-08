@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { View } from "./photoLocatorView/View";
@@ -69,12 +69,14 @@ export const PhotoLocatorPage = () => {
   ]);
 
   const onRemovePoint = (identifier) => {
-    setPoints([...points].filter((point) => point.identifier !== identifier));
+    setPoints(points.filter((point) => point.identifier !== identifier));
   };
 
   const onAddPoint = () => {
     const newPoint = {
       identifier: uuidv4(),
+      color: "rgb(0, 0, 255)",
+      lock: false,
       photo: {
         x: 0,
         y: 0,
@@ -86,6 +88,19 @@ export const PhotoLocatorPage = () => {
       },
     };
     setPoints([...points, newPoint]);
+  };
+
+  const onLockPoint = (identifier) => {
+    const pointIndex = points.findIndex(
+      (point) => point.identifier === identifier
+    );
+    const point = points[pointIndex];
+    const newPoints = [...points];
+    newPoints[pointIndex] = {
+      ...point,
+      lock: !point.lock,
+    };
+    setPoints(newPoints);
   };
 
   const onNewProject = () => {
@@ -146,10 +161,11 @@ export const PhotoLocatorPage = () => {
       onBackHomeClick={onBackHomeClick}
       onAcceptFile={onAcceptFile}
       onAddPoint={onAddPoint}
+      onRemovePoint={onRemovePoint}
+      onLockPoint={onLockPoint}
       onNewProject={onNewProject}
       onOpenProject={onOpenProject}
       getProjectData={getProjectData}
-      onRemovePoint={onRemovePoint}
       onChangeBaseLayer={onChangeBaseLayer}
       onChangeView={onChangeView}
       onZoomIn={onZoomIn}

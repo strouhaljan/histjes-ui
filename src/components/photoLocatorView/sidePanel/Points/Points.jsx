@@ -1,8 +1,9 @@
 import React, { useMemo } from "react";
-import { ActionButton, FontIcon, IconButton } from "office-ui-fabric-react";
+import { ActionButton, FontIcon } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
+import EditButtons from "./EditButtons";
 
 const PointValue = ({ label, value, styles }) => {
   return (
@@ -13,21 +14,13 @@ const PointValue = ({ label, value, styles }) => {
   );
 };
 
-const Point = ({ point, index, onRemovePoint, onEditPoint }) => {
+const Point = ({ point, index, onRemovePoint, onEditPoint, onLockPoint }) => {
   const theme = useTheme();
   const styles = useMemo(() => getPointStyles(theme, index, point), [
     theme,
     index,
     point,
   ]);
-
-  const onRemovePointHandler = () => {
-    onRemovePoint(point.identifier);
-  };
-
-  const onEditPointHandler = () => {
-    onEditPoint(point.identifier);
-  };
 
   return (
     <div className={styles.point}>
@@ -36,6 +29,7 @@ const Point = ({ point, index, onRemovePoint, onEditPoint }) => {
           <FontIcon className={styles.icon} iconName="ImageCrosshair" />
           <PointValue styles={styles} label={"X:"} value={point.photo.x} />
           <PointValue styles={styles} label={"Y:"} value={point.photo.y} />
+          <div className={styles.pointValueWrapper}></div>
         </div>
         <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="Nav2DMapView" />
@@ -44,16 +38,12 @@ const Point = ({ point, index, onRemovePoint, onEditPoint }) => {
           <PointValue styles={styles} label={"Z:"} value={point.map.z} />
         </div>
       </div>
-      <div className={`${styles.editButtons} editButtons`}>
-        <IconButton
-          iconProps={{ iconName: "Edit" }}
-          onClick={onEditPointHandler}
-        />
-        <IconButton
-          iconProps={{ iconName: "RemoveFilter" }}
-          onClick={onRemovePointHandler}
-        />
-      </div>
+      <EditButtons
+        point={point}
+        onRemovePoint={onRemovePoint}
+        onEditPoint={onEditPoint}
+        onLockPoint={onLockPoint}
+      />
     </div>
   );
 };
@@ -64,6 +54,7 @@ export const Points = ({
   onAddPoint,
   onRemovePoint,
   onEditPoint,
+  onLockPoint,
 }) => {
   const styles = useMemo(() => getStyles(), []);
   return (
@@ -75,6 +66,7 @@ export const Points = ({
           index={index}
           onRemovePoint={onRemovePoint}
           onEditPoint={onEditPoint}
+          onLockPoint={onLockPoint}
         />
       ))}
       {!loadingDmt && points.length < 4 && (

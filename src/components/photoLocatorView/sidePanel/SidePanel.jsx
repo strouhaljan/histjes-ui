@@ -41,7 +41,8 @@ export const SidePanel = ({
   getProjectData,
   onRemovePoint,
   onEditPoint,
-  onCalculateClick
+onCalculateClick,
+  onLockPoint,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -79,6 +80,7 @@ export const SidePanel = ({
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
+            onLockPoint={onLockPoint}
           />
           <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
           <Parameters

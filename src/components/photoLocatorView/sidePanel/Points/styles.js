@@ -1,4 +1,5 @@
 import { mergeStyleSets } from "@fluentui/react";
+import { isBlock } from "typescript";
 
 export const getStyles = () =>
   mergeStyleSets({
@@ -30,9 +31,15 @@ export const getPointStyles = (theme, index, point) =>
       display: "block",
     },
     pointValueWrapper: {
+      flex: "1 1 auto",
       width: "5rem",
       marginLeft: ".5rem",
       display: "flex",
+      selectors: {
+        ":last-of-type": {
+          width: "3rem",
+        },
+      },
     },
     pointValueLabel: {
       fontWeight: "bold",
@@ -45,12 +52,5 @@ export const getPointStyles = (theme, index, point) =>
     pointValues: {
       display: "flex",
       marginTop: ".25rem",
-    },
-    editButtons: {
-      display: "none",
-      position: "absolute",
-      right: 0,
-      top: 0,
-      fontSize: ".5rem",
     },
   });
