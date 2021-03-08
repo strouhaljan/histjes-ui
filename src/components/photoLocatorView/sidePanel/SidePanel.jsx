@@ -11,11 +11,12 @@ import { SaveProjectButton } from "./projectButtons/SaveProjectButton";
 
 import getStyles from "./styles";
 
-const CalculateButton = ({ points, styles }) => (
+const CalculateButton = ({ onClick, points, styles, calculating }) => (
   <PrimaryButton
     className={styles.calculateButton}
-    disabled={points.length < 3}
-    text="Přepočítat"
+    disabled={(points.length < 3) || calculating}
+    text={calculating ? "Přepočítávám..." : "Přepočítat"}
+    onClick={onClick}
   />
 );
 
@@ -29,6 +30,7 @@ const SectionSeparator = ({ icon, label, styles }) => (
 );
 
 export const SidePanel = ({
+  calculating,
   fileLoaded,
   loadingDmt,
   points,
@@ -39,6 +41,7 @@ export const SidePanel = ({
   getProjectData,
   onRemovePoint,
   onEditPoint,
+  onCalculateClick
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -85,7 +88,12 @@ export const SidePanel = ({
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
           />
-          <CalculateButton points={points} styles={styles} />
+          <CalculateButton
+            calculating={calculating}
+            points={points}
+            styles={styles}
+            onClick={onCalculateClick}
+          />
         </>
       )}
     </Panel>

@@ -9,6 +9,8 @@ import { EditPointDialog } from "./EditPointDialog";
 import getStyles from "./styles";
 
 export const View = ({
+  calculating,
+  calculatedCameraParams,
   file,
   loadingDmt,
   points,
@@ -30,6 +32,8 @@ export const View = ({
   onPhotoFitScreen,
   on3DViewMoveForward,
   on3DViewMoveBack,
+  on3DViewMoveToCalculated,
+  onCalculateClick
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -40,6 +44,7 @@ export const View = ({
   return (
     <div className={styles.main}>
       <SidePanel
+        calculating={calculating}
         fileLoaded={!!file}
         loadingDmt={loadingDmt}
         points={points}
@@ -50,6 +55,7 @@ export const View = ({
         getProjectData={getProjectData}
         onRemovePoint={onRemovePoint}
         onEditPoint={setEditedPoint}
+        onCalculateClick={onCalculateClick}
       />
       <div className={styles.locator}>
         <Photo
@@ -60,6 +66,7 @@ export const View = ({
           onFitScreen={onPhotoFitScreen}
         />
         <Map
+          calculatedCameraParams={calculatedCameraParams}
           selectedBaseLayer={selectedBaseLayer}
           selectedView={selectedView}
           onChangeBaseLayer={onChangeBaseLayer}
@@ -68,6 +75,7 @@ export const View = ({
           onZoomOut={onZoomOut}
           onMoveForward={on3DViewMoveForward}
           onMoveBack={on3DViewMoveBack}
+          onMoveToCalculated={on3DViewMoveToCalculated}
         />
       </div>
       <EditPointDialog

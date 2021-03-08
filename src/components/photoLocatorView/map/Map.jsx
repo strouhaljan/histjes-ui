@@ -7,6 +7,7 @@ import { Map3D } from "./Map3D";
 import { getMapStyles } from "./styles";
 
 export const Map = ({
+  calculatedCameraParams,
   selectedBaseLayer,
   selectedView,
   onChangeBaseLayer,
@@ -15,6 +16,7 @@ export const Map = ({
   onZoomOut,
   onMoveForward,
   onMoveBack,
+  onMoveToCalculated
 }) => {
   const styles = useMemo(() => getMapStyles(), []);
 
@@ -28,7 +30,12 @@ export const Map = ({
           onChangeLayer={onChangeBaseLayer}
         />
       ) : (
-        <Map3D onMoveBack={onMoveBack} onMoveForward={onMoveForward} />
+        <Map3D
+          calculatedCameraParams={calculatedCameraParams}
+          onMoveBack={onMoveBack}
+          onMoveForward={onMoveForward}
+          onMoveToCalculated={onMoveToCalculated}
+        />
       )}
       <ViewSwitch selectedView={selectedView} onChangeView={onChangeView} />
     </div>
