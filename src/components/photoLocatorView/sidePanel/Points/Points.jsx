@@ -77,7 +77,7 @@ export const Points = ({
           onEditPoint={onEditPoint}
         />
       ))}
-      {!loadingDmt && points.length < 3 && (
+      {!loadingDmt && points.length < 4 && (
         <ActionButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}
