@@ -21,7 +21,7 @@ export const Parameters = ({
         value={focalLength}
         label="Ohnisková vzdálenost:"
         type="number"
-        suffix="m"
+        suffix="mm"
         onChange={onFocalLengthChange}
       />
       <TextField

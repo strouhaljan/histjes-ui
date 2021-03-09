@@ -31,7 +31,9 @@ const SectionSeparator = ({ icon, label, styles }) => (
 
 export const SidePanel = ({
   calculating,
+  heightAboveGround,
   fileLoaded,
+  focalLength,
   loadingDmt,
   points,
   onAddPoint,
@@ -41,8 +43,10 @@ export const SidePanel = ({
   getProjectData,
   onRemovePoint,
   onEditPoint,
-onCalculateClick,
+  onCalculateClick,
   onLockPoint,
+  onFocalLengthChange,
+  onHeightAboveGroundChange
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -84,11 +88,15 @@ onCalculateClick,
           />
           <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
           <Parameters
+            focalLength={focalLength}
+            heightAboveGround={heightAboveGround}
             loadingDmt={loadingDmt}
             points={points}
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
+            onFocalLengthChange={onFocalLengthChange}
+            onHeightAboveGroundChange={onHeightAboveGroundChange}
           />
           <CalculateButton
             calculating={calculating}

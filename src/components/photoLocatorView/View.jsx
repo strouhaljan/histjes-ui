@@ -12,6 +12,8 @@ export const View = ({
   calculating,
   calculatedCameraParams,
   file,
+  focalLength,
+  heightAboveGround,
   loadingDmt,
   points,
   selectedBaseLayer,
@@ -34,7 +36,9 @@ export const View = ({
   on3DViewMoveForward,
   on3DViewMoveBack,
   on3DViewMoveToCalculated,
-  onCalculateClick
+  onCalculateClick,
+  onFocalLengthChange,
+  onHeightAboveGroundChange
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -47,6 +51,8 @@ export const View = ({
       <SidePanel
         calculating={calculating}
         fileLoaded={!!file}
+        focalLength={focalLength}
+        heightAboveGround={heightAboveGround}
         loadingDmt={loadingDmt}
         points={points}
         onAddPoint={onAddPoint}
@@ -57,7 +63,9 @@ export const View = ({
         onRemovePoint={onRemovePoint}
         onEditPoint={setEditedPoint}
         onLockPoint={onLockPoint}
-		onCalculateClick={onCalculateClick}
+		    onCalculateClick={onCalculateClick}
+        onFocalLengthChange={onFocalLengthChange}
+        onHeightAboveGroundChange={onHeightAboveGroundChange}
       />
       <div className={styles.locator}>
         <Photo
