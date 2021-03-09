@@ -5,6 +5,9 @@ export const OpenProjectButton = ({ styles, onClick }) => {
   const fileUploadInput = useRef(null);
   const handleOpenProject = (e) => {
     onClick(e?.target?.files[0] || undefined);
+    if (e && e.target) {
+      e.target.value = null;
+    }
   };
   const clickUpload = () => {
     if (fileUploadInput.current) {

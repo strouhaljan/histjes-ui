@@ -22,6 +22,7 @@ export const SaveProjectButton = ({ styles, getProjectData, disabled }) => {
         disabled={disabled}
         iconProps={{ iconName: "Save" }}
       />
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
       <a
         ref={saveProjectLink}
         href={""}
