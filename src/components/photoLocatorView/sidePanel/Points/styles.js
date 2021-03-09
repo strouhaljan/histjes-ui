@@ -1,5 +1,4 @@
 import { mergeStyleSets } from "@fluentui/react";
-import { isBlock } from "typescript";
 
 export const getStyles = () =>
   mergeStyleSets({

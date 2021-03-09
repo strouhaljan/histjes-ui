@@ -3,7 +3,7 @@ import { ActionButton, FontIcon } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
-import EditButtons from "./EditButtons";
+import { EditButtons } from "./EditButtons";
 
 const PointValue = ({ label, value, styles }) => {
   return (
