@@ -83,6 +83,10 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
     title: "Souřadnice bodu",
   };
 
+  const modalProps = {
+    className: styles.dialog
+  };
+
   const options = [
     {
       key: "A",
@@ -154,10 +158,10 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
 
   return (
     <Dialog
-      className={styles.dialog}
       hidden={!display}
       onDismiss={onDismiss}
       dialogContentProps={dialogContentProps}
+      modalProps={modalProps}
     >
       <ChoiceGroup defaultSelectedKey="A" options={options} />
       <Separator />
