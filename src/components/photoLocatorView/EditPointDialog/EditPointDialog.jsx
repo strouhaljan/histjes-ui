@@ -19,6 +19,7 @@ const PointInput = ({ label, value, onChange, styles, suffix }) => {
         onChange(value);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -91,6 +92,7 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
         z: point.map.z
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [point]);
 
   const dialogContentProps = {
