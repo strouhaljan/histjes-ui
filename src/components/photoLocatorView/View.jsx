@@ -38,7 +38,9 @@ export const View = ({
   on3DViewMoveToCalculated,
   onCalculateClick,
   onFocalLengthChange,
-  onHeightAboveGroundChange
+  onHeightAboveGroundChange,
+  onTransformCoord,
+  onSetPoint
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -91,10 +93,16 @@ export const View = ({
       <EditPointDialog
         display={!!editedPoint}
         point={editingPoint}
-        onSetPoint={() => {}}
+        onSetPoint={(point) => {
+          setEditedPoint(null);
+          if (onSetPoint) {
+            onSetPoint(point);
+          }
+        }}
         onDismiss={() => {
           setEditedPoint(null);
         }}
+        onTransformCoord={onTransformCoord}
       />
     </div>
   );

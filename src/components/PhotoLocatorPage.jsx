@@ -152,6 +152,16 @@ export const PhotoLocatorPage = () => {
     alert("3D MoveBack");
   };
 
+  const onTransformCoord = (coordValues) => {
+    return {
+      identifier: coordValues.identifier || '',
+      jtsk: coordValues.jtsk || [0, 0],
+      wgsDec: coordValues.wgsDec || [0, 0],
+      wgsDMS: coordValues.wgsDMS || [0, 0, 0, 0, 0, 0],
+      z: coordValues.z || 0
+    }
+  }
+
   return (
     <View
       file={file}
@@ -175,6 +185,7 @@ export const PhotoLocatorPage = () => {
       onPhotoFitScreen={onPhotoFitScreen}
       on3DViewMoveBack={on3DViewMoveBack}
       on3DViewMoveForward={on3DViewMoveForward}
+      onTransformCoord={onTransformCoord}
     />
   );
 };

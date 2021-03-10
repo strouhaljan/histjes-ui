@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback, useState } from "react";
 import classnames from "classnames";
 import {
   Dialog,
@@ -10,12 +10,15 @@ import {
   Separator,
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
-
 import getStyles from "./styles";
 
 const PointInput = ({ label, value, onChange, styles, suffix }) => {
   const onChangeHandler = useCallback((_event, value) => {
-    console.log("XX", value);
+    if (onChange) {
+      if (!isNaN(value)) {
+        onChange(value);
+      }
+    }
   }, []);
 
   return (
@@ -74,9 +77,21 @@ const Option = ({ renderRadio, props, children }) => {
   );
 };
 
-export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
+export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTransformCoord }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
+
+  const [coordValues, setCoordValues] = useState(onTransformCoord({}));
+
+  useEffect(() => {
+    if (point) {
+      setCoordValues(onTransformCoord({
+        identifier: point.identifier,
+        jtsk: [point.map.x, point.map.y],
+        z: point.map.z
+      }));
+    }
+  }, [point]);
 
   const dialogContentProps = {
     showCloseButton: true,
@@ -95,8 +110,36 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
         return (
           <Option renderRadio={renderRadio} props={props}>
             <div className={styles.optionContent}>
-              <PointInput styles={styles} label={"X:"} value={point?.map?.x} />
-              <PointInput styles={styles} label={"Y:"} value={point?.map?.y} />
+              <PointInput
+                styles={styles}
+                label={"X:"}
+                value={coordValues.jtsk[0]}
+                onChange={
+                  (value) => {
+                    setCoordValues((current) => {
+                      return {
+                        ...current,
+                        jtsk: [value, current.jtsk[1]]
+                      }
+                    });
+                  }
+                }
+              />
+              <PointInput
+                styles={styles}
+                label={"Y:"}
+                value={coordValues.jtsk[1]}
+                onChange={
+                  (value) => {
+                    setCoordValues((current) => {
+                      return {
+                        ...current,
+                        jtsk: [current.jtsk[0], value]
+                      }
+                    });
+                  }
+                }
+              />
             </div>
           </Option>
         );
@@ -112,12 +155,12 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
               <PointInput
                 styles={styles}
                 label={"Zeměpisná délka:"}
-                value={0}
+                value={coordValues.wgsDec[0]}
               />
               <PointInput
                 styles={styles}
                 label={"Zeměpisná šířka:"}
-                value={0}
+                value={coordValues.wgsDec[1]}
               />
             </div>
           </Option>
@@ -135,18 +178,18 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
                 styles={styles}
                 label={"Zeměpisná šířka:"}
                 value={{
-                  degrees: 0,
-                  minutes: 0,
-                  seconds: 0,
+                  degrees: coordValues.wgsDMS[0],
+                  minutes: coordValues.wgsDMS[1],
+                  seconds: coordValues.wgsDMS[2],
                 }}
               />
               <GpsPointInput
                 styles={styles}
                 label={"Zeměpisná délka:"}
                 value={{
-                  degrees: 0,
-                  minutes: 0,
-                  seconds: 0,
+                  degrees: coordValues.wgsDMS[3],
+                  minutes: coordValues.wgsDMS[4],
+                  seconds: coordValues.wgsDMS[5],
                 }}
               />
             </div>
@@ -155,6 +198,19 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
       },
     },
   ];
+
+  const onSet = () => {
+    if (onSetPoint) {
+      onSetPoint({
+        identifier: coordValues.identifier,
+        map: {
+          x: coordValues.jtsk[0],
+          y: coordValues.jtsk[1],
+          z: coordValues.z
+        }
+      });
+    }
+  }
 
   return (
     <Dialog
@@ -169,12 +225,22 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint }) => {
         <PointInput
           styles={styles}
           label={"Nadmořská výška:"}
-          value={point?.map?.height}
+          value={coordValues.z}
           suffix={"m"}
+          onChange={
+            (value) => {
+              setCoordValues((current) => {
+                return {
+                  ...current,
+                  z: value
+                }
+              });
+            }
+          }
         />
       </div>
       <DialogFooter>
-        <PrimaryButton onClick={onSetPoint} text="Nastavit" />
+        <PrimaryButton onClick={onSet} text="Nastavit" />
         <DefaultButton onClick={onDismiss} text="Zrušit" />
       </DialogFooter>
     </Dialog>
