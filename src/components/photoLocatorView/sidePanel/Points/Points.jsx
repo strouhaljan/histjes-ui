@@ -48,6 +48,8 @@ const Point = ({ point, index, onRemovePoint, onEditPoint, onLockPoint }) => {
   );
 };
 
+const MAX_POINT_COUNT = 8;
+
 export const Points = ({
   loadingDmt,
   points,
@@ -69,7 +71,7 @@ export const Points = ({
           onLockPoint={onLockPoint}
         />
       ))}
-      {!loadingDmt && points.length < 4 && (
+      {!loadingDmt && points.length < MAX_POINT_COUNT && (
         <ActionButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}
