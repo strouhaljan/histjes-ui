@@ -7,7 +7,7 @@ export const NewProjectButton = ({ onClick, styles }) => {
       <DefaultButton
         onClick={onClick}
         text={"Nový"}
-        iconProps={{ iconName: "Add" }}
+        iconProps={{ iconName: "FabricNewFolder" }}
       />
     </div>
   );

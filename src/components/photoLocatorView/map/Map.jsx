@@ -4,7 +4,7 @@ import { ViewSwitch } from "./ViewSwitch";
 import { Map2D } from "./Map2D";
 import { Map3D } from "./Map3D";
 
-import { getMapStyles } from "./styles";
+import { getStyles } from "./styles";
 
 export const Map = ({
   calculatedCameraParams,
@@ -16,9 +16,9 @@ export const Map = ({
   onZoomOut,
   onMoveForward,
   onMoveBack,
-  onMoveToCalculated
+  onMoveToCalculated,
 }) => {
-  const styles = useMemo(() => getMapStyles(), []);
+  const styles = useMemo(() => getStyles(), []);
 
   return (
     <div className={styles.map}>

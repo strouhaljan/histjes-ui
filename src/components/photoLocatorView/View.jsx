@@ -7,13 +7,12 @@ import { Map } from "./map/Map";
 import { EditPointDialog } from "./EditPointDialog";
 
 import getStyles from "./styles";
+import { EditCameraParametersDialog } from "./EditCameraParametersDialog";
 
 export const View = ({
   calculating,
   calculatedCameraParams,
   file,
-  focalLength,
-  heightAboveGround,
   loadingDmt,
   points,
   selectedBaseLayer,
@@ -22,6 +21,7 @@ export const View = ({
   onAddPoint,
   onRemovePoint,
   onLockPoint,
+  onDisablePoint,
   onBackHomeClick,
   onNewProject,
   onOpenProject,
@@ -37,24 +37,39 @@ export const View = ({
   on3DViewMoveBack,
   on3DViewMoveToCalculated,
   onCalculateClick,
-  onFocalLengthChange,
-  onHeightAboveGroundChange,
   onTransformCoord,
-  onSetPoint
+  onSetPoint,
+  cameraParameters,
+  onSetCameraParameters,
+  heightCorrection,
+  onHeightCorrectionChange,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   const [editedPoint, setEditedPoint] = useState(null);
+  const [
+    cameraParametersDialogDisplayed,
+    setCameraParametersDialogDisplayed,
+  ] = useState(false);
   const editingPoint = points.find((point) => point.identifier === editedPoint);
+
+  const handleOnApplyCameraParameters = (cameraParameters) => {
+    setCameraParametersDialogDisplayed(false);
+    onSetCameraParameters(cameraParameters);
+  };
+
+  const handleOnEditCameraParameters = () => {
+    setCameraParametersDialogDisplayed(true);
+  };
 
   return (
     <div className={styles.main}>
       <SidePanel
         calculating={calculating}
         fileLoaded={!!file}
-        focalLength={focalLength}
-        heightAboveGround={heightAboveGround}
+        cameraParameters={cameraParameters}
+        onEditCameraParameters={handleOnEditCameraParameters}
         loadingDmt={loadingDmt}
         points={points}
         onAddPoint={onAddPoint}
@@ -65,9 +80,11 @@ export const View = ({
         onRemovePoint={onRemovePoint}
         onEditPoint={setEditedPoint}
         onLockPoint={onLockPoint}
-		    onCalculateClick={onCalculateClick}
-        onFocalLengthChange={onFocalLengthChange}
-        onHeightAboveGroundChange={onHeightAboveGroundChange}
+        onDisablePoint={onDisablePoint}
+        onCalculateClick={onCalculateClick}
+        heightCorrection={heightCorrection}
+        onHeightCorrectionChange={onHeightCorrectionChange}
+        file={file}
       />
       <div className={styles.locator}>
         <Photo
@@ -103,6 +120,14 @@ export const View = ({
           setEditedPoint(null);
         }}
         onTransformCoord={onTransformCoord}
+      />
+      <EditCameraParametersDialog
+        display={cameraParametersDialogDisplayed}
+        cameraParameters={cameraParameters}
+        onApply={handleOnApplyCameraParameters}
+        onDismiss={() => {
+          setCameraParametersDialogDisplayed(false);
+        }}
       />
     </div>
   );

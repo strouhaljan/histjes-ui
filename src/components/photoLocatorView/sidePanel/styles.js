@@ -27,13 +27,18 @@ const getStyles = (theme) =>
       marginTop: "auto",
       width: "100%",
     },
-    sectionSeparator: {
+    sectionSeparatorWrapper: {
+      position: "relative",
       padding: 0,
       margin: "1rem 0 .5rem",
       selectors: {
         ":first-of-type": {
           marginTop: 0,
         },
+      },
+    },
+    sectionSeparator: {
+      selectors: {
         "::before": {
           backgroundColor: theme.palette.themeLighter,
         },
@@ -55,6 +60,30 @@ const getStyles = (theme) =>
       marginLeft: ".25rem",
       fontSize: ".9rem",
       color: theme.palette.themePrimary,
+    },
+    actionIcon: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      height: "2rem",
+      width: "1.5rem",
+      paddingTop: ".25rem",
+      textAlign: "center",
+      fontSize: ".9rem",
+      backgroundColor: "#fff",
+      color: theme.palette.themePrimary,
+      cursor: "pointer",
+      textAlign: "right",
+    },
+    fileNameWrapper: {
+      margin: "0 .5rem",
+      marginTop: ".5rem",
+    },
+    fileNameLabel: {
+      fontWeight: 600,
+    },
+    fileName: {
+      marginLeft: ".5rem",
     },
   });
 

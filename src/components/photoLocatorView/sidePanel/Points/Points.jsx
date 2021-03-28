@@ -1,5 +1,10 @@
 import React, { useMemo } from "react";
-import { ActionButton, FontIcon } from "office-ui-fabric-react";
+import {
+  DefaultButton,
+  FontIcon,
+  SpinButton,
+  TextField,
+} from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
@@ -9,40 +14,68 @@ const PointValue = ({ label, value, styles }) => {
   return (
     <div className={styles.pointValueWrapper}>
       <span className={styles.pointValueLabel}>{label}</span>
-      <span className={styles.pointValue}>{value}</span>
+      <span className={`${styles.pointValue} pointValue`}>{value}</span>
     </div>
   );
 };
 
-const Point = ({ point, index, onRemovePoint, onEditPoint, onLockPoint }) => {
+const Point = ({
+  point,
+  index,
+  onRemovePoint,
+  onEditPoint,
+  onLockPoint,
+  onDisablePoint,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getPointStyles(theme, index, point), [
     theme,
     index,
     point,
   ]);
+  const { photo, map, deviation, disabled } = point;
 
   return (
     <div className={styles.point}>
-      <div>
+      <div className={styles.pointDetails}>
         <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="ImageCrosshair" />
-          <PointValue styles={styles} label={"X:"} value={point.photo.x} />
-          <PointValue styles={styles} label={"Y:"} value={point.photo.y} />
+          <PointValue styles={styles} label={"X:"} value={photo.x} />
+          <PointValue styles={styles} label={"Y:"} value={photo.y} />
           <div className={styles.pointValueWrapper}></div>
         </div>
         <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="Nav2DMapView" />
-          <PointValue styles={styles} label={"X:"} value={point.map.x} />
-          <PointValue styles={styles} label={"Y:"} value={point.map.y} />
-          <PointValue styles={styles} label={"Z:"} value={point.map.z} />
+          <PointValue styles={styles} label={"X:"} value={map.x} />
+          <PointValue styles={styles} label={"Y:"} value={map.y} />
+          <PointValue styles={styles} label={"Z:"} value={map.z} />
+        </div>
+        <div className={`${styles.pointValues} ${styles.deviation}`}>
+          <FontIcon className={styles.icon} iconName="TriangleUp12" />
+          <PointValue
+            styles={styles}
+            label={"X:"}
+            value={`${deviation.x} px`}
+          />
+          <PointValue
+            styles={styles}
+            label={"Y:"}
+            value={`${deviation.y} px`}
+          />
+          <PointValue
+            styles={styles}
+            label={"D:"}
+            value={`${deviation.d} px`}
+          />
         </div>
       </div>
+      {disabled && <div className={styles.disabled} />}
       <EditButtons
         point={point}
         onRemovePoint={onRemovePoint}
         onEditPoint={onEditPoint}
         onLockPoint={onLockPoint}
+        onDisablePoint={onDisablePoint}
       />
     </div>
   );
@@ -57,28 +90,65 @@ export const Points = ({
   onRemovePoint,
   onEditPoint,
   onLockPoint,
+  onDisablePoint,
+  heightCorrection,
+  onHeightCorrectionChange,
 }) => {
   const styles = useMemo(() => getStyles(), []);
   return (
     <div>
-      {points.map((point, index) => (
-        <Point
-          key={point.identifier}
-          point={point}
-          index={index}
-          onRemovePoint={onRemovePoint}
-          onEditPoint={onEditPoint}
-          onLockPoint={onLockPoint}
-        />
-      ))}
+      <div className={styles.points}>
+        {points.map((point, index) => (
+          <Point
+            key={point.identifier}
+            point={point}
+            index={index}
+            onRemovePoint={onRemovePoint}
+            onEditPoint={onEditPoint}
+            onLockPoint={onLockPoint}
+            onDisablePoint={onDisablePoint}
+          />
+        ))}
+      </div>
       {!loadingDmt && points.length < MAX_POINT_COUNT && (
-        <ActionButton
+        <DefaultButton
           className={styles.addButton}
           iconProps={{ iconName: "Add" }}
           text={"Přidat bod"}
           onClick={onAddPoint}
         />
       )}
+      <div className={styles.heightCorrection}>
+        <SpinButton
+          className={styles.inputField}
+          styles={{
+            spinButtonWrapper: {
+              justifyContent: "flex-end",
+              selectors: {
+                "::after": {
+                  border: "none",
+                },
+              },
+            },
+            spinButtonWrapperFocused: {
+              selectors: {
+                "::after": {
+                  border: "none",
+                },
+              },
+            },
+            input: {
+              flex: "0 0 5rem",
+              minWidth: "initial",
+              textAlign: "right",
+            },
+          }}
+          value={heightCorrection}
+          label="Korekce výšky:"
+          suffix="m"
+          onChange={onHeightCorrectionChange}
+        />
+      </div>
       {loadingDmt && <div>Probíhá zpracování...</div>}
     </div>
   );

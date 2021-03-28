@@ -14,26 +14,36 @@ import getStyles from "./styles";
 const CalculateButton = ({ onClick, points, styles, calculating }) => (
   <PrimaryButton
     className={styles.calculateButton}
-    disabled={(points.length < 3) || calculating}
+    disabled={points.length < 3 || calculating}
     text={calculating ? "Přepočítávám..." : "Přepočítat"}
     onClick={onClick}
   />
 );
 
-const SectionSeparator = ({ icon, label, styles }) => (
-  <Separator className={styles.sectionSeparator} alignContent="start">
-    <div className={styles.sectionLabel}>
-      <Icon className={styles.sectionIcon} iconName={icon} />
-      <span className={styles.sectionText}>{label}</span>
-    </div>
-  </Separator>
+const SectionSeparator = ({ icon, label, styles, action, actionIcon }) => (
+  <div className={styles.sectionSeparatorWrapper}>
+    <Separator className={styles.sectionSeparator} alignContent="start">
+      <div className={styles.sectionLabel}>
+        <Icon className={styles.sectionIcon} iconName={icon} />
+        <span className={styles.sectionText}>{label}</span>
+      </div>
+    </Separator>
+    {action && (
+      <div className={styles.actionIcon}>
+        <Icon onClick={action} iconName={actionIcon} />
+      </div>
+    )}
+  </div>
 );
 
 export const SidePanel = ({
   calculating,
-  heightAboveGround,
+  cameraParameters,
+  onEditCameraParameters,
+  heightCorrection,
+  onHeightCorrectionChange,
+  file,
   fileLoaded,
-  focalLength,
   loadingDmt,
   points,
   onAddPoint,
@@ -45,8 +55,7 @@ export const SidePanel = ({
   onEditPoint,
   onCalculateClick,
   onLockPoint,
-  onFocalLengthChange,
-  onHeightAboveGroundChange
+  onDisablePoint,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -70,6 +79,12 @@ export const SidePanel = ({
           styles={styles}
           disabled={!fileLoaded}
         />
+        {fileLoaded && (
+          <div className={styles.fileNameWrapper}>
+            <span className={styles.fileNameLabel}>Snímek:</span>
+            <span className={styles.fileName}>{file.fileName}</span>
+          </div>
+        )}
       </div>
       {fileLoaded && (
         <>
@@ -81,22 +96,28 @@ export const SidePanel = ({
           <Points
             loadingDmt={loadingDmt}
             points={points}
+            heightCorrection={heightCorrection}
+            onHeightCorrectionChange={onHeightCorrectionChange}
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
             onLockPoint={onLockPoint}
+            onDisablePoint={onDisablePoint}
           />
-          <SectionSeparator icon="Camera" label="Parametry" styles={styles} />
+          <SectionSeparator
+            icon="Camera"
+            label="Parametry kamery"
+            styles={styles}
+            action={onEditCameraParameters}
+            actionIcon={"Edit"}
+          />
           <Parameters
-            focalLength={focalLength}
-            heightAboveGround={heightAboveGround}
+            parameters={cameraParameters}
             loadingDmt={loadingDmt}
             points={points}
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
-            onFocalLengthChange={onFocalLengthChange}
-            onHeightAboveGroundChange={onHeightAboveGroundChange}
           />
           <CalculateButton
             calculating={calculating}

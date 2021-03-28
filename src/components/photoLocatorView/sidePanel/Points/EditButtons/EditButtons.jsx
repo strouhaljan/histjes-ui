@@ -7,7 +7,8 @@ export const EditButtons = ({
   point,
   onEditPoint,
   onRemovePoint,
-  onLockPoint
+  onLockPoint,
+  onDisablePoint,
 }) => {
   const styles = useMemo(() => getStyles(), []);
 
@@ -23,6 +24,11 @@ export const EditButtons = ({
 
   const onLockPointHandler = useCallback(() => {
     onLockPoint(point.identifier);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [point]);
+
+  const onDisablePointHandler = useCallback(() => {
+    onDisablePoint(point.identifier);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [point]);
 
@@ -50,6 +56,10 @@ export const EditButtons = ({
       <IconButton
         iconProps={{ iconName: "Unlock" }}
         onClick={onLockPointHandler}
+      />
+      <IconButton
+        iconProps={{ iconName: "RedEye" }}
+        onClick={onDisablePointHandler}
       />
     </div>
   );

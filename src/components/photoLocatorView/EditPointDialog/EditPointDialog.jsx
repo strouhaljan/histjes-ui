@@ -78,7 +78,13 @@ const Option = ({ renderRadio, props, children }) => {
   );
 };
 
-export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTransformCoord }) => {
+export const EditPointDialog = ({
+  display,
+  point,
+  onDismiss,
+  onSetPoint,
+  onTransformCoord,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -86,11 +92,13 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
 
   useEffect(() => {
     if (point) {
-      setCoordValues(onTransformCoord({
-        identifier: point.identifier,
-        jtsk: [point.map.x, point.map.y],
-        z: point.map.z
-      }));
+      setCoordValues(
+        onTransformCoord({
+          identifier: point.identifier,
+          jtsk: [point.map.x, point.map.y],
+          z: point.map.z,
+        })
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [point]);
@@ -101,7 +109,7 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
   };
 
   const modalProps = {
-    className: styles.dialog
+    className: styles.dialog,
   };
 
   const options = [
@@ -116,31 +124,27 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
                 styles={styles}
                 label={"X:"}
                 value={coordValues.jtsk[0]}
-                onChange={
-                  (value) => {
-                    setCoordValues((current) => {
-                      return {
-                        ...current,
-                        jtsk: [value, current.jtsk[1]]
-                      }
-                    });
-                  }
-                }
+                onChange={(value) => {
+                  setCoordValues((current) => {
+                    return {
+                      ...current,
+                      jtsk: [value, current.jtsk[1]],
+                    };
+                  });
+                }}
               />
               <PointInput
                 styles={styles}
                 label={"Y:"}
                 value={coordValues.jtsk[1]}
-                onChange={
-                  (value) => {
-                    setCoordValues((current) => {
-                      return {
-                        ...current,
-                        jtsk: [current.jtsk[0], value]
-                      }
-                    });
-                  }
-                }
+                onChange={(value) => {
+                  setCoordValues((current) => {
+                    return {
+                      ...current,
+                      jtsk: [current.jtsk[0], value],
+                    };
+                  });
+                }}
               />
             </div>
           </Option>
@@ -208,11 +212,11 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
         map: {
           x: coordValues.jtsk[0],
           y: coordValues.jtsk[1],
-          z: coordValues.z
-        }
+          z: coordValues.z,
+        },
       });
     }
-  }
+  };
 
   return (
     <Dialog
@@ -229,16 +233,14 @@ export const EditPointDialog = ({ display, point, onDismiss, onSetPoint, onTrans
           label={"Nadmořská výška:"}
           value={coordValues.z}
           suffix={"m"}
-          onChange={
-            (value) => {
-              setCoordValues((current) => {
-                return {
-                  ...current,
-                  z: value
-                }
-              });
-            }
-          }
+          onChange={(value) => {
+            setCoordValues((current) => {
+              return {
+                ...current,
+                z: value,
+              };
+            });
+          }}
         />
       </div>
       <DialogFooter>

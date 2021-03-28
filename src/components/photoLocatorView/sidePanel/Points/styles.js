@@ -3,27 +3,40 @@ import { mergeStyleSets } from "@fluentui/react";
 export const getStyles = () =>
   mergeStyleSets({
     addButton: {
-      padding: 0,
+      marginTop: ".5rem",
+      height: "1.75rem",
+    },
+    heightCorrection: {
+      margin: "0 .5rem",
+      marginTop: "1rem",
+    },
+    points: {
+      maxHeight: "18rem",
+      overflow: "auto",
     },
   });
 
 export const getPointStyles = (theme, index, point) =>
   mergeStyleSets({
     point: {
-      padding: ".5rem .75rem",
       position: "relative",
       border: `1px solid ${theme.palette.neutralLight}`,
+      borderLeft: "none",
       borderTop: index === 0 ? "" : "none",
-      borderLeft: `5px solid ${point.color}`,
-      backgroundColor:
-        index % 2 === 0
-          ? theme.palette.neutralLighterAlt
-          : theme.palette.neutralLight,
       selectors: {
         ":hover .editButtons": {
           display: "block",
         },
       },
+    },
+    pointDetails: {
+      padding: ".5rem .75rem",
+      position: "relative",
+      borderLeft: `5px solid ${point.color}`,
+      backgroundColor:
+        index % 2 === 0
+          ? theme.palette.neutralLighterAlt
+          : theme.palette.neutralLight,
     },
     icon: {
       alignSelf: "center",
@@ -51,5 +64,28 @@ export const getPointStyles = (theme, index, point) =>
     pointValues: {
       display: "flex",
       marginTop: ".25rem",
+      selectors: {
+        ":first-of-type": {
+          marginTop: 0,
+        },
+      },
+    },
+    deviation: {
+      fontStyle: "italic",
+      color: theme.palette.neutralTertiary,
+      selectors: {
+        ".pointValue": {
+          paddingRight: ".25rem",
+        },
+      },
+    },
+    disabled: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "#fff",
+      opacity: "0.75",
     },
   });
