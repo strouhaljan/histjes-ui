@@ -6,10 +6,6 @@ export const getStyles = () =>
       marginTop: ".5rem",
       height: "1.75rem",
     },
-    heightCorrection: {
-      margin: "0 .5rem",
-      marginTop: "1rem",
-    },
     points: {
       maxHeight: "18rem",
       overflow: "auto",
@@ -71,11 +67,10 @@ export const getPointStyles = (theme, index, point) =>
       },
     },
     deviation: {
-      fontStyle: "italic",
       color: theme.palette.neutralTertiary,
       selectors: {
-        ".pointValue": {
-          paddingRight: ".25rem",
+        ".pointValueLabel": {
+          fontWeight: "normal",
         },
       },
     },

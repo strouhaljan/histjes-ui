@@ -1,20 +1,22 @@
 import React, { useMemo } from "react";
-import {
-  DefaultButton,
-  FontIcon,
-  SpinButton,
-  TextField,
-} from "office-ui-fabric-react";
+import { DefaultButton, FontIcon } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
 import { EditButtons } from "./EditButtons";
+import { HeightCorrection } from "./HeightCorrection";
 
-const PointValue = ({ label, value, styles }) => {
+const PointValue = ({ label, value, styles, suffix, dimmed }) => {
   return (
     <div className={styles.pointValueWrapper}>
-      <span className={styles.pointValueLabel}>{label}</span>
-      <span className={`${styles.pointValue} pointValue`}>{value}</span>
+      {label && (
+        <span className={`${styles.pointValueLabel} pointValueLabel`}>
+          {label}
+        </span>
+      )}
+      <span className={`${styles.pointValue} pointValue`}>
+        {value !== null ? `${suffix ? `${value} ${suffix}` : value}` : "-"}
+      </span>
     </div>
   );
 };
@@ -55,17 +57,23 @@ const Point = ({
           <PointValue
             styles={styles}
             label={"X:"}
-            value={`${deviation.x} px`}
+            value={deviation.x}
+            suffix="px"
+            dimmed
           />
           <PointValue
             styles={styles}
             label={"Y:"}
-            value={`${deviation.y} px`}
+            value={deviation.y}
+            suffix="px"
+            dimmed
           />
           <PointValue
             styles={styles}
             label={"D:"}
-            value={`${deviation.d} px`}
+            value={deviation.d}
+            suffix="px"
+            dimmed
           />
         </div>
       </div>
@@ -118,37 +126,10 @@ export const Points = ({
           onClick={onAddPoint}
         />
       )}
-      <div className={styles.heightCorrection}>
-        <SpinButton
-          className={styles.inputField}
-          styles={{
-            spinButtonWrapper: {
-              justifyContent: "flex-end",
-              selectors: {
-                "::after": {
-                  border: "none",
-                },
-              },
-            },
-            spinButtonWrapperFocused: {
-              selectors: {
-                "::after": {
-                  border: "none",
-                },
-              },
-            },
-            input: {
-              flex: "0 0 5rem",
-              minWidth: "initial",
-              textAlign: "right",
-            },
-          }}
-          value={heightCorrection}
-          label="Korekce výšky:"
-          suffix="m"
-          onChange={onHeightCorrectionChange}
-        />
-      </div>
+      <HeightCorrection
+        value={heightCorrection}
+        onChange={onHeightCorrectionChange}
+      />
       {loadingDmt && <div>Probíhá zpracování...</div>}
     </div>
   );

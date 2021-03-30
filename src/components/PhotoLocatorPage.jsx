@@ -68,9 +68,9 @@ export const PhotoLocatorPage = () => {
         z: 0,
       },
       deviation: {
-        x: 0,
-        y: 0,
-        d: 0,
+        x: null,
+        y: null,
+        d: null,
       },
       disabled: false,
     },
