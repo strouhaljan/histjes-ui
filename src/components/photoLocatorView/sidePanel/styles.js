@@ -68,7 +68,6 @@ const getStyles = (theme) =>
       height: "2rem",
       width: "1.5rem",
       paddingTop: ".25rem",
-      textAlign: "center",
       fontSize: ".9rem",
       backgroundColor: "#fff",
       color: theme.palette.themePrimary,

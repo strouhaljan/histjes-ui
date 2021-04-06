@@ -1,11 +1,10 @@
-import { DEFAULT_ROW_HEIGHTS, mergeStyleSets } from "@fluentui/react";
+import { mergeStyleSets } from "@fluentui/react";
 
 const getStyles = (theme, index) =>
   mergeStyleSets({
     valueWrapper: {
       display: "flex",
       margin: ".5rem",
-      display: "flex",
       selectors: {
         ":first-of-type": {
           marginTop: 0,
