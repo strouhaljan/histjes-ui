@@ -16,8 +16,8 @@ export const Map3D = ({
   return (
     <Stack verticalFill>
       <Stack.Item grow>
-        {calculatedCameraParams ||
-          (true && (
+        {calculatedCameraParams &&
+          (
             <div className={styles.moveControl}>
               <DefaultButton
                 className={styles.button}
@@ -37,7 +37,7 @@ export const Map3D = ({
                 onClick={onMoveBack}
               />
             </div>
-          ))}
+          )}
         <MapContainer3D />
       </Stack.Item>
     </Stack>
