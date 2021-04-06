@@ -29,6 +29,22 @@ const spinButtonStyles = {
 export const HeightCorrection = ({ value, onChange }) => {
   const styles = useMemo(() => getStyles(), []);
 
+  const handleChange = (e) => {
+    changeValue(parseInt(e.target.value));
+  }
+
+  const changeValue = (value) => {
+    onChange(value);
+  }
+
+  const handleDecrement = (value) => {
+    changeValue((parseInt(value) || 0) - 1);
+  }
+
+  const handleIncrement = (value) => {
+    changeValue((parseInt(value) || 0) + 1);
+  }
+
   return (
     <div className={styles.heightCorrection}>
       <SpinButton
@@ -37,7 +53,10 @@ export const HeightCorrection = ({ value, onChange }) => {
         value={value}
         inputProps={{ type: "number" }}
         label="Korekce výšky (m):"
-        onChange={onChange}
+        max={1000}
+        onChange={handleChange}
+        onDecrement={handleDecrement}
+        onIncrement={handleIncrement}
       />
     </div>
   );
