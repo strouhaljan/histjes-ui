@@ -11,14 +11,20 @@ import { SaveProjectButton } from "./projectButtons/SaveProjectButton";
 
 import getStyles from "./styles";
 
-const CalculateButton = ({ onClick, points, styles, calculating }) => (
-  <PrimaryButton
-    className={styles.calculateButton}
-    disabled={points.length < 3 || calculating}
-    text={calculating ? "Přepočítávám..." : "Přepočítat"}
-    onClick={onClick}
-  />
-);
+const CalculateButton = ({ onClick, points, styles, calculating }) => {
+  const usedPoints = points.reduce((previous, current) => {
+    return !current.disabled ? previous + 1 : previous;
+  }, 0);
+
+  return (
+    <PrimaryButton
+      className={styles.calculateButton}
+      disabled={usedPoints < 3 || calculating}
+      text={calculating ? "Přepočítávám..." : "Přepočítat"}
+      onClick={onClick}
+    />
+  );
+}
 
 const SectionSeparator = ({ icon, label, styles, action, actionIcon }) => (
   <div className={styles.sectionSeparatorWrapper}>
