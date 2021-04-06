@@ -12,6 +12,7 @@ import getStyles from "./styles";
 const PointInput = ({ label, value, onChange, styles, prefix, suffix }) => {
   const onChangeHandler = useCallback((_event, value) => {
     if (onChange) {
+      value = parseInt(value);
       if (!isNaN(value)) {
         onChange(value);
       }
