@@ -57,21 +57,21 @@ const Point = ({
           <PointValue
             styles={styles}
             label={"X:"}
-            value={deviation.x}
+            value={deviation ? deviation.x : null}
             suffix="px"
             dimmed
           />
           <PointValue
             styles={styles}
             label={"Y:"}
-            value={deviation.y}
+            value={deviation ? deviation.y : null}
             suffix="px"
             dimmed
           />
           <PointValue
             styles={styles}
             label={"D:"}
-            value={deviation.d}
+            value={deviation ? deviation.d : null}
             suffix="px"
             dimmed
           />
