@@ -9,15 +9,18 @@ import {
 import { useTheme } from "@fluentui/react-theme-provider";
 import getStyles from "./styles";
 
-const PointInput = ({ label, value, onChange, styles, prefix, suffix }) => {
+const PointInput = ({
+  label,
+  value,
+  onChange,
+  onBlur,
+  styles,
+  prefix,
+  suffix,
+  valid,
+}) => {
   const onChangeHandler = useCallback((_event, value) => {
-    if (onChange) {
-      value = parseInt(value);
-      if (!isNaN(value)) {
-        onChange(value);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onChange(value);
   }, []);
 
   return (
@@ -25,10 +28,12 @@ const PointInput = ({ label, value, onChange, styles, prefix, suffix }) => {
       <div className={styles.inputLabel}>{label}</div>
       <TextField
         className={styles.inputFieldWrapper}
+        onBlur={onBlur}
         value={value}
         onChange={onChangeHandler}
         prefix={prefix}
         suffix={suffix}
+        errorMessage={!valid && "Zadejte číslo"}
       />
     </div>
   );
@@ -69,6 +74,27 @@ export const EditCameraParametersDialog = ({
     });
   };
 
+  const [validState, setValidState] = useState({
+    focalLength: true,
+    sensorDimensionsHeight: true,
+    sensorDimensionsWidth: true,
+  });
+
+  const setInputValidState = (inputStateKey, state) => {
+    setValidState({ ...validState, [inputStateKey]: state });
+  };
+
+  const validate = (value, inputStateKey) => {
+    if (value.length === 0 || isNaN(value)) {
+      setInputValidState(inputStateKey, false);
+    }
+  };
+
+  const applyButtonDisabled =
+    validState.focalLength === false ||
+    validState.sensorDimensionsHeight === false ||
+    validState.sensorDimensionsWidth === false;
+
   return (
     <Dialog
       hidden={!display}
@@ -82,7 +108,14 @@ export const EditCameraParametersDialog = ({
           label="Ohnisková vzdálenost:"
           value={focalLength}
           suffix="mm"
-          onChange={setFocalLength}
+          onChange={(value) => {
+            setInputValidState("sensorDimensionsHeight", true);
+            setFocalLength(value);
+          }}
+          onBlur={() => {
+            validate(focalLength, "focalLength");
+          }}
+          valid={validState.focalLength}
         />
         <PointInput
           styles={styles}
@@ -90,11 +123,16 @@ export const EditCameraParametersDialog = ({
           suffix="&#11021; mm"
           value={sensorDimensions.height}
           onChange={(value) => {
+            setInputValidState("sensorDimensionsHeight", true);
             setSensorDimensions({
               height: value,
               width: sensorDimensions.width,
             });
           }}
+          onBlur={() => {
+            validate(sensorDimensions.height, "sensorDimensionsHeight");
+          }}
+          valid={validState.sensorDimensionsHeight}
         />
         <PointInput
           styles={styles}
@@ -102,15 +140,24 @@ export const EditCameraParametersDialog = ({
           suffix="&#11020; mm"
           value={sensorDimensions.width}
           onChange={(value) => {
+            setInputValidState("sensorDimensionsWidth", true);
             setSensorDimensions({
               height: sensorDimensions.height,
               width: value,
             });
           }}
+          onBlur={() => {
+            validate(sensorDimensions.width, "sensorDimensionsWidth");
+          }}
+          valid={validState.sensorDimensionsWidth}
         />
       </div>
       <DialogFooter>
-        <PrimaryButton onClick={handleOnApply} text="Nastavit" />
+        <PrimaryButton
+          disabled={applyButtonDisabled}
+          onClick={handleOnApply}
+          text="Nastavit"
+        />
         <DefaultButton onClick={onDismiss} text="Zrušit" />
       </DialogFooter>
     </Dialog>

@@ -31,6 +31,16 @@ const getStyles = (theme) =>
     },
     inputFieldWrapper: {
       flex: "0 0 7rem",
+      selectors: {
+        ".ms-TextField-suffix": {
+          width: "2.25rem",
+          padding: "0 .5rem",
+          justifyContent: "flex-end",
+        },
+        ".ms-TextField-errorMessage": {
+          display: "none",
+        },
+      },
     },
   });
 
