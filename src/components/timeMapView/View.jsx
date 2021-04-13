@@ -20,15 +20,6 @@ export const View = ({
 }) => {
   return (
     <div className="histjes-main">
-      <div className="histjes-map">
-        <Map
-          selectedBaseLayer={selectedBaseLayer}
-          onHistoryChanged={onHistoryChanged}
-          onReferenceLayerChanged={onReferenceLayerChanged}
-          onZoomIn={onZoomIn}
-          onZoomOut={onZoomOut}
-        />
-      </div>
       <div className="histjes-panel">
         <SidePanel
           layers={layers}
@@ -37,6 +28,15 @@ export const View = ({
           onLayerOpacityChange={onLayerOpacityChange}
           selectedObject={selectedObject}
           onDetailCancel={onDetailCancel}
+        />
+      </div>
+      <div className="histjes-map">
+        <Map
+          selectedBaseLayer={selectedBaseLayer}
+          onHistoryChanged={onHistoryChanged}
+          onReferenceLayerChanged={onReferenceLayerChanged}
+          onZoomIn={onZoomIn}
+          onZoomOut={onZoomOut}
         />
       </div>
     </div>
