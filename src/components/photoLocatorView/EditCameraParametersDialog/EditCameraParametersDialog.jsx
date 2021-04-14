@@ -95,6 +95,14 @@ export const EditCameraParametersDialog = ({
     validState.sensorDimensionsHeight === false ||
     validState.sensorDimensionsWidth === false;
 
+  const roundValue = (value) => {
+    if (isNaN(value) || value.indexOf(".") === value.length - 1) {
+      return value;
+    }
+
+    return Math.round(value * 100) / 100;
+  };
+
   return (
     <Dialog
       hidden={!display}
@@ -110,7 +118,7 @@ export const EditCameraParametersDialog = ({
           suffix="mm"
           onChange={(value) => {
             setInputValidState("sensorDimensionsHeight", true);
-            setFocalLength(value);
+            setFocalLength(roundValue(value));
           }}
           onBlur={() => {
             validate(focalLength, "focalLength");
@@ -125,7 +133,7 @@ export const EditCameraParametersDialog = ({
           onChange={(value) => {
             setInputValidState("sensorDimensionsHeight", true);
             setSensorDimensions({
-              height: value,
+              height: roundValue(value),
               width: sensorDimensions.width,
             });
           }}
@@ -143,7 +151,7 @@ export const EditCameraParametersDialog = ({
             setInputValidState("sensorDimensionsWidth", true);
             setSensorDimensions({
               height: sensorDimensions.height,
-              width: value,
+              width: roundValue(value),
             });
           }}
           onBlur={() => {
