@@ -14,10 +14,6 @@ export const PhotoLocatorPage = () => {
 
   const [heightCorrection, setHeightCorrection] = useState(0);
 
-  const handleOnSetHeightCorrection = (_e, value) => {
-    setHeightCorrection(value);
-  };
-
   const onBackHomeClick = () => {
     alert("Back home clicked");
   };
@@ -237,7 +233,7 @@ export const PhotoLocatorPage = () => {
       cameraParameters={cameraParameters}
       onSetCameraParameters={setCameraParameters}
       heightCorrection={heightCorrection}
-      onHeightCorrectionChange={handleOnSetHeightCorrection}
+      onHeightCorrectionChange={setHeightCorrection}
     />
   );
 };

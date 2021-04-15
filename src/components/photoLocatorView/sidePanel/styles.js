@@ -1,4 +1,4 @@
-import { mergeStyleSets } from "@fluentui/react";
+import { Autofill, mergeStyleSets } from "@fluentui/react";
 
 const getStyles = (theme) =>
   mergeStyleSets({
@@ -21,10 +21,13 @@ const getStyles = (theme) =>
       flexDirection: "column",
       padding: "0.75rem",
     },
+    calculateButtonWrapper: {
+      marginTop: "auto",
+    },
     calculateButton: {
       padding: "1.5rem 2rem",
       margin: 0,
-      marginTop: "auto",
+      marginTop: "1rem",
       width: "100%",
     },
     sectionSeparatorWrapper: {

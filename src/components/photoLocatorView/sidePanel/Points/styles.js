@@ -4,10 +4,11 @@ export const getStyles = () =>
   mergeStyleSets({
     addButton: {
       marginTop: ".5rem",
+      width: "7.5rem",
+      padding: "0 .5rem",
       height: "1.75rem",
     },
     points: {
-      maxHeight: "18rem",
       overflow: "auto",
     },
   });

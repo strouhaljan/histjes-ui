@@ -31,19 +31,19 @@ export const HeightCorrection = ({ value, onChange }) => {
 
   const handleChange = (e) => {
     changeValue(parseInt(e.target.value));
-  }
+  };
 
   const changeValue = (value) => {
     onChange(value);
-  }
+  };
 
   const handleDecrement = (value) => {
     changeValue((parseInt(value) || 0) - 1);
-  }
+  };
 
   const handleIncrement = (value) => {
     changeValue((parseInt(value) || 0) + 1);
-  }
+  };
 
   return (
     <div className={styles.heightCorrection}>

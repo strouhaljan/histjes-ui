@@ -5,6 +5,7 @@ import { useTheme } from "@fluentui/react-theme-provider";
 import { Panel } from "../../common/panel/Panel";
 import { Points } from "./Points";
 import { Parameters } from "./Parameters";
+import { HeightCorrection } from "./HeightCorrection";
 import { NewProjectButton } from "./projectButtons/NewProjectButton";
 import { OpenProjectButton } from "./projectButtons/OpenProjectButton";
 import { SaveProjectButton } from "./projectButtons/SaveProjectButton";
@@ -17,14 +18,16 @@ const CalculateButton = ({ onClick, points, styles, calculating }) => {
   }, 0);
 
   return (
-    <PrimaryButton
-      className={styles.calculateButton}
-      disabled={usedPoints < 3 || calculating}
-      text={calculating ? "Přepočítávám..." : "Přepočítat"}
-      onClick={onClick}
-    />
+    <div className={styles.calculateButtonWrapper}>
+      <PrimaryButton
+        className={styles.calculateButton}
+        disabled={usedPoints < 3 || calculating}
+        text={calculating ? "Přepočítávám..." : "Přepočítat"}
+        onClick={onClick}
+      />
+    </div>
   );
-}
+};
 
 const SectionSeparator = ({ icon, label, styles, action, actionIcon }) => (
   <div className={styles.sectionSeparatorWrapper}>
@@ -102,13 +105,15 @@ export const SidePanel = ({
           <Points
             loadingDmt={loadingDmt}
             points={points}
-            heightCorrection={heightCorrection}
-            onHeightCorrectionChange={onHeightCorrectionChange}
             onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
             onLockPoint={onLockPoint}
             onDisablePoint={onDisablePoint}
+          />
+          <HeightCorrection
+            value={heightCorrection}
+            onChange={onHeightCorrectionChange}
           />
           <SectionSeparator
             icon="Camera"

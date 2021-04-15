@@ -36,7 +36,7 @@ const getStyles = (theme) =>
     },
     content: {
       overflow: "auto",
-      flex: "1 1 100vh",
+      flex: "1 1 100%",
     },
   });
 

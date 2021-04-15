@@ -4,7 +4,6 @@ import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
 import { EditButtons } from "./EditButtons";
-import { HeightCorrection } from "./HeightCorrection";
 
 const PointValue = ({ label, value, styles, suffix, dimmed }) => {
   return (
@@ -99,12 +98,10 @@ export const Points = ({
   onEditPoint,
   onLockPoint,
   onDisablePoint,
-  heightCorrection,
-  onHeightCorrectionChange,
 }) => {
   const styles = useMemo(() => getStyles(), []);
   return (
-    <div>
+    <>
       <div className={styles.points}>
         {points.map((point, index) => (
           <Point
@@ -126,11 +123,7 @@ export const Points = ({
           onClick={onAddPoint}
         />
       )}
-      <HeightCorrection
-        value={heightCorrection}
-        onChange={onHeightCorrectionChange}
-      />
       {loadingDmt && <div>Probíhá zpracování...</div>}
-    </div>
+    </>
   );
 };
