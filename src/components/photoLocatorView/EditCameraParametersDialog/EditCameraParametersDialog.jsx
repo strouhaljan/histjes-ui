@@ -21,6 +21,7 @@ const PointInput = ({
 }) => {
   const onChangeHandler = useCallback((_event, value) => {
     onChange(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
