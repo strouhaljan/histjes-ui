@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useTheme } from "@fluentui/react-theme-provider";
 
 import MapContainer from "../../timeMapState/map/MapContainer";
 import { ZoomControl } from "../../common/ZoomControl/ZoomControl";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
 import { HistorySlider } from "./HistorySlider";
 import { Help } from "./Help";
+import getStyles from "./styles";
 
 export const Map = ({
   historyYear,
@@ -14,17 +16,26 @@ export const Map = ({
   onReferenceLayerChanged,
   onZoomIn,
   onZoomOut,
-}) => (
-  <div>
-    <div style={{ height: "100vh", width: "100%", display: "flex" }}>
-      <MapContainer onObjectClick={onObjectClick} />
+}) => {
+  const theme = useTheme();
+  const styles = useMemo(() => getStyles(theme), [theme]);
+
+  return (
+    <div>
+      <div style={{ height: "100vh", width: "100%", display: "flex" }}>
+        <MapContainer onObjectClick={onObjectClick} />
+      </div>
+      <ReferenceLayerSelect
+        selectedLayer={selectedBaseLayer}
+        onChanged={onReferenceLayerChanged}
+      />
+      <ZoomControl
+        className={styles.zoomControl}
+        onZoomIn={onZoomIn}
+        onZoomOut={onZoomOut}
+      />
+      <Help />
+      <HistorySlider value={historyYear} onChanged={onHistoryChanged} />
     </div>
-    <ReferenceLayerSelect
-      selectedLayer={selectedBaseLayer}
-      onChanged={onReferenceLayerChanged}
-    />
-    <ZoomControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
-    <Help />
-    <HistorySlider value={historyYear} onChanged={onHistoryChanged} />
-  </div>
-);
+  );
+};
