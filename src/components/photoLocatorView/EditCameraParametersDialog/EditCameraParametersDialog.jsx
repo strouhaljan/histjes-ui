@@ -64,45 +64,36 @@ export const EditCameraParametersDialog = ({
   };
 
   const [focalLength, setFocalLength] = useState(originalFocalLength);
-  const [sensorDimensions, setSensorDimensions] = useState(
-    originalSensorDimensions
+  const [focalLengthValid, setFocalLengthValid] = useState(true);
+
+  const [sensorHeight, setSensorHeight] = useState(
+    originalSensorDimensions.height
   );
+  const [sensorHeightValid, setSensorHeightValid] = useState(true);
 
-  const handleOnApply = () => {
+  const [sensorWidth, setSensorWidth] = useState(
+    originalSensorDimensions.width
+  );
+  const [sensorWidthValid, setSensorWidthValid] = useState(true);
+
+  const handleOnApply = useCallback(() => {
     onApply({
-      focalLength,
-      sensorDimensions,
+      focalLength: Math.round(focalLength * 100) / 100,
+      sensorDimensions: {
+        height: Math.round(sensorHeight * 100) / 100,
+        width: Math.round(sensorWidth * 100) / 100,
+      },
     });
-  };
+  }, [focalLength, sensorHeight, sensorWidth]);
 
-  const [validState, setValidState] = useState({
-    focalLength: true,
-    sensorDimensionsHeight: true,
-    sensorDimensionsWidth: true,
-  });
-
-  const setInputValidState = (inputStateKey, state) => {
-    setValidState({ ...validState, [inputStateKey]: state });
-  };
-
-  const validate = (value, inputStateKey) => {
-    if (value.length === 0 || isNaN(value)) {
-      setInputValidState(inputStateKey, false);
-    }
-  };
+  const validate = useCallback((value, callback) => {
+    callback(value.length === 0 || isNaN(value) ? false : true);
+  }, []);
 
   const applyButtonDisabled =
-    validState.focalLength === false ||
-    validState.sensorDimensionsHeight === false ||
-    validState.sensorDimensionsWidth === false;
-
-  const roundValue = (value) => {
-    if (isNaN(value) || value.indexOf(".") === value.length - 1) {
-      return value;
-    }
-
-    return Math.round(value * 100) / 100;
-  };
+    focalLengthValid === false ||
+    sensorHeightValid === false ||
+    sensorWidthValid === false;
 
   return (
     <Dialog
@@ -118,47 +109,41 @@ export const EditCameraParametersDialog = ({
           value={focalLength}
           suffix="mm"
           onChange={(value) => {
-            setInputValidState("sensorDimensionsHeight", true);
-            setFocalLength(roundValue(value));
+            validate(value, setFocalLengthValid);
+            setFocalLength(value);
           }}
           onBlur={() => {
-            validate(focalLength, "focalLength");
+            validate(focalLength, setFocalLengthValid);
           }}
-          valid={validState.focalLength}
+          valid={focalLengthValid}
         />
         <PointInput
           styles={styles}
           label="Rozměry snímače:"
           suffix="&#11021; mm"
-          value={sensorDimensions.height}
+          value={sensorHeight}
           onChange={(value) => {
-            setInputValidState("sensorDimensionsHeight", true);
-            setSensorDimensions({
-              height: roundValue(value),
-              width: sensorDimensions.width,
-            });
+            validate(value, setSensorHeightValid);
+            setSensorHeight(value);
           }}
           onBlur={() => {
-            validate(sensorDimensions.height, "sensorDimensionsHeight");
+            validate(sensorHeight, setSensorHeightValid);
           }}
-          valid={validState.sensorDimensionsHeight}
+          valid={setSensorHeightValid}
         />
         <PointInput
           styles={styles}
           label=""
           suffix="&#11020; mm"
-          value={sensorDimensions.width}
+          value={sensorWidth}
           onChange={(value) => {
-            setInputValidState("sensorDimensionsWidth", true);
-            setSensorDimensions({
-              height: sensorDimensions.height,
-              width: roundValue(value),
-            });
+            validate(value, setSensorWidthValid);
+            setSensorWidth(value);
           }}
           onBlur={() => {
-            validate(sensorDimensions.width, "sensorDimensionsWidth");
+            validate(sensorWidth, setSensorWidthValid);
           }}
-          valid={validState.sensorDimensionsWidth}
+          valid={sensorWidthValid}
         />
       </div>
       <DialogFooter>
