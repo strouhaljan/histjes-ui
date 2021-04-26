@@ -14,8 +14,8 @@ export const Map = ({
   onChangeView,
   onZoomIn,
   onZoomOut,
-  onMoveForward,
-  onMoveBack,
+  onSetAdjusted,
+  onMoveToAdjusted,
   onMoveToCalculated,
 }) => {
   const styles = useMemo(() => getStyles(), []);
@@ -32,8 +32,8 @@ export const Map = ({
       ) : (
         <Map3D
           calculatedCameraParams={calculatedCameraParams}
-          onMoveBack={onMoveBack}
-          onMoveForward={onMoveForward}
+          onSetAdjusted={onSetAdjusted}
+          onMoveToAdjusted={onMoveToAdjusted}
           onMoveToCalculated={onMoveToCalculated}
         />
       )}

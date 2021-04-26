@@ -7,9 +7,9 @@ import { getStyles } from "./styles";
 
 export const Map3D = ({
   calculatedCameraParams,
-  onMoveBack,
-  onMoveForward,
+  onMoveToAdjusted,
   onMoveToCalculated,
+  onSetAdjusted
 }) => {
   const styles = useMemo(() => getStyles(), []);
 
@@ -21,20 +21,18 @@ export const Map3D = ({
             <div className={styles.moveControl}>
               <DefaultButton
                 className={styles.button}
-                iconProps={{
-                  iconName: "Location" /* PresenceChickletVideo, Camera */,
-                }}
+                iconProps={{ iconName: "Location" }}
                 onClick={onMoveToCalculated}
               />
               <DefaultButton
                 className={styles.button}
-                iconProps={{ iconName: "CaretSolidUp" }}
-                onClick={onMoveForward}
+                iconProps={{ iconName: "ReceiptForward" }}
+                onClick={onMoveToAdjusted}
               />
               <DefaultButton
                 className={styles.button}
-                iconProps={{ iconName: "CaretSolidDown" }}
-                onClick={onMoveBack}
+                iconProps={{ iconName: "ReceiptCheck" }}
+                onClick={onSetAdjusted}
               />
             </div>
           )}

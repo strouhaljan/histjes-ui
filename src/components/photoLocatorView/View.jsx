@@ -33,8 +33,8 @@ export const View = ({
   onPhotoZoomIn,
   onPhotoZoomOut,
   onPhotoFitScreen,
-  on3DViewMoveForward,
-  on3DViewMoveBack,
+  on3DViewSetAdjusted,
+  on3DViewMoveToAdjusted,
   on3DViewMoveToCalculated,
   onCalculateClick,
   onTransformCoord,
@@ -102,8 +102,8 @@ export const View = ({
           onChangeView={onChangeView}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
-          onMoveForward={on3DViewMoveForward}
-          onMoveBack={on3DViewMoveBack}
+          onSetAdjusted={on3DViewSetAdjusted}
+          onMoveToAdjusted={on3DViewMoveToAdjusted}
           onMoveToCalculated={on3DViewMoveToCalculated}
         />
       </div>
