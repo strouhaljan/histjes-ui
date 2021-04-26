@@ -7,6 +7,7 @@ export const getStyles = () =>
       width: "7.5rem",
       padding: "0 .5rem",
       height: "1.75rem",
+      flex: "0 0 auto",
     },
     points: {
       overflow: "auto",
