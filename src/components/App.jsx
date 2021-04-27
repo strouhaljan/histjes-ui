@@ -9,7 +9,7 @@ import { theme } from "../theme";
 
 import { TimeMapPage } from "./TimeMapPage";
 import { PhotoLocatorPage } from "./PhotoLocatorPage";
-import { InfoFinderPage } from "./InfoFinderPage";
+import { InfoSearchPage } from "./InfoSearchPage";
 
 initializeIcons();
 
@@ -25,7 +25,7 @@ function App() {
             <PhotoLocatorPage />
           </Route>
           <Route path="/info">
-            <InfoFinderPage />
+            <InfoSearchPage />
           </Route>
         </Switch>
       </Router>
