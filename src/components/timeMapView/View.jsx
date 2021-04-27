@@ -14,9 +14,13 @@ export const View = ({
   onBackHomeClick,
   onLayerOpacityChange,
   onDetailCancel,
+  onObjectClick,
+  onTabClick,
+  historyYear,
   selectedObject,
   selectedBaseLayer,
   layers,
+  selectedTab
 }) => {
   return (
     <div className="histjes-main">
@@ -28,12 +32,16 @@ export const View = ({
           onLayerOpacityChange={onLayerOpacityChange}
           selectedObject={selectedObject}
           onDetailCancel={onDetailCancel}
+          onTabClick={onTabClick}
+          selectedTab={selectedTab}
         />
       </div>
       <div className="histjes-map">
         <Map
+          historyYear={historyYear}
           selectedBaseLayer={selectedBaseLayer}
           onHistoryChanged={onHistoryChanged}
+          onObjectClick={onObjectClick}
           onReferenceLayerChanged={onReferenceLayerChanged}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
