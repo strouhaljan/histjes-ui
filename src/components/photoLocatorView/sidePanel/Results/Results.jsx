@@ -21,22 +21,27 @@ const ResultValue = ({ label, value, styles, suffix }) => {
 const Result = ({ result, styles }) => (
   <div className={styles.result}>
     <div className={styles.resultValues}>
-      <ResultValue styles={styles} label={"X:"} value={result.x} />
-      <ResultValue styles={styles} label={"Y:"} value={result.y} />
-      <ResultValue styles={styles} label={"Z:"} value={result.z} />
+      <ResultValue styles={styles} label={"X:"} value={Math.round(result.x)} />
+      <ResultValue styles={styles} label={"Y:"} value={Math.round(result.y)} />
+      <ResultValue styles={styles} label={"Z:"} value={Math.round(result.z)} />
     </div>
     <div className={styles.resultValues}>
-      <ResultValue styles={styles} label={"ω:"} value={result.yaw} suffix="°" />
+      <ResultValue
+        styles={styles}
+        label={"ω:"}
+        value={Math.round(result.yaw)}
+        suffix="°"
+      />
       <ResultValue
         styles={styles}
         label={"γ:"}
-        value={result.pitch}
+        value={Math.round(result.pitch)}
         suffix="°"
       />
       <ResultValue
         styles={styles}
         label={"χ:"}
-        value={result.roll}
+        value={Math.round(result.roll)}
         suffix="°"
       />
     </div>
