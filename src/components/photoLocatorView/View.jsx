@@ -86,6 +86,8 @@ export const View = ({
         heightCorrection={heightCorrection}
         onHeightCorrectionChange={onHeightCorrectionChange}
         file={file}
+        adjustedCameraParams={adjustedCameraParams}
+        calculatedCameraParams={calculatedCameraParams}
       />
       <div className={styles.locator}>
         <Photo

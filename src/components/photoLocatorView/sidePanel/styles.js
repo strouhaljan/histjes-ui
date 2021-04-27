@@ -33,7 +33,7 @@ const getStyles = (theme) =>
     sectionSeparatorWrapper: {
       position: "relative",
       padding: 0,
-      margin: "1rem 0 .5rem",
+      margin: ".5rem 0",
       selectors: {
         ":first-of-type": {
           marginTop: 0,

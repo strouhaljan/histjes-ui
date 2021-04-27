@@ -205,6 +205,18 @@ export const PhotoLocatorPage = () => {
     };
   };
 
+  const calculatedCameraParams = {
+    x: 1,
+    y: 2,
+    z: 3,
+  };
+
+  const adjustedCameraParams = {
+    x: 4,
+    y: 5,
+    z: 6,
+  };
+
   return (
     <View
       file={file}
@@ -234,6 +246,8 @@ export const PhotoLocatorPage = () => {
       onSetCameraParameters={setCameraParameters}
       heightCorrection={heightCorrection}
       onHeightCorrectionChange={setHeightCorrection}
+      calculatedCameraParams={calculatedCameraParams}
+      adjustedCameraParams={adjustedCameraParams}
     />
   );
 };

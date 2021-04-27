@@ -11,6 +11,7 @@ export const getStyles = () =>
     },
     points: {
       overflow: "auto",
+      minHeight: "14rem",
     },
   });
 

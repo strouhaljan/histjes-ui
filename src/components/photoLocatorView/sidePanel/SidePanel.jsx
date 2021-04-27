@@ -6,6 +6,7 @@ import { Panel } from "../../common/panel/Panel";
 import { Points } from "./Points";
 import { Parameters } from "./Parameters";
 import { HeightCorrection } from "./HeightCorrection";
+import { Results } from "./Results";
 import { NewProjectButton } from "./projectButtons/NewProjectButton";
 import { OpenProjectButton } from "./projectButtons/OpenProjectButton";
 import { SaveProjectButton } from "./projectButtons/SaveProjectButton";
@@ -65,6 +66,8 @@ export const SidePanel = ({
   onCalculateClick,
   onLockPoint,
   onDisablePoint,
+  calculatedCameraParams,
+  adjustedCameraParams,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -130,6 +133,20 @@ export const SidePanel = ({
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
           />
+          {(calculatedCameraParams || adjustedCameraParams) && (
+            <>
+              <SectionSeparator
+                icon="AllApps"
+                label="Výsledky"
+                styles={styles}
+              />
+              <Results
+                calculatedCameraParams={calculatedCameraParams}
+                adjustedCameraParams={adjustedCameraParams}
+              />
+            </>
+          )}
+
           <CalculateButton
             calculating={calculating}
             points={points}
