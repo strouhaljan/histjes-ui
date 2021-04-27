@@ -209,12 +209,18 @@ export const PhotoLocatorPage = () => {
     x: 1,
     y: 2,
     z: 3,
+    yaw: 1,
+    pitch: 3,
+    roll: 2,
   };
 
   const adjustedCameraParams = {
     x: 4,
     y: 5,
     z: 6,
+    yaw: 1,
+    pitch: 3,
+    roll: 2,
   };
 
   return (

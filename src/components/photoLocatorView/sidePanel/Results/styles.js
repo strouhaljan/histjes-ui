@@ -27,7 +27,7 @@ const getStyles = (theme, index) =>
     },
     resultValues: {
       display: "flex",
-      margin: ".5rem .5rem 0 .5rem",
+      margin: "0 .5rem",
       selectors: {
         ":first-of-type": {
           marginTop: 0,

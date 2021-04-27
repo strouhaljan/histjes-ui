@@ -5,7 +5,7 @@ import { useTheme } from "@fluentui/react-theme-provider";
 import { getPointStyles, getStyles } from "./styles";
 import { EditButtons } from "./EditButtons";
 
-const PointValue = ({ label, value, styles, suffix, dimmed }) => {
+const PointValue = ({ label, value, styles, suffix }) => {
   return (
     <div className={styles.pointValueWrapper}>
       {label && (
@@ -14,7 +14,7 @@ const PointValue = ({ label, value, styles, suffix, dimmed }) => {
         </span>
       )}
       <span className={`${styles.pointValue} pointValue`}>
-        {value !== null ? `${suffix ? `${value} ${suffix}` : value}` : "-"}
+        {value !== null ? `${suffix ? `${value}${suffix}` : value}` : "-"}
       </span>
     </div>
   );
@@ -57,22 +57,19 @@ const Point = ({
             styles={styles}
             label={"X:"}
             value={deviation ? deviation.x : null}
-            suffix="px"
-            dimmed
+            suffix=" px"
           />
           <PointValue
             styles={styles}
             label={"Y:"}
             value={deviation ? deviation.y : null}
-            suffix="px"
-            dimmed
+            suffix=" px"
           />
           <PointValue
             styles={styles}
             label={"D:"}
             value={deviation ? deviation.d : null}
-            suffix="px"
-            dimmed
+            suffix=" px"
           />
         </div>
       </div>

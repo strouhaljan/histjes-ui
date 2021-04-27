@@ -12,7 +12,7 @@ const ResultValue = ({ label, value, styles, suffix }) => {
         </span>
       )}
       <span className={`${styles.resultValue} pointValue`}>
-        {value !== null ? `${suffix ? `${value} ${suffix}` : value}` : "-"}
+        {value !== null ? `${suffix ? `${value}${suffix}` : value}` : "-"}
       </span>
     </div>
   );
@@ -24,6 +24,21 @@ const Result = ({ result, styles }) => (
       <ResultValue styles={styles} label={"X:"} value={result.x} />
       <ResultValue styles={styles} label={"Y:"} value={result.y} />
       <ResultValue styles={styles} label={"Z:"} value={result.z} />
+    </div>
+    <div className={styles.resultValues}>
+      <ResultValue styles={styles} label={"ω:"} value={result.yaw} suffix="°" />
+      <ResultValue
+        styles={styles}
+        label={"γ:"}
+        value={result.pitch}
+        suffix="°"
+      />
+      <ResultValue
+        styles={styles}
+        label={"χ:"}
+        value={result.roll}
+        suffix="°"
+      />
     </div>
   </div>
 );

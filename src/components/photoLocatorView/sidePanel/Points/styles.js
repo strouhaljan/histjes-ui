@@ -61,7 +61,7 @@ export const getPointStyles = (theme, index, point) =>
     },
     pointValues: {
       display: "flex",
-      marginTop: ".25rem",
+      marginTop: 0,
       selectors: {
         ":first-of-type": {
           marginTop: 0,

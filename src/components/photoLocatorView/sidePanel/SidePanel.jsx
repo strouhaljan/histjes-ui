@@ -146,7 +146,6 @@ export const SidePanel = ({
               />
             </>
           )}
-
           <CalculateButton
             calculating={calculating}
             points={points}
