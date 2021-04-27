@@ -84,6 +84,7 @@ export const EditCameraParametersDialog = ({
         width: Math.round(sensorWidth * 100) / 100,
       },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focalLength, sensorHeight, sensorWidth]);
 
   const validate = useCallback((value, callback) => {
