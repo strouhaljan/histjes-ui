@@ -1,6 +1,6 @@
 import { mergeStyleSets } from "@fluentui/react";
 
-export const getStyles = () =>
+export const getStyles = (theme) =>
   mergeStyleSets({
     map: {
       position: "relative",
@@ -21,6 +21,19 @@ export const getStyles = () =>
       flex: "0 0 50%",
       "&:not(first-child)": {
         marginLeft: "-1px",
+      },
+    },
+    disabledButton: {
+      cursor: "default",
+      backgroundColor: theme.palette.neutralLighter,
+      selectors: {
+        "&:hover": {
+          cursor: "default",
+          backgroundColor: theme.palette.neutralLighter,
+        },
+        ".ms-Button-icon": {
+          color: theme.palette.neutralTertiary,
+        },
       },
     },
   });

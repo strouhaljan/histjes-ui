@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useTheme } from "@fluentui/react-theme-provider";
 
 import { ViewSwitch } from "./ViewSwitch";
 import { Map2D } from "./Map2D";
@@ -19,7 +20,8 @@ export const Map = ({
   onMoveToAdjusted,
   onMoveToCalculated,
 }) => {
-  const styles = useMemo(() => getStyles(), []);
+  const theme = useTheme();
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
     <div className={styles.map}>
