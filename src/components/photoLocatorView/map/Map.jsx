@@ -7,6 +7,7 @@ import { Map3D } from "./Map3D";
 import { getStyles } from "./styles";
 
 export const Map = ({
+  adjustedCameraParams,
   calculatedCameraParams,
   selectedBaseLayer,
   selectedView,
@@ -31,6 +32,7 @@ export const Map = ({
         />
       ) : (
         <Map3D
+          adjustedCameraParams={adjustedCameraParams}
           calculatedCameraParams={calculatedCameraParams}
           onSetAdjusted={onSetAdjusted}
           onMoveToAdjusted={onMoveToAdjusted}

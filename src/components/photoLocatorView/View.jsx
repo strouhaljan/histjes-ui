@@ -11,6 +11,7 @@ import { EditCameraParametersDialog } from "./EditCameraParametersDialog";
 
 export const View = ({
   calculating,
+  adjustedCameraParams,
   calculatedCameraParams,
   file,
   loadingDmt,
@@ -95,6 +96,7 @@ export const View = ({
           onFitScreen={onPhotoFitScreen}
         />
         <Map
+          adjustedCameraParams={adjustedCameraParams}
           calculatedCameraParams={calculatedCameraParams}
           selectedBaseLayer={selectedBaseLayer}
           selectedView={selectedView}
