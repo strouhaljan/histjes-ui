@@ -130,7 +130,7 @@ export const EditCameraParametersDialog = ({
           onBlur={() => {
             validate(sensorHeight, setSensorHeightValid);
           }}
-          valid={setSensorHeightValid}
+          valid={sensorHeightValid}
         />
         <PointInput
           styles={styles}
