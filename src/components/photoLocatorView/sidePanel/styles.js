@@ -76,6 +76,12 @@ const getStyles = (theme) =>
       color: theme.palette.themePrimary,
       cursor: "pointer",
       textAlign: "right",
+      selectors: {
+        ".addPointButton": {
+          fontSize: "1rem",
+          marginTop: ".2rem",
+        },
+      },
     },
     fileNameWrapper: {
       margin: "0 .5rem",

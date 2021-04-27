@@ -30,7 +30,14 @@ const CalculateButton = ({ onClick, points, styles, calculating }) => {
   );
 };
 
-const SectionSeparator = ({ icon, label, styles, action, actionIcon }) => (
+const SectionSeparator = ({
+  icon,
+  label,
+  styles,
+  action,
+  actionIcon,
+  iconClassName,
+}) => (
   <div className={styles.sectionSeparatorWrapper}>
     <Separator className={styles.sectionSeparator} alignContent="start">
       <div className={styles.sectionLabel}>
@@ -40,7 +47,11 @@ const SectionSeparator = ({ icon, label, styles, action, actionIcon }) => (
     </Separator>
     {action && (
       <div className={styles.actionIcon}>
-        <Icon onClick={action} iconName={actionIcon} />
+        <Icon
+          onClick={action}
+          iconName={actionIcon}
+          className={iconClassName}
+        />
       </div>
     )}
   </div>
@@ -72,17 +83,14 @@ export const SidePanel = ({
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
+  const MAX_POINT_COUNT = 8;
+
   return (
     <Panel
       onBackHomeClick={onBackHomeClick}
       appTitle={"FotoUmisťovač"}
       customContentStyles={styles.panelContent}
     >
-      <SectionSeparator
-        icon="ProjectCollection"
-        label="Projekt"
-        styles={styles}
-      />
       <div className={styles.projectButtonsWrapper}>
         <NewProjectButton onClick={onNewProject} styles={styles} />
         <OpenProjectButton onClick={onOpenProject} styles={styles} />
@@ -104,11 +112,17 @@ export const SidePanel = ({
             icon="BullseyeTargetEdit"
             label="Vlícovací body"
             styles={styles}
+            action={
+              !loadingDmt && points.length < MAX_POINT_COUNT
+                ? onAddPoint
+                : undefined
+            }
+            actionIcon={"CircleAddition"}
+            iconClassName={"addPointButton"}
           />
           <Points
             loadingDmt={loadingDmt}
             points={points}
-            onAddPoint={onAddPoint}
             onRemovePoint={onRemovePoint}
             onEditPoint={onEditPoint}
             onLockPoint={onLockPoint}

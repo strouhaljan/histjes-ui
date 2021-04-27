@@ -85,12 +85,9 @@ const Point = ({
   );
 };
 
-const MAX_POINT_COUNT = 8;
-
 export const Points = ({
   loadingDmt,
   points,
-  onAddPoint,
   onRemovePoint,
   onEditPoint,
   onLockPoint,
@@ -112,14 +109,6 @@ export const Points = ({
           />
         ))}
       </div>
-      {!loadingDmt && points.length < MAX_POINT_COUNT && (
-        <DefaultButton
-          className={styles.addButton}
-          iconProps={{ iconName: "Add" }}
-          text={"Přidat bod"}
-          onClick={onAddPoint}
-        />
-      )}
       {loadingDmt && <div>Probíhá zpracování...</div>}
     </>
   );
