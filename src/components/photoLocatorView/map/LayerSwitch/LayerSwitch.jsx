@@ -30,7 +30,8 @@ export const LayerSwitch = ({ selectedLayer, onChangeLayer }) => {
 
   const LAYERS = [
     {title: 'Mapa', layerId: 'base_zm'},
-    {title: 'Ortofoto', layerId: 'base_orto'}
+    {title: 'Orto', layerId: 'base_orto'},
+    {title: 'Orto 50', layerId: 'base_orto_50'}
   ];
 
   return (
