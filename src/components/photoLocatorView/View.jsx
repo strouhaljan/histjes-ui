@@ -125,14 +125,15 @@ export const View = ({
         }}
         onTransformCoord={onTransformCoord}
       />
-      <EditCameraParametersDialog
-        display={cameraParametersDialogDisplayed}
-        cameraParameters={cameraParameters}
-        onApply={handleOnApplyCameraParameters}
-        onDismiss={() => {
-          setCameraParametersDialogDisplayed(false);
-        }}
-      />
+      {cameraParametersDialogDisplayed && (
+        <EditCameraParametersDialog
+          cameraParameters={cameraParameters}
+          onApply={handleOnApplyCameraParameters}
+          onDismiss={() => {
+            setCameraParametersDialogDisplayed(false);
+          }}
+        />
+      )}
     </div>
   );
 };

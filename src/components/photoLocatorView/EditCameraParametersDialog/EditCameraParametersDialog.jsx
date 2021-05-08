@@ -41,7 +41,6 @@ const PointInput = ({
 };
 
 export const EditCameraParametersDialog = ({
-  display,
   cameraParameters,
   onApply,
   onDismiss,
@@ -98,7 +97,7 @@ export const EditCameraParametersDialog = ({
 
   return (
     <Dialog
-      hidden={!display}
+      hidden={false}
       onDismiss={onDismiss}
       dialogContentProps={dialogContentProps}
       modalProps={modalProps}
