@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { DefaultButton, FontIcon } from "office-ui-fabric-react";
+import { FontIcon } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { getPointStyles, getStyles } from "./styles";
@@ -97,17 +97,22 @@ export const Points = ({
   return (
     <>
       <div className={styles.points}>
-        {points.map((point, index) => (
-          <Point
-            key={point.identifier}
-            point={point}
-            index={index}
-            onRemovePoint={onRemovePoint}
-            onEditPoint={onEditPoint}
-            onLockPoint={onLockPoint}
-            onDisablePoint={onDisablePoint}
-          />
-        ))}
+        {points.map((_point, index) => {
+          const renderedPointIndex = points.length - (index + 1);
+          const point = points[renderedPointIndex];
+
+          return (
+            <Point
+              key={point.identifier}
+              point={point}
+              index={renderedPointIndex}
+              onRemovePoint={onRemovePoint}
+              onEditPoint={onEditPoint}
+              onLockPoint={onLockPoint}
+              onDisablePoint={onDisablePoint}
+            />
+          );
+        })}
       </div>
       {loadingDmt && <div>Probíhá zpracování...</div>}
     </>
