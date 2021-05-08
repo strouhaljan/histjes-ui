@@ -93,7 +93,8 @@ export const Points = ({
   onLockPoint,
   onDisablePoint,
 }) => {
-  const styles = useMemo(() => getStyles(), []);
+  const theme = useTheme();
+  const styles = useMemo(() => getStyles(theme), [theme]);
   return (
     <>
       <div className={styles.points}>

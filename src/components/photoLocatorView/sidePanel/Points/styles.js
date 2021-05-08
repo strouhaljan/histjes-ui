@@ -1,6 +1,6 @@
 import { mergeStyleSets } from "@fluentui/react";
 
-export const getStyles = () =>
+export const getStyles = (theme) =>
   mergeStyleSets({
     addButton: {
       marginTop: ".5rem",
@@ -10,6 +10,8 @@ export const getStyles = () =>
       flex: "0 0 auto",
     },
     points: {
+      border: `1px solid ${theme.palette.neutralLight}`,
+      minHeight: "4rem",
       overflow: "auto",
     },
   });
@@ -18,9 +20,6 @@ export const getPointStyles = (theme, index, point) =>
   mergeStyleSets({
     point: {
       position: "relative",
-      border: `1px solid ${theme.palette.neutralLight}`,
-      borderLeft: "none",
-      borderTop: index === 0 ? "" : "none",
       selectors: {
         ":hover .editButtons": {
           display: "block",
