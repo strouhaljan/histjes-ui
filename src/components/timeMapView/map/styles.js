@@ -3,7 +3,7 @@ import { mergeStyleSets } from "@fluentui/react";
 const getStyles = (theme) =>
   mergeStyleSets({
     zoomControl: {
-      marginLeft: "6rem",
+      marginLeft: "7rem",
     },
   });
 

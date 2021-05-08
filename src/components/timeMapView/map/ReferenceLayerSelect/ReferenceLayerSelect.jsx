@@ -45,7 +45,7 @@ export const ReferenceLayerSelect = ({ selectedLayer, onChanged }) => {
   return (
     <div className="reference-layer-picker">
       <div className={styles.buttonArea}>
-        <DefaultButton text="Mapa" onClick={() => setIsOpened(!isOpened)} />
+        <DefaultButton text="Podklad" onClick={() => setIsOpened(!isOpened)} />
       </div>
       {isOpened && (
         <Callout

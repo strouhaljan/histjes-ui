@@ -11,7 +11,13 @@ const referenceLayerLabel = mergeStyleSets({
 
 const getStyles = (theme) =>
   mergeStyleSets({
-    buttonArea: {},
+    buttonArea: {
+      selectors: {
+        ".ms-Button": {
+          width: "6rem",
+        },
+      },
+    },
     callout: {
       width: 500,
       backgroundColor: "#fff",
