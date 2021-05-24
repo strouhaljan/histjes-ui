@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import { FontIcon } from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
+import { toWgs84 } from "../../../proj4utils";
+
 import { getPointStyles, getStyles } from "./styles";
 import { EditButtons } from "./EditButtons";
 
@@ -36,6 +38,8 @@ const Point = ({
   ]);
   const { photo, map, deviation, disabled } = point;
 
+  const wgsMap = toWgs84([map.x, map.y], 5);
+
   return (
     <div className={styles.point}>
       <div className={styles.pointDetails}>
@@ -47,8 +51,8 @@ const Point = ({
         </div>
         <div className={styles.pointValues}>
           <FontIcon className={styles.icon} iconName="Nav2DMapView" />
-          <PointValue styles={styles} label={"X:"} value={map.x} />
-          <PointValue styles={styles} label={"Y:"} value={map.y} />
+          <PointValue styles={styles} label={"N:"} value={wgsMap[1]} />
+          <PointValue styles={styles} label={"E:"} value={wgsMap[0]} />
           <PointValue styles={styles} label={"Z:"} value={map.z} />
         </div>
         <div className={`${styles.pointValues} ${styles.deviation}`}>

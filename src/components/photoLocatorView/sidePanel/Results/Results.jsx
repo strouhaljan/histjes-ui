@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
+import { toWgs84 } from "../../../proj4utils";
+
 import getStyles from "./styles";
 
 const ResultValue = ({ label, value, styles, suffix }) => {
@@ -18,35 +20,38 @@ const ResultValue = ({ label, value, styles, suffix }) => {
   );
 };
 
-const Result = ({ result, styles }) => (
-  <div className={styles.result}>
-    <div className={styles.resultValues}>
-      <ResultValue styles={styles} label={"X:"} value={Math.round(result.x)} />
-      <ResultValue styles={styles} label={"Y:"} value={Math.round(result.y)} />
-      <ResultValue styles={styles} label={"Z:"} value={Math.round(result.z)} />
+const Result = ({ result, styles }) => {
+  const wgsResult = toWgs84([result.x, result.y], 5);
+  return (
+    <div className={styles.result}>
+      <div className={styles.resultValues}>
+        <ResultValue styles={styles} label={"N:"} value={wgsResult[1]} />
+        <ResultValue styles={styles} label={"E:"} value={wgsResult[0]} />
+        <ResultValue styles={styles} label={"Z:"} value={Math.round(result.z)} />
+      </div>
+      <div className={styles.resultValues}>
+        <ResultValue
+          styles={styles}
+          label={"ω:"}
+          value={Math.round(result.yaw)}
+          suffix="°"
+        />
+        <ResultValue
+          styles={styles}
+          label={"γ:"}
+          value={Math.round(result.pitch)}
+          suffix="°"
+        />
+        <ResultValue
+          styles={styles}
+          label={"χ:"}
+          value={Math.round(result.roll)}
+          suffix="°"
+        />
+      </div>
     </div>
-    <div className={styles.resultValues}>
-      <ResultValue
-        styles={styles}
-        label={"ω:"}
-        value={Math.round(result.yaw)}
-        suffix="°"
-      />
-      <ResultValue
-        styles={styles}
-        label={"γ:"}
-        value={Math.round(result.pitch)}
-        suffix="°"
-      />
-      <ResultValue
-        styles={styles}
-        label={"χ:"}
-        value={Math.round(result.roll)}
-        suffix="°"
-      />
-    </div>
-  </div>
-);
+  );
+}
 
 export const Results = ({ calculatedCameraParams, adjustedCameraParams }) => {
   const theme = useTheme();
