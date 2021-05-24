@@ -43,4 +43,18 @@ export const getStyles = (theme) =>
         },
       },
     },
+    crossVertical: {
+      position: "absolute",
+      left: "50%",
+      height: "100%",
+      borderLeft: "1px dashed #bbb",
+      pointerEvents: "none",
+    },
+    crossHorizontal: {
+      position: "absolute",
+      top: "50%",
+      width: "100%",
+      borderTop: "1px dashed #bbb",
+      pointerEvents: "none",
+    },
   });

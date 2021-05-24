@@ -48,6 +48,8 @@ export const Map3D = ({
             </div>
           </>
         )}
+        <div className={styles.crossVertical} />
+        <div className={styles.crossHorizontal} />
         <MapContainer3D />
       </Stack.Item>
     </Stack>
