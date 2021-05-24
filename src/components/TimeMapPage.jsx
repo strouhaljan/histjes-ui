@@ -53,7 +53,7 @@ const layers = [
   },
 ];
 
-export function TimeMapPage() {
+export function TimeMapPage({ objects }) {
   // const [layers, setLayers] = useState(defaultLayersState);
 
   const onHistoryChanged = (year) => {
@@ -81,15 +81,6 @@ export function TimeMapPage() {
     alert(`Detail cancelled`);
   };
 
-  const selectedObject = {
-    name: "Chata",
-    description: `
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor lectus luctus, hendrerit dolor in, lobortis orci. Duis eleifend metus placerat, eleifend ipsum sit amet, elementum elit. Maecenas dictum rhoncus turpis dictum eleifend. Suspendisse a mauris eu orci tincidunt maximus. Mauris faucibus sed ante sit amet congue. Quisque eget tellus eu erat consequat gravida. Nulla lobortis elit sapien, sed luctus felis iaculis vel. Pellentesque ornare mi ligula, sed egestas tortor vestibulum eu. Phasellus ac felis vestibulum, bibendum urna ac, ullamcorper arcu. Nullam mi nibh, varius ut placerat eu, viverra ut quam. Quisque varius enim sed nulla blandit varius.
-
-      Suspendisse suscipit aliquet augue, semper porta sapien cursus id. Suspendisse venenatis laoreet erat in mollis. Suspendisse pharetra tempor nunc vel consectetur. Suspendisse et mattis eros. Duis a porta purus, vitae maximus sapien. Nunc leo eros, faucibus nec tellus at, porta convallis lectus. Cras quis felis dui.
-    `,
-  };
-
   return (
     <View
       onHistoryChanged={onHistoryChanged}
@@ -100,7 +91,7 @@ export function TimeMapPage() {
       onZoomIn={onZoomIn}
       onZoomOut={onZoomOut}
       onDetailCancel={onDetailCancel}
-      selectedObject={selectedObject}
+      selectedObject={objects[0]}
       selectedBaseLayer="2019_zagabed"
       layers={layers}
     />

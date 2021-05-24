@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+// import { v4 as uuidv4 } from "uuid";
 
 import { View } from "./infoSearchView/View";
 
-export function InfoSearchPage() {
+export function InfoSearchPage({ objects }) {
   const onBackHomeClick = () => {
     alert("Back home clicked");
   };
@@ -11,38 +12,15 @@ export function InfoSearchPage() {
     console.log(`Search: ${searchString}`);
   };
 
-  const objects = [
-    {
-      title: "Test object",
-    },
-    {
-      title: "Another object",
-    },
-    {
-      title: "Third object",
-    },
-    {
-      title: "Fourth object",
-    },
-    {
-      title: "Test object",
-    },
-    {
-      title: "Another object",
-    },
-    {
-      title: "Third object",
-    },
-    {
-      title: "Fourth object",
-    },
-  ];
+  const [selectedObjectIdentifier, setSelectedObjectIdentifier] = useState();
 
   return (
     <View
       onBackHomeClick={onBackHomeClick}
       onSearch={onSearch}
       objects={objects}
+      selectedObjectIdentifier={selectedObjectIdentifier}
+      onObjectDetailSelected={setSelectedObjectIdentifier}
     />
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { ObjectDetailPanel } from "../common/ObjectDetailPanel";
 import { SidePanel } from "./sidePanel/SidePanel";
 import { Map } from "./map/Map";
 
@@ -20,7 +21,7 @@ export const View = ({
   selectedObject,
   selectedBaseLayer,
   layers,
-  selectedTab
+  selectedTab,
 }) => {
   return (
     <div className="histjes-main">
@@ -47,6 +48,7 @@ export const View = ({
           onZoomOut={onZoomOut}
         />
       </div>
+      <ObjectDetailPanel object={selectedObject} onClose={() => {}} />
     </div>
   );
 };
