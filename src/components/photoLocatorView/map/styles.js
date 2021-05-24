@@ -23,6 +23,13 @@ export const getStyles = (theme) =>
         marginLeft: "-1px",
       },
     },
+    savePositionButton: {
+      position: "absolute",
+      top: "1rem",
+      left: "7rem",
+      zIndex: 99,
+      width: "auto",
+    },
     disabledButton: {
       cursor: "default",
       backgroundColor: theme.palette.neutralLighter,
