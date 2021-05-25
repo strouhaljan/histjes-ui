@@ -1,13 +1,5 @@
 import React, { useMemo, useCallback } from "react";
 import { useTheme } from "@fluentui/react-theme-provider";
-import {
-  DefaultButton,
-  DocumentCard,
-  DocumentCardType,
-  DocumentCardPreview,
-  DocumentCardDetails,
-  DocumentCardTitle,
-} from "@fluentui/react";
 
 import { SidePanel } from "./sidePanel/SidePanel";
 import { ObjectDetailPanel } from "../common/ObjectDetailPanel";
@@ -27,6 +19,7 @@ export const View = ({
 
   const onObjectDetailsClosed = useCallback(() => {
     onObjectDetailSelected(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const object = useMemo(
@@ -41,7 +34,7 @@ export const View = ({
       <div className={styles.content}>
         <div className={styles.objectCards}>
           {objects.map((object) => (
-            <ObjectCard object={object} onSelect={onObjectDetailSelected} />
+            <ObjectCard key={object.identifier} object={object} onSelect={onObjectDetailSelected} />
           ))}
         </div>
       </div>

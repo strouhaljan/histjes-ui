@@ -1,11 +1,8 @@
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useMemo } from "react";
 import {
   Panel,
   PanelType,
-  // TextField,
-  // DialogFooter,
-  PrimaryButton,
-  // DefaultButton,
+  PrimaryButton
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 import getStyles from "./styles";

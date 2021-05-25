@@ -1,13 +1,6 @@
-import React, { useEffect, useMemo, useCallback, useState } from "react";
-import classnames from "classnames";
+import React, { useMemo, useCallback } from "react";
 import {
-  Dialog,
-  TextField,
-  DialogFooter,
   PrimaryButton,
-  DefaultButton,
-  ChoiceGroup,
-  Separator,
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
@@ -21,6 +14,7 @@ export const ObjectCard = ({ object, onSelect }) => {
 
   const handleObjectDetailRequested = useCallback(() => {
     onSelect(object.identifier);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [object]);
 
   return (
@@ -38,7 +32,7 @@ export const ObjectCard = ({ object, onSelect }) => {
         </div>
         {object.img && (
           <div className={styles.imageWrapper}>
-            <img className={styles.image} src={icon_9_3} />
+            <img className={styles.image} src={icon_9_3} alt="" />
           </div>
         )}
       </div>

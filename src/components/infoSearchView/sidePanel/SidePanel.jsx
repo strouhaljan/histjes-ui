@@ -4,7 +4,11 @@ import { PivotItem, Pivot, TextField } from "@fluentui/react";
 import { Panel } from "../../common/panel/Panel";
 
 const SearchInput = ({ onChange }) => {
-  const handleOnChange = useCallback((_e, value) => onChange(value), []);
+  const handleOnChange = useCallback(
+    (_e, value) => onChange(value),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
   return <TextField label="Vyhledej (fulltext):" onChange={handleOnChange} />;
 };
 
