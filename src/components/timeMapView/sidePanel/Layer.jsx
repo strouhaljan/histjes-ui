@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { Checkbox } from "@fluentui/react";
 
 import { LayerOpacitySlider } from "./LayerOpacitySlider";
-
-const LayerCheckbox = ({ label, checked, onChange }) => (
-  <Checkbox label={label} checked={checked} onChange={onChange} />
-);
+import { LayerCheckbox } from "./LayerCheckbox";
 
 export const Layer = ({
   onLayerSelected,
@@ -23,12 +19,7 @@ export const Layer = ({
 
   return (
     <div>
-      <LayerCheckbox
-        identifier={identifier}
-        label={name}
-        checked={checked}
-        onChange={handleOnChange}
-      />
+      <LayerCheckbox label={name} checked={checked} onChange={handleOnChange} />
       {checked && (
         <LayerOpacitySlider
           layerId={identifier}
