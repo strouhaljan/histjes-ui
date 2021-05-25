@@ -4,7 +4,6 @@ import { PivotItem, Pivot } from "@fluentui/react";
 import { Panel } from "../../common/panel/Panel";
 
 import { LayersSection } from "./LayersSection";
-import { ObjectDetail } from "./ObjectDetail";
 
 export const SidePanel = ({
   layers,
@@ -12,9 +11,7 @@ export const SidePanel = ({
   onLayerSelected,
   onLayerOpacityChange,
   onTabClick,
-  selectedObject,
-  selectedTab,
-  onDetailCancel,
+  selectedTab
 }) => {
   return (
     <Panel onBackHomeClick={onBackHomeClick} appTitle={"ČasoMapa"}>
@@ -39,15 +36,6 @@ export const SidePanel = ({
                 {index !== layers.length - 1 && <div className="separator" />}
               </div>
             ))}
-          </div>
-        </PivotItem>
-        <PivotItem
-          headerText="Detail objektu"
-          itemIcon="POISolid"
-          itemKey="detail"
-        >
-          <div className="detail">
-            <ObjectDetail object={selectedObject} onCancel={onDetailCancel} />
           </div>
         </PivotItem>
       </Pivot>
