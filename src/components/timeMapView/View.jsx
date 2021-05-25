@@ -48,7 +48,7 @@ export const View = ({
           onZoomOut={onZoomOut}
         />
       </div>
-      <ObjectDetailPanel object={selectedObject} onClose={() => {}} />
+      <ObjectDetailPanel object={selectedObject} onClose={onDetailCancel} />
     </div>
   );
 };
