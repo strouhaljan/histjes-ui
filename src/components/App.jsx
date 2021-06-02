@@ -79,6 +79,54 @@ const objects = [
     description:
       "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
   },
+  {
+    identifier: "test9",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
+  {
+    identifier: "test10",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
+  {
+    identifier: "test11",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
+  {
+    identifier: "test12",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
+  {
+    identifier: "test13",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
+  {
+    identifier: "test14",
+    name: "Fourth object",
+    annotation:
+      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
+    description:
+      "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
+  },
 ];
 
 function App() {
