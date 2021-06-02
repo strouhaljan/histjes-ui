@@ -3,19 +3,26 @@ import { PivotItem, Pivot, TextField } from "@fluentui/react";
 
 import { Panel } from "../../common/panel/Panel";
 
-const SearchInput = ({ onChange }) => {
+const SearchInput = ({ value, onChange }) => {
   const handleOnChange = useCallback(
     (_e, value) => onChange(value),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
-  return <TextField label="Vyhledej (fulltext):" onChange={handleOnChange} />;
+  return (
+    <TextField
+      label="Vyhledej (fulltext):"
+      onChange={handleOnChange}
+      value={value}
+    />
+  );
 };
 
 export const SidePanel = ({
   onBackHomeClick,
   onTabClick,
   selectedTab,
+  searchString,
   onSearch,
 }) => {
   return (
@@ -31,17 +38,17 @@ export const SidePanel = ({
       >
         <PivotItem headerText="Objekty" itemKey="objects">
           <div className="tab">
-            <SearchInput onChange={onSearch} />
+            <SearchInput onChange={onSearch} value={searchString} />
           </div>
         </PivotItem>
         <PivotItem headerText="Jiná data" itemKey="otherdata">
           <div className="tab">
-            <SearchInput onChange={onSearch} />
+            <SearchInput onChange={onSearch} value={searchString} />
           </div>
         </PivotItem>
         <PivotItem headerText="Foto" itemKey="photos">
           <div className="tab">
-            <SearchInput onChange={onSearch} />
+            <SearchInput onChange={onSearch} value={searchString} />
           </div>
         </PivotItem>
       </Pivot>

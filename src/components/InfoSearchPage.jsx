@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { v4 as uuidv4 } from "uuid";
 
 import { View } from "./infoSearchView/View";
 
@@ -8,16 +7,15 @@ export function InfoSearchPage({ objects }) {
     alert("Back home clicked");
   };
 
-  const onSearch = (searchString) => {
-    console.log(`Search: ${searchString}`);
-  };
+  const [searchString, setSearchString] = useState("");
 
   const [selectedObjectIdentifier, setSelectedObjectIdentifier] = useState();
 
   return (
     <View
       onBackHomeClick={onBackHomeClick}
-      onSearch={onSearch}
+      onSearch={setSearchString}
+      searchString={searchString}
       objects={objects}
       selectedObjectIdentifier={selectedObjectIdentifier}
       onObjectDetailSelected={setSelectedObjectIdentifier}

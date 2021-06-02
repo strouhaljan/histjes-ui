@@ -10,6 +10,7 @@ import { ObjectCard } from "./ObjectCard";
 export const View = ({
   onBackHomeClick,
   onSearch,
+  searchString,
   objects,
   selectedObjectIdentifier,
   onObjectDetailSelected,
@@ -30,11 +31,19 @@ export const View = ({
 
   return (
     <div className={styles.main}>
-      <SidePanel onBackHomeClick={onBackHomeClick} onSearch={onSearch} />
+      <SidePanel
+        onBackHomeClick={onBackHomeClick}
+        onSearch={onSearch}
+        searchString={searchString}
+      />
       <div className={styles.content}>
         <div className={styles.objectCards}>
           {objects.map((object) => (
-            <ObjectCard key={object.identifier} object={object} onSelect={onObjectDetailSelected} />
+            <ObjectCard
+              key={object.identifier}
+              object={object}
+              onSelect={onObjectDetailSelected}
+            />
           ))}
         </div>
       </div>
