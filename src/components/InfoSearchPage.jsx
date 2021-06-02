@@ -7,6 +7,10 @@ export function InfoSearchPage({ objects }) {
     alert("Back home clicked");
   };
 
+  const onShowInMap = (identifier) => {
+    alert(`Show object in map: ${identifier}`);
+  };
+
   const [searchString, setSearchString] = useState("");
 
   const [selectedObjectIdentifier, setSelectedObjectIdentifier] = useState();
@@ -19,6 +23,7 @@ export function InfoSearchPage({ objects }) {
       objects={objects}
       selectedObjectIdentifier={selectedObjectIdentifier}
       onObjectDetailSelected={setSelectedObjectIdentifier}
+      onShowInMap={onShowInMap}
     />
   );
 }

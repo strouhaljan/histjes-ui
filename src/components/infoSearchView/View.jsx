@@ -14,6 +14,7 @@ export const View = ({
   objects,
   selectedObjectIdentifier,
   onObjectDetailSelected,
+  onShowInMap,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -47,7 +48,11 @@ export const View = ({
           ))}
         </div>
       </div>
-      <ObjectDetailPanel object={object} onClose={onObjectDetailsClosed} />
+      <ObjectDetailPanel
+        object={object}
+        onClose={onObjectDetailsClosed}
+        onShowInMap={onShowInMap}
+      />
     </div>
   );
 };

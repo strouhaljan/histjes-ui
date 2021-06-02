@@ -1,15 +1,15 @@
-import React, { useMemo } from "react";
-import {
-  Panel,
-  PanelType,
-  PrimaryButton
-} from "@fluentui/react";
+import React, { useMemo, useCallback } from "react";
+import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 import getStyles from "./styles";
 
-export const ObjectDetailPanel = ({ object, onClose }) => {
+export const ObjectDetailPanel = ({ object, onClose, onShowInMap }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
+
+  const handleOnShowInMap = useCallback(() => {
+    onShowInMap(object.identifier);
+  }, [object, onShowInMap]);
 
   if (!object) {
     return null;
@@ -27,9 +27,14 @@ export const ObjectDetailPanel = ({ object, onClose }) => {
       <div className={styles.content}>
         <div className={styles.annotation}>
           <div className={styles.annotationText}>{object.annotation}</div>
-          <div className={styles.annotationActionButton}>
-            <PrimaryButton onClick={() => {}} text="Ukázat v Časomapě" />
-          </div>
+          {onShowInMap && (
+            <div className={styles.annotationActionButton}>
+              <PrimaryButton
+                onClick={handleOnShowInMap}
+                text="Ukázat v Časomapě"
+              />
+            </div>
+          )}
         </div>
         <div className={styles.image}>image</div>
         <div className={styles.description}>{object.description}</div>
