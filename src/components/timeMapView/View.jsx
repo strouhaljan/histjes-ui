@@ -7,7 +7,6 @@ import { Map } from "./map/Map";
 import "./styles.scss";
 
 export const View = ({
-  onHistoryChanged,
   onReferenceLayerChanged,
   onZoomIn,
   onZoomOut,
@@ -16,10 +15,13 @@ export const View = ({
   onLayerOpacityChange,
   onDetailCancel,
   onObjectClick,
-  historyYear,
   selectedObject,
   selectedBaseLayer,
   layers,
+  objectsYear,
+  objectsEnabled,
+  onObjectsYearChanged,
+  onObjectsToggle,
 }) => {
   return (
     <div className="histjes-main">
@@ -31,13 +33,15 @@ export const View = ({
           onLayerOpacityChange={onLayerOpacityChange}
           selectedObject={selectedObject}
           onDetailCancel={onDetailCancel}
+          objectsYear={objectsYear}
+          onObjectsYearChanged={onObjectsYearChanged}
+          objectsEnabled={objectsEnabled}
+          onObjectsToggle={onObjectsToggle}
         />
       </div>
       <div className="histjes-map">
         <Map
-          historyYear={historyYear}
           selectedBaseLayer={selectedBaseLayer}
-          onHistoryChanged={onHistoryChanged}
           onObjectClick={onObjectClick}
           onReferenceLayerChanged={onReferenceLayerChanged}
           onZoomIn={onZoomIn}

@@ -4,14 +4,11 @@ import { useTheme } from "@fluentui/react-theme-provider";
 import MapContainer from "../../timeMapState/map/MapContainer";
 import { ZoomControl } from "../../common/ZoomControl/ZoomControl";
 import { ReferenceLayerSelect } from "./ReferenceLayerSelect";
-import { HistorySlider } from "./HistorySlider";
 import { Help } from "./Help";
 import getStyles from "./styles";
 
 export const Map = ({
-  historyYear,
   selectedBaseLayer,
-  onHistoryChanged,
   onObjectClick,
   onReferenceLayerChanged,
   onZoomIn,
@@ -35,7 +32,6 @@ export const Map = ({
         onZoomOut={onZoomOut}
       />
       <Help />
-      <HistorySlider value={historyYear} onChanged={onHistoryChanged} />
     </div>
   );
 };

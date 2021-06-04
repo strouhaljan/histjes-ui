@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { View } from "./timeMapView/View";
 
@@ -43,22 +43,14 @@ const layers = [
         enabled: true,
         opacity: 10,
       },
-      {
-        identifier: "technicke_objekty",
-        name: "Technické objekty",
-        enabled: false,
-        opacity: 10,
-      },
     ],
   },
 ];
 
 export function TimeMapPage({ objects }) {
-  // const [layers, setLayers] = useState(defaultLayersState);
+  const [objectsYear, setObjectsYear] = useState(1990);
+  const [objectsEnabled, setObjectsEnabled] = useState(false);
 
-  const onHistoryChanged = (year) => {
-    alert(`History changed: ${year}`);
-  };
   const onReferenceLayerChanged = (layerId) => {
     alert(`Reference layer changed: ${layerId}`);
   };
@@ -83,7 +75,6 @@ export function TimeMapPage({ objects }) {
 
   return (
     <View
-      onHistoryChanged={onHistoryChanged}
       onReferenceLayerChanged={onReferenceLayerChanged}
       onBackHomeClick={onBackHomeClick}
       onLayerSelected={onLayerSelected}
@@ -91,6 +82,10 @@ export function TimeMapPage({ objects }) {
       onZoomIn={onZoomIn}
       onZoomOut={onZoomOut}
       onDetailCancel={onDetailCancel}
+      objectsYear={objectsYear}
+      onObjectsYearChanged={setObjectsYear}
+      objectsEnabled={objectsEnabled}
+      onObjectsToggle={setObjectsEnabled}
       selectedObject={objects[0]}
       selectedBaseLayer="2019_zagabed"
       layers={layers}
