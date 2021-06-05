@@ -1,0 +1,14 @@
+import { mergeStyleSets } from "@fluentui/react";
+
+const getStyles = (theme) =>
+  mergeStyleSets({
+    layersWrapper: {
+      paddingLeft: ".5rem",
+      marginLeft: ".25rem",
+    },
+    objectsLayerWrapper: {
+      marginTop: "1rem",
+    },
+  });
+
+export default getStyles;

@@ -18,16 +18,15 @@ export const SidePanel = ({
   return (
     <Panel onBackHomeClick={onBackHomeClick} appTitle={"ČasoMapa"}>
       <div className="tab">
-        {layers.map((layerSection, index) => (
-          <>
+        {layers.map((layerSection) => (
+          <div key={layerSection.identifier}>
             <LayersSection
-              key={layerSection.identifier}
               section={layerSection}
               onLayerSelected={onLayerSelected}
               onLayerOpacityChange={onLayerOpacityChange}
             />
             <div className="separator" />
-          </>
+          </div>
         ))}
         <ObjectsTimelineSlider
           enabled={objectsEnabled}
