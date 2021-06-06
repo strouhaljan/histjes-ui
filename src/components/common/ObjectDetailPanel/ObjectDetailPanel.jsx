@@ -3,7 +3,13 @@ import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 import getStyles from "./styles";
 
-export const ObjectDetailPanel = ({ object, onClose, onShowInMap }) => {
+export const ObjectDetailPanel = ({
+  object,
+  onClose,
+  onShowInMap,
+  isLightDismiss = true,
+  isBlocking = true,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -18,7 +24,8 @@ export const ObjectDetailPanel = ({ object, onClose, onShowInMap }) => {
   return (
     <Panel
       className={styles.detailPanel}
-      isLightDismiss
+      isLightDismiss={isLightDismiss}
+      isBlocking={isBlocking}
       headerText={object.name}
       isOpen={true}
       onDismiss={onClose}
