@@ -31,8 +31,6 @@ export const SidePanel = ({
         <ObjectsTimelineSlider
           enabled={objectsEnabled}
           year={objectsYear}
-          min={0}
-          max={2021}
           onObjectsYearChanged={onObjectsYearChanged}
           onObjectsToggle={onObjectsToggle}
         />

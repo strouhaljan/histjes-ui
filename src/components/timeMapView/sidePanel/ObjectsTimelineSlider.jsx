@@ -19,8 +19,6 @@ const YearLabel = ({ enabled, year }) => (
 );
 
 export const ObjectsTimelineSlider = ({
-  min,
-  max,
   onObjectsYearChanged,
   onObjectsToggle,
   enabled,
@@ -28,6 +26,7 @@ export const ObjectsTimelineSlider = ({
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
 
   const handleOnObjectsToggle = useCallback(
     (_event, state) => {
@@ -51,8 +50,8 @@ export const ObjectsTimelineSlider = ({
             <Slider
               className={"histjes-map-panel-checkbox-slider"}
               showValue={false}
-              min={min}
-              max={max}
+              min={1200}
+              max={currentYear}
               value={year}
               styles={{
                 root: { width: "13rem" },
