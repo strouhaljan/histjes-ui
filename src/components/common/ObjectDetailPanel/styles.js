@@ -17,22 +17,26 @@ const getStyles = (theme) =>
       textAlign: "justify",
     },
     annotation: {
-      flex: "0 0 50%",
-      paddingRight: "1rem",
-      boxSizing: "border-box",
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
     },
     annotationText: {
-      flex: "1 0 auto",
+      flex: "1 1 auto",
+      textAlign: "justify",
     },
     annotationActionButton: {
-      margin: "auto 0",
+      flex: "0 0 auto",
+      marginLeft: "3rem",
+    },
+    imageWrapper: {
+      maxHeight: "24rem",
+      marginTop: "1.5rem",
+      borderRadius: ".25rem",
+      overflow: "hidden",
     },
     image: {
-      flex: "0 0 50%",
-      height: "15rem",
-      backgroundColor: "#ccc",
+      objectFit: "cover",
+      width: "100%",
     },
     description: {
       marginTop: "2rem",

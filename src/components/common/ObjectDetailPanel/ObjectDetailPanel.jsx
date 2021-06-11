@@ -1,6 +1,9 @@
 import React, { useMemo, useCallback } from "react";
 import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
+
+import { Photo } from "../Photo";
+
 import getStyles from "./styles";
 
 export const ObjectDetailPanel = ({
@@ -17,6 +20,8 @@ export const ObjectDetailPanel = ({
     onShowInMap(object.identifier);
   }, [object, onShowInMap]);
 
+  const onOuterClick = () => {};
+
   if (!object) {
     return null;
   }
@@ -30,6 +35,7 @@ export const ObjectDetailPanel = ({
       isOpen={true}
       onDismiss={onClose}
       type={PanelType.medium}
+      onOuterClick={onOuterClick}
     >
       <div className={styles.content}>
         <div className={styles.annotation}>
@@ -43,7 +49,11 @@ export const ObjectDetailPanel = ({
             </div>
           )}
         </div>
-        <div className={styles.image}>image</div>
+        {object.img && (
+          <div className={styles.imageWrapper}>
+            <Photo className={styles.image} src={object.img} />
+          </div>
+        )}
         <div className={styles.description}>{object.description}</div>
       </div>
     </Panel>

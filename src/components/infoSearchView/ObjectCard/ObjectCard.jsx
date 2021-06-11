@@ -1,10 +1,6 @@
 import React, { useMemo, useCallback } from "react";
-import {
-  PrimaryButton,
-} from "@fluentui/react";
+import { PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
-
-import icon_9_3 from "../../../assets/map_icons/9_3.png";
 
 import getStyles from "./styles";
 
@@ -32,7 +28,7 @@ export const ObjectCard = ({ object, onSelect }) => {
         </div>
         {object.img && (
           <div className={styles.imageWrapper}>
-            <img className={styles.image} src={icon_9_3} alt="" />
+            <img className={styles.image} src={object.img} alt="" />
           </div>
         )}
       </div>

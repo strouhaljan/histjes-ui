@@ -18,17 +18,20 @@ const getStyles = (theme) =>
     cardContent: {
       display: "flex",
       flexDirection: "column",
+      flex: "1 0 50%",
     },
     imageWrapper: {
       display: "flex",
-      flex: "0 0 7rem",
-      padding: 0,
-      paddingLeft: "1rem",
-      margin: "0 auto",
+      height: "8.5rem",
+      marginLeft: "1rem",
+      borderRadius: ".25rem",
+      overflow: "hidden",
+      border: `1px solid ${theme.palette.themeLighter}`,
     },
     image: {
-      height: "7rem",
-      width: "7rem",
+      objectFit: "cover",
+      height: "100%",
+      width: "100%",
     },
     objectTitle: {
       fontSize: "1.5rem",
