@@ -15,6 +15,8 @@ export const View = ({
   selectedObjectIdentifier,
   onObjectDetailSelected,
   onShowInMap,
+  imgBaseUrlFull,
+  imgBaseUrlPreview
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -44,6 +46,7 @@ export const View = ({
               key={object.identifier}
               object={object}
               onSelect={onObjectDetailSelected}
+              imgBaseUrl={imgBaseUrlPreview}
             />
           ))}
         </div>
@@ -52,6 +55,8 @@ export const View = ({
         object={object}
         onClose={onObjectDetailsClosed}
         onShowInMap={onShowInMap}
+        imgBaseUrlFull={imgBaseUrlFull}
+        imgBaseUrlPreview={imgBaseUrlPreview}
       />
     </div>
   );

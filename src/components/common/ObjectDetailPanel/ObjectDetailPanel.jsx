@@ -12,6 +12,8 @@ export const ObjectDetailPanel = ({
   onShowInMap,
   isLightDismiss = true,
   isBlocking = true,
+  imgBaseUrlFull,
+  imgBaseUrlPreview
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -51,7 +53,12 @@ export const ObjectDetailPanel = ({
         </div>
         {object.img && (
           <div className={styles.imageWrapper}>
-            <Photo className={styles.image} src={object.img} />
+            <Photo
+              className={styles.image}
+              src={object.img}
+              imgBaseUrlFull={imgBaseUrlFull}
+              imgBaseUrlPreview={imgBaseUrlPreview}
+            />
           </div>
         )}
         <div className={styles.description}>{object.description}</div>

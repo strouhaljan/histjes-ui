@@ -4,7 +4,7 @@ import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
 
-export const ObjectCard = ({ object, onSelect }) => {
+export const ObjectCard = ({ object, imgBaseUrl, onSelect }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -28,7 +28,7 @@ export const ObjectCard = ({ object, onSelect }) => {
         </div>
         {object.img && (
           <div className={styles.imageWrapper}>
-            <img className={styles.image} src={object.img} alt="" />
+            <img className={styles.image} src={`${imgBaseUrl}${object.img}`} alt="" />
           </div>
         )}
       </div>

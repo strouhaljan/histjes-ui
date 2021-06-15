@@ -7,7 +7,8 @@ import getStyles from "./styles";
 
 import "react-awesome-lightbox/build/style.css";
 
-export const Photo = ({ className, src }) => {
+export const Photo = ({ className, src, imgBaseUrlFull, imgBaseUrlPreview
+ }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
@@ -23,7 +24,7 @@ export const Photo = ({ className, src }) => {
 
   return (
     <>
-      <img className={className} src={src} onClick={showLightbox} />
+      <img className={className} src={`${imgBaseUrlPreview}${src}`} onClick={showLightbox} />
       {displayLightbox && (
         <Portal>
           <div
@@ -37,7 +38,7 @@ export const Photo = ({ className, src }) => {
               allowZoom={false}
               allowRotate={false}
               allowReset={false}
-              image={src}
+              image={`${imgBaseUrlFull}${src}`}
               onClose={hideLightbox}
             />
           </div>

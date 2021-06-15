@@ -22,6 +22,8 @@ export const View = ({
   objectsEnabled,
   onObjectsYearChanged,
   onObjectsToggle,
+  imgBaseUrlFull,
+  imgBaseUrlPreview
 }) => {
   return (
     <div className="histjes-main">
@@ -53,6 +55,8 @@ export const View = ({
         onClose={onDetailCancel}
         isBlocking={false}
         isLightDismiss={false}
+        imgBaseUrlFull={imgBaseUrlFull}
+        imgBaseUrlPreview={imgBaseUrlPreview}
       />
     </div>
   );
