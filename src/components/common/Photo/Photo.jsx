@@ -28,13 +28,16 @@ export const Photo = ({
 
   return (
     <>
-      <img className={className} src={`${imgBaseUrlPreview}${src}`} onClick={showLightbox} />
+      <img
+        className={className}
+        src={`${imgBaseUrlPreview}${src}`}
+        onClick={showLightbox}
+      />
       {displayLightbox && (
         <Portal>
           <div
             className={styles.photoWrapper}
             onMouseDown={(e) => {
-              console.log("stooop");
               e.stopPropagation();
             }}
           >
