@@ -20,28 +20,27 @@ const SearchInput = ({ value, onChange }) => {
 
 export const SidePanel = ({
   onBackHomeClick,
-  onTabClick,
+  onTabSelected,
   selectedTab,
   searchString,
   onSearch,
 }) => {
+  const handleOnTabClick = useCallback((item) => {
+    onTabSelected(item.props.itemKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Panel onBackHomeClick={onBackHomeClick} appTitle={"InfoHledač"}>
       <Pivot
         styles={{
           root: { display: "flex" },
-          link: { flex: "0 0 33%", margin: 0, padding: 0 },
-          linkIsSelected: { flex: "0 0 33%", margin: 0, padding: 0 },
+          link: { flex: "0 0 50%", margin: 0, padding: 0 },
+          linkIsSelected: { flex: "0 0 50%", margin: 0, padding: 0 },
         }}
         selectedKey={selectedTab}
-        onLinkClick={onTabClick}
+        onLinkClick={handleOnTabClick}
       >
         <PivotItem headerText="Objekty" itemKey="objects">
-          <div className="tab">
-            <SearchInput onChange={onSearch} value={searchString} />
-          </div>
-        </PivotItem>
-        <PivotItem headerText="Jiná data" itemKey="otherdata">
           <div className="tab">
             <SearchInput onChange={onSearch} value={searchString} />
           </div>

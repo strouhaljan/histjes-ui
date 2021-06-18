@@ -15,6 +15,10 @@ export function InfoSearchPage({ objects }) {
 
   const [selectedObjectIdentifier, setSelectedObjectIdentifier] = useState();
 
+  const [selectedTab, setSelectedTab] = useState();
+
+  const onTabSelected = (selectedTabKey) => setSelectedTab(selectedTabKey);
+
   return (
     <View
       onBackHomeClick={onBackHomeClick}
@@ -24,6 +28,8 @@ export function InfoSearchPage({ objects }) {
       selectedObjectIdentifier={selectedObjectIdentifier}
       onObjectDetailSelected={setSelectedObjectIdentifier}
       onShowInMap={onShowInMap}
+      selectedTab={selectedTab}
+      onTabSelected={onTabSelected}
     />
   );
 }

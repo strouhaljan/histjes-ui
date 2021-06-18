@@ -16,7 +16,9 @@ export const View = ({
   onObjectDetailSelected,
   onShowInMap,
   imgBaseUrlFull,
-  imgBaseUrlPreview
+  imgBaseUrlPreview,
+  selectedTab,
+  onTabSelected,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -38,6 +40,8 @@ export const View = ({
         onBackHomeClick={onBackHomeClick}
         onSearch={onSearch}
         searchString={searchString}
+        selectedTab={selectedTab}
+        onTabSelected={onTabSelected}
       />
       <div className={styles.content}>
         <div className={styles.objectCards}>
