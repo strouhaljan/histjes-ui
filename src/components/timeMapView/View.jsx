@@ -23,7 +23,9 @@ export const View = ({
   onObjectsYearChanged,
   onObjectsToggle,
   imgBaseUrlFull,
-  imgBaseUrlPreview
+  imgBaseUrlPreview,
+  showObjectWithoutDate,
+  onShowObjectsWithoutDateChanged,
 }) => {
   return (
     <div className="histjes-main">
@@ -39,6 +41,8 @@ export const View = ({
           onObjectsYearChanged={onObjectsYearChanged}
           objectsEnabled={objectsEnabled}
           onObjectsToggle={onObjectsToggle}
+          showObjectWithoutDate={showObjectWithoutDate}
+          onShowObjectsWithoutDateChanged={onShowObjectsWithoutDateChanged}
         />
       </div>
       <div className="histjes-map">

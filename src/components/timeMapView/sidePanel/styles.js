@@ -9,6 +9,9 @@ const getStyles = (theme) =>
     objectsLayerWrapper: {
       marginTop: "1rem",
     },
+    toggle: {
+      marginTop: ".5rem",
+    },
   });
 
 export default getStyles;

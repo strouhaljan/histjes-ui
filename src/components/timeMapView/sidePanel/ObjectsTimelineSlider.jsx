@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import classNames from "classnames";
-import { Slider } from "@fluentui/react";
+import { Slider, Toggle } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { LayerCheckbox } from "./LayerCheckbox";
@@ -23,6 +23,8 @@ export const ObjectsTimelineSlider = ({
   onObjectsToggle,
   enabled,
   year,
+  showObjectWithoutDate,
+  onShowObjectsWithoutDateChanged,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -34,6 +36,10 @@ export const ObjectsTimelineSlider = ({
     },
     [onObjectsToggle]
   );
+
+  const handleOnShowObjectsToggle = useCallback((_e, checked) => {
+    onShowObjectsWithoutDateChanged(checked);
+  });
 
   const classes = classNames(styles.layersWrapper, styles.objectsLayerWrapper);
 
@@ -58,6 +64,14 @@ export const ObjectsTimelineSlider = ({
                 slideBox: { padding: 0 },
               }}
               onChange={onObjectsYearChanged}
+            />
+            <Toggle
+              className={styles.toggle}
+              defaultChecked
+              onText="Zobrazit objekty bez datace"
+              offText="Zobrazit objekty bez datace"
+              onChange={handleOnShowObjectsToggle}
+              checked={showObjectWithoutDate}
             />
           </div>
         )}

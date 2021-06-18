@@ -14,6 +14,8 @@ export const SidePanel = ({
   objectsYear,
   onObjectsToggle,
   objectsEnabled,
+  showObjectWithoutDate,
+  onShowObjectsWithoutDateChanged,
 }) => {
   return (
     <Panel onBackHomeClick={onBackHomeClick} appTitle={"ČasoMapa"}>
@@ -33,6 +35,8 @@ export const SidePanel = ({
           year={objectsYear}
           onObjectsYearChanged={onObjectsYearChanged}
           onObjectsToggle={onObjectsToggle}
+          showObjectWithoutDate={showObjectWithoutDate}
+          onShowObjectsWithoutDateChanged={onShowObjectsWithoutDateChanged}
         />
       </div>
     </Panel>

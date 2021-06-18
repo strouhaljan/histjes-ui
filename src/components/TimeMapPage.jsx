@@ -72,6 +72,7 @@ export function TimeMapPage({ objects }) {
   const onDetailCancel = () => {
     alert(`Detail cancelled`);
   };
+  const [showObjectWithoutDate, setShowObjectWithoutDate] = useState(false);
 
   return (
     <View
@@ -89,6 +90,8 @@ export function TimeMapPage({ objects }) {
       selectedObject={objects[0]}
       selectedBaseLayer="2019_zagabed"
       layers={layers}
+      showObjectWithoutDate={showObjectWithoutDate}
+      onShowObjectsWithoutDateChanged={setShowObjectWithoutDate}
     />
   );
 }
