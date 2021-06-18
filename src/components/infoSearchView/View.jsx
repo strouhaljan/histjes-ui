@@ -6,13 +6,16 @@ import { ObjectDetailPanel } from "../common/ObjectDetailPanel";
 
 import getStyles from "./styles";
 import { ObjectCard } from "./ObjectCard";
+import { PhotoCard } from "./PhotoCard";
+import { PhotoDetailPanel } from "../common/PhotoDetailPanel";
 
 export const View = ({
   onBackHomeClick,
   onSearch,
   searchString,
   objects,
-  selectedObjectIdentifier,
+  photos,
+  selectedItemIdentifier,
   onObjectDetailSelected,
   onShowInMap,
   imgBaseUrlFull,
@@ -28,11 +31,25 @@ export const View = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const object = useMemo(
-    () =>
-      objects.find((object) => object.identifier === selectedObjectIdentifier),
-    [objects, selectedObjectIdentifier]
+  const photosTabSelected = useMemo(
+    () => selectedTab === "photos",
+    [selectedTab]
   );
+
+  const items = useMemo(
+    () => (photosTabSelected ? photos : objects),
+    [photosTabSelected]
+  );
+
+  const selectedItem = useMemo(
+    () => items.find((item) => item.identifier === selectedItemIdentifier),
+    [items, selectedItemIdentifier, selectedTab]
+  );
+
+  const CardComponent = photosTabSelected ? PhotoCard : ObjectCard;
+  const DetailPanelComponent = photosTabSelected
+    ? PhotoDetailPanel
+    : ObjectDetailPanel;
 
   return (
     <div className={styles.main}>
@@ -45,18 +62,18 @@ export const View = ({
       />
       <div className={styles.content}>
         <div className={styles.objectCards}>
-          {objects.map((object) => (
-            <ObjectCard
-              key={object.identifier}
-              object={object}
+          {items.map((item) => (
+            <CardComponent
+              key={item.identifier}
+              object={item}
               onSelect={onObjectDetailSelected}
               imgBaseUrl={imgBaseUrlPreview}
             />
           ))}
         </div>
       </div>
-      <ObjectDetailPanel
-        object={object}
+      <DetailPanelComponent
+        object={selectedItem}
         onClose={onObjectDetailsClosed}
         onShowInMap={onShowInMap}
         imgBaseUrlFull={imgBaseUrlFull}

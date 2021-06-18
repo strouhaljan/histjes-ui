@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { View } from "./infoSearchView/View";
 
-export function InfoSearchPage({ objects }) {
+export function InfoSearchPage({ objects, photos }) {
   const onBackHomeClick = () => {
     alert("Back home clicked");
   };
@@ -13,9 +13,9 @@ export function InfoSearchPage({ objects }) {
 
   const [searchString, setSearchString] = useState("");
 
-  const [selectedObjectIdentifier, setSelectedObjectIdentifier] = useState();
+  const [selectedItemIdentifier, setSelectedItemIdentifier] = useState();
 
-  const [selectedTab, setSelectedTab] = useState();
+  const [selectedTab, setSelectedTab] = useState("");
 
   const onTabSelected = (selectedTabKey) => setSelectedTab(selectedTabKey);
 
@@ -28,8 +28,9 @@ export function InfoSearchPage({ objects }) {
       onSearch={setSearchString}
       searchString={searchString}
       objects={objects}
-      selectedObjectIdentifier={selectedObjectIdentifier}
-      onObjectDetailSelected={setSelectedObjectIdentifier}
+      photos={photos}
+      selectedItemIdentifier={selectedItemIdentifier}
+      onObjectDetailSelected={setSelectedItemIdentifier}
       onShowInMap={onShowInMap}
       selectedTab={selectedTab}
       onTabSelected={onTabSelected}

@@ -13,6 +13,37 @@ import { InfoSearchPage } from "./InfoSearchPage";
 
 initializeIcons();
 
+const photos = [
+  {
+    identifier: "test1", // use uuid
+    name: "Fotka jak bič",
+    description: "Fotka / popis",
+    objects: ["Praděd", "Ovčárna", "Random kopec"],
+    img: "01.png",
+    created: "2020",
+    source: "Nějaká stará bába",
+    coordinates: {
+      x: 10,
+      y: 20,
+    },
+    link: "https://www.google.com/",
+  },
+  {
+    identifier: "test2",
+    name: "Fotka jak bič - druhá",
+    description: "Fotka / popis druhá",
+    objects: ["Praděd", "Ovčárna", "Random kopec"],
+    img: "01.png",
+    created: "2018",
+    source: "Ještě starší babka",
+    coordinates: {
+      x: 20,
+      y: 30,
+    },
+    link: "https://www.seznam.com/",
+  },
+];
+
 const objects = [
   {
     identifier: "test1", // use uuid
@@ -25,6 +56,7 @@ const objects = [
     yearBuilt: "1950",
     yearPerishFunction: "1970",
     yearPerishPhysical: "1980",
+    link: "https://www.google.com/",
   },
   {
     identifier: "test2",
@@ -143,7 +175,7 @@ function App() {
             <PhotoLocatorPage />
           </Route>
           <Route path="/info">
-            <InfoSearchPage objects={objects} />
+            <InfoSearchPage objects={objects} photos={photos} />
           </Route>
         </Switch>
       </Router>

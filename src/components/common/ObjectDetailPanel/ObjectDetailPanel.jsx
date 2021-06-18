@@ -66,7 +66,7 @@ export const ObjectDetailPanel = ({
           <div className={styles.imageWrapper}>
             <Photo
               className={styles.image}
-              src={object.img}
+              src={object.img[0]}
               imgBaseUrlFull={imgBaseUrlFull}
               imgBaseUrlPreview={imgBaseUrlPreview}
             />
@@ -90,7 +90,7 @@ export const ObjectDetailPanel = ({
               value={object.yearPerishPhysical}
             />
           </div>
-          <div className={styles.objectLinks}></div>
+          <div className={styles.objectLinks}>Odkaz:{object.link}</div>
         </div>
         <div className={styles.description}>{object.description}</div>
       </div>
