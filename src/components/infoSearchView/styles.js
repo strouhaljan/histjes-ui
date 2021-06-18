@@ -15,7 +15,7 @@ const getStyles = (theme) =>
       paddingRight: "1rem",
       paddingBottom: "1rem",
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fill,minmax(25rem, 1fr))",
+      gridTemplateColumns: "repeat(auto-fill,minmax(28rem, 1fr))",
     },
   });
 

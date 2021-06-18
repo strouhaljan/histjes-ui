@@ -6,18 +6,19 @@ const getStyles = (theme) =>
       selectors: {
         ".ms-Panel-headerText": {
           fontSize: "2rem",
-          marginTop: ".5rem",
+          lineHeight: "2.5rem",
         },
       },
     },
     content: {
       display: "flex",
-      marginTop: "2rem",
       flexWrap: "wrap",
       textAlign: "justify",
     },
     annotation: {
       display: "flex",
+      marginTop: "2rem",
+      width: "100%",
       flexDirection: "row",
     },
     annotationText: {
@@ -30,7 +31,7 @@ const getStyles = (theme) =>
     },
     imageWrapper: {
       maxHeight: "24rem",
-      marginTop: "1.5rem",
+      marginTop: "2rem",
       borderRadius: ".25rem",
       overflow: "hidden",
     },
