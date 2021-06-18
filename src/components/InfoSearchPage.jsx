@@ -19,6 +19,9 @@ export function InfoSearchPage({ objects }) {
 
   const onTabSelected = (selectedTabKey) => setSelectedTab(selectedTabKey);
 
+  const imgBaseUrlFull = "/images/";
+  const imgBaseUrlPreview = "/images/";
+
   return (
     <View
       onBackHomeClick={onBackHomeClick}
@@ -30,6 +33,8 @@ export function InfoSearchPage({ objects }) {
       onShowInMap={onShowInMap}
       selectedTab={selectedTab}
       onTabSelected={onTabSelected}
+      imgBaseUrlFull={imgBaseUrlFull}
+      imgBaseUrlPreview={imgBaseUrlPreview}
     />
   );
 }

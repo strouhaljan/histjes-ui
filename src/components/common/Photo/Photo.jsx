@@ -7,8 +7,12 @@ import getStyles from "./styles";
 
 import "react-awesome-lightbox/build/style.css";
 
-export const Photo = ({ className, src, imgBaseUrlFull, imgBaseUrlPreview
- }) => {
+export const Photo = ({
+  className,
+  src,
+  imgBaseUrlFull,
+  imgBaseUrlPreview,
+}) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 

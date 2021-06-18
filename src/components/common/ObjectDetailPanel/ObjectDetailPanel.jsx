@@ -13,7 +13,7 @@ export const ObjectDetailPanel = ({
   isLightDismiss = true,
   isBlocking = true,
   imgBaseUrlFull,
-  imgBaseUrlPreview
+  imgBaseUrlPreview,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);

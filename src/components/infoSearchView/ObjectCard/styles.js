@@ -18,11 +18,12 @@ const getStyles = (theme) =>
     cardContent: {
       display: "flex",
       flexDirection: "column",
-      flex: "1 0 50%",
+      flex: "1 1 auto",
     },
     imageWrapper: {
       display: "flex",
-      height: "8.5rem",
+      flex: "0 0 8rem",
+      height: "8rem",
       marginLeft: "1rem",
       borderRadius: ".25rem",
       overflow: "hidden",
