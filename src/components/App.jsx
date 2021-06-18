@@ -16,12 +16,15 @@ initializeIcons();
 const objects = [
   {
     identifier: "test1", // use uuid
-    name: "Test object",
+    name: "Test object soustava lanovek a železnic",
     annotation:
       "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
     description:
       "Po vichřici v roce 1897 zde bylo polámáno 80 tisíc plnometrů dřeva a jelikož neexistoval způsob, jak dřevo dopravit dolů, byla vybudována struktura lanovek a železnic. Tato struktura fungovala až do odsunu německé populace v roce 1945.",
     img: ["01.png"],
+    yearBuilt: "1950",
+    yearPerishFunction: "1970",
+    yearPerishPhysical: "1980",
   },
   {
     identifier: "test2",
@@ -35,8 +38,6 @@ const objects = [
   {
     identifier: "test3",
     name: "Third object",
-    annotation:
-      "Historická soustava lanovek a železnic pro dopravu vytěženého dříví.",
     description:
       "Podkladem byly mapy Stabilního katastru v měřítku 1 : 2 880, Obsah mapy je v podstatě totožný s I. vojenským mapováním, přidány byly pouze výšky trigonometrických bodů (ve vídeňských sázích), avšak zobrazovaná situace se velmi liší. Mapy II. vojenského mapování vznikaly v době nástupu průmyslové revoluce a rozvoje intenzivních forem zemědělství, kdy vzrostla výměra orné půdy za 100 let o 50% a lesní plochy dosáhly u nás historicky nejmenšího rozsahu.",
   },

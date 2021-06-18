@@ -6,6 +6,17 @@ import { Photo } from "../Photo";
 
 import getStyles from "./styles";
 
+const ObjectDate = ({ label, value, styles }) => {
+  return (
+    <div className={styles.objectDateWrapper}>
+      <span className={`${styles.objectDateLabel} pointValueLabel`}>
+        {label}
+      </span>
+      <span className={`${styles.objectDateValue} pointValue`}>{value}</span>
+    </div>
+  );
+};
+
 export const ObjectDetailPanel = ({
   object,
   onClose,
@@ -61,6 +72,26 @@ export const ObjectDetailPanel = ({
             />
           </div>
         )}
+        <div className={styles.objectData}>
+          <div className={styles.objectDates}>
+            <ObjectDate
+              styles={styles}
+              label={"vznik:"}
+              value={object.yearBuilt}
+            />
+            <ObjectDate
+              styles={styles}
+              label={"zánik funkce:"}
+              value={object.yearPerishFunction}
+            />
+            <ObjectDate
+              styles={styles}
+              label={"zánik fyzický:"}
+              value={object.yearPerishPhysical}
+            />
+          </div>
+          <div className={styles.objectLinks}></div>
+        </div>
         <div className={styles.description}>{object.description}</div>
       </div>
     </Panel>

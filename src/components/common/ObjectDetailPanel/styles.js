@@ -43,6 +43,27 @@ const getStyles = (theme) =>
       marginTop: "2rem",
       flex: "0 0 100%",
     },
+    objectData: {
+      display: "flex",
+    },
+    objectDateWrapper: {
+      flex: "1 1 auto",
+      marginTop: ".25rem",
+      display: "flex",
+    },
+    objectDateLabel: {
+      width: "7rem",
+      fontWeight: "bold",
+    },
+    objectDateValue: {
+      marginLeft: ".25rem",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
+    objectDates: {
+      display: "flex",
+      flexDirection: "column",
+    },
   });
 
 export default getStyles;
