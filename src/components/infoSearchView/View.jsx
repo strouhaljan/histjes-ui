@@ -38,7 +38,7 @@ export const View = ({
 
   const items = useMemo(
     () => (photosTabSelected ? photos : objects),
-    [photosTabSelected]
+    [objects, photos, photosTabSelected]
   );
 
   const selectedItem = useMemo(
