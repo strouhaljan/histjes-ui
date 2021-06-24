@@ -1,5 +1,5 @@
-import React, { useMemo, useCallback } from "react";
-import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
+import React, { useMemo } from "react";
+import { Panel, PanelType } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { Photo } from "../Photo";

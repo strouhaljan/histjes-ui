@@ -18,10 +18,12 @@ export const Photo = ({
 
   const [displayLightbox, setDisplayLightbox] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const showLightbox = useCallback(() => {
     setDisplayLightbox(true);
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const hideLightbox = useCallback(() => {
     setDisplayLightbox(false);
   });
@@ -32,6 +34,7 @@ export const Photo = ({
         className={className}
         src={`${imgBaseUrlPreview}${src}`}
         onClick={showLightbox}
+        alt=""
       />
       {displayLightbox && (
         <Portal>

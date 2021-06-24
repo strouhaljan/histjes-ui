@@ -37,6 +37,7 @@ export const ObjectsTimelineSlider = ({
     [onObjectsToggle]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleOnShowObjectsToggle = useCallback((_e, checked) => {
     onShowObjectsWithoutDateChanged(checked);
   });

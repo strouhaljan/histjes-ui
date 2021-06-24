@@ -43,6 +43,7 @@ export const View = ({
 
   const selectedItem = useMemo(
     () => items.find((item) => item.identifier === selectedItemIdentifier),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [items, selectedItemIdentifier, selectedTab]
   );
 
