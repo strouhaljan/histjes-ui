@@ -17,3 +17,7 @@ code {
   font-family: Font;
   src: url(./assets/Redressed-Regular.ttf);
 }
+
+#SRLLightbox {
+  z-index: 999999999;
+}

@@ -42,6 +42,34 @@ const photos = [
     },
     link: "https://www.seznam.com/",
   },
+  {
+    identifier: "test3", // use uuid
+    name: "Fotka jak bič",
+    description: "Fotka / popis",
+    objects: ["Praděd", "Ovčárna", "Random kopec"],
+    img: "01.png",
+    created: "2020",
+    source: "Nějaká stará bába",
+    coordinates: {
+      x: 10,
+      y: 20,
+    },
+    link: "https://www.google.com/",
+  },
+  {
+    identifier: "test4",
+    name: "Fotka jak bič - druhá",
+    description: "Fotka / popis druhá",
+    objects: ["Praděd", "Ovčárna", "Random kopec"],
+    img: "01.png",
+    created: "2018",
+    source: "Ještě starší babka",
+    coordinates: {
+      x: 20,
+      y: 30,
+    },
+    link: "https://www.seznam.com/",
+  },
 ];
 
 const objects = [

@@ -1,11 +1,5 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { useTheme } from "@fluentui/react-theme-provider";
-import { Portal } from "react-portal";
-import Lightbox from "react-awesome-lightbox";
-
-import getStyles from "./styles";
-
-import "react-awesome-lightbox/build/style.css";
+import React from "react";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 
 export const Photo = ({
   className,
@@ -13,47 +7,32 @@ export const Photo = ({
   imgBaseUrlFull,
   imgBaseUrlPreview,
 }) => {
-  const theme = useTheme();
-  const styles = useMemo(() => getStyles(theme), [theme]);
-
-  const [displayLightbox, setDisplayLightbox] = useState(false);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const showLightbox = useCallback(() => {
-    setDisplayLightbox(true);
-  });
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const hideLightbox = useCallback(() => {
-    setDisplayLightbox(false);
-  });
-
   return (
-    <>
-      <img
-        className={className}
-        src={`${imgBaseUrlPreview}${src}`}
-        onClick={showLightbox}
-        alt=""
-      />
-      {displayLightbox && (
-        <Portal>
-          <div
-            className={styles.photoWrapper}
-            onMouseDown={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <Lightbox
-              allowZoom={false}
-              allowRotate={false}
-              allowReset={false}
-              image={`${imgBaseUrlFull}${src}`}
-              onClose={hideLightbox}
-            />
-          </div>
-        </Portal>
-      )}
-    </>
+    <SimpleReactLightbox>
+      <SRLWrapper
+        options={{
+          lightboxTransitionSpeed: 0,
+          buttons: {
+            showAutoplayButton: false,
+            showDownloadButton: false,
+            showFullscreenButton: false,
+            showNextButton: false,
+            showPrevButton: false,
+            showThumbnailsButton: false,
+          },
+          thumbnails: {
+            showThumbnails: false,
+          },
+        }}
+      >
+        <a href={`${imgBaseUrlFull}${src}`}>
+          <img
+            className={className}
+            src={`${imgBaseUrlPreview}${src}`}
+            alt=""
+          />
+        </a>
+      </SRLWrapper>
+    </SimpleReactLightbox>
   );
 };
