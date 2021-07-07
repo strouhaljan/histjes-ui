@@ -31,13 +31,19 @@ const getStyles = (theme) =>
     },
     imageWrapper: {
       maxHeight: "24rem",
-      marginTop: "2rem",
+      marginTop: "1rem",
+      padding: ".25rem",
+      display: "flex",
       borderRadius: ".25rem",
+      backgroundColor: theme.palette.neutralLighter,
       overflow: "hidden",
     },
     image: {
       objectFit: "cover",
-      width: "100%",
+      margin: "auto",
+      height: "100%",
+      maxWidth: "100%",
+      cursor: "pointer",
     },
     description: {
       marginTop: "2rem",
