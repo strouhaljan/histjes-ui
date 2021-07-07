@@ -4,6 +4,14 @@ import { getCardStyles } from "../styles";
 const getStyles = (theme) =>
   mergeStyleSets({
     ...getCardStyles(theme),
+    objectCard: {
+      cursor: "pointer",
+      selectors: {
+        "&:hover": {
+          backgroundColor: theme.palette.neutralLight,
+        },
+      },
+    },
     imageWrapper: {
       display: "flex",
       flex: "0 0 8rem",

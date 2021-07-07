@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from "react";
+import classNames from "classnames";
 import { PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
@@ -15,7 +16,10 @@ export const ObjectCard = ({ object, imgBaseUrlPreview, onSelect }) => {
 
   return (
     <div className={styles.cardWrapper}>
-      <div className={styles.card}>
+      <div
+        className={classNames(styles.card, styles.objectCard)}
+        onClick={handleObjectDetailRequested}
+      >
         <div className={styles.cardContent}>
           <h1 className={styles.title}>{object.name}</h1>
           <p className={styles.objectAnnotation}>{object.annotation}</p>
