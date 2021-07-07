@@ -5,7 +5,6 @@ import {
   TextField,
   DefaultButton,
   PrimaryButton,
-  Separator,
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
@@ -66,20 +65,28 @@ export const SidePanel = ({
         <PivotItem headerText="Foto" itemKey="photos">
           <div className="tab">
             <SearchInput onChange={onSearch} value={searchString} />
-            <Separator />
-            <div className={styles.buttonsWrapper}>
-              <DefaultButton onClick={onSelectAllPhotos} text={"Vybrat vše"} />
-              <DefaultButton
-                onClick={onResetPhotoSelection}
-                text={"Zrušit výběr"}
-              />
-              <PrimaryButton
-                onClick={onShowSelected}
-                text={`Zobrazit vybrané${
-                  selectedPhotosNumber > 0 ? ` (${selectedPhotosNumber})` : ""
-                }`}
-                disabled={selectedPhotosNumber === 0}
-              />
+            <div className={styles.selectionWrapper}>
+              <span className={styles.selectionLabel}>Výběr:</span>
+              <div className={styles.selectionButtonsWrapper}>
+                <DefaultButton
+                  className={styles.selectionButton}
+                  onClick={onSelectAllPhotos}
+                  text={"Vše"}
+                />
+                <DefaultButton
+                  className={styles.selectionButton}
+                  onClick={onResetPhotoSelection}
+                  text={"Zrušit"}
+                />
+                <PrimaryButton
+                  className={styles.selectionButtonConfirm}
+                  onClick={onShowSelected}
+                  text={`Zobrazit${
+                    selectedPhotosNumber > 0 ? ` (${selectedPhotosNumber})` : ""
+                  }`}
+                  disabled={selectedPhotosNumber === 0}
+                />
+              </div>
             </div>
           </div>
         </PivotItem>
