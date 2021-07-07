@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { useTheme } from "@fluentui/react-theme-provider";
 import { SRLWrapper, useLightbox } from "simple-react-lightbox";
 
@@ -30,7 +30,7 @@ export const View = ({
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
-  const { openLightbox, closeLightbox } = useLightbox();
+  const { openLightbox } = useLightbox();
 
   const onObjectDetailsClosed = useCallback(() => {
     onObjectDetailSelected(null);
@@ -53,15 +53,33 @@ export const View = ({
     [items, selectedItemIdentifier, selectedTab]
   );
 
-  const selectedPhotosLightbox = useMemo(
-    () =>
-      photos
-        .filter((photo) => selectedPhotos.indexOf(photo.identifier) > -1)
-        .map((photo) => ({
-          src: `${imgBaseUrlFull}${photo.img}`,
-          thumbnail: `${imgBaseUrlPreview}${photo.img}`,
-          caption: photo.name,
-        })),
+  const [galleryItems, setGalleryItems] = useState([]);
+
+  useEffect(() => {
+    if (galleryItems.length > 0) {
+      openLightbox();
+    }
+  }, [galleryItems]);
+
+  const handleOnShowSelectedPhotos = useCallback(() => {
+    const items = photos
+      .filter((photo) => selectedPhotos.indexOf(photo.identifier) > -1)
+      .map((photo) => ({
+        src: `${imgBaseUrlFull}${photo.img}`,
+        thumbnail: `${imgBaseUrlPreview}${photo.img}`,
+        caption: photo.name,
+      }));
+    setGalleryItems(items);
+  }, [selectedPhotos, photos]);
+
+  const handleOnShowObjectGallery = useCallback(
+    (object) => {
+      const items = object.img.map((photo) => ({
+        src: `${imgBaseUrlFull}${photo}`,
+        thumbnail: `${imgBaseUrlPreview}${photo}`,
+      }));
+      setGalleryItems(items);
+    },
     [selectedPhotos, photos]
   );
 
@@ -76,7 +94,7 @@ export const View = ({
         onSelectAllPhotos={onSelectAllPhotos}
         onResetPhotoSelection={onResetPhotoSelection}
         selectedPhotosNumber={selectedPhotos.length}
-        onShowSelected={openLightbox}
+        onShowSelected={handleOnShowSelectedPhotos}
       />
       <div className={styles.content}>
         <div className={styles.objectCards}>
@@ -103,6 +121,7 @@ export const View = ({
         onShowInMap={onShowInMap}
         imgBaseUrlFull={imgBaseUrlFull}
         imgBaseUrlPreview={imgBaseUrlPreview}
+        onShowGallery={handleOnShowObjectGallery}
       />
 
       <SRLWrapper
@@ -115,7 +134,7 @@ export const View = ({
             showThumbnailsButton: false,
           },
         }}
-        elements={selectedPhotosLightbox}
+        elements={galleryItems}
       />
     </div>
   );

@@ -2,8 +2,6 @@ import React, { useMemo, useCallback } from "react";
 import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
-import { Photo } from "../Photo";
-
 import getStyles from "./styles";
 
 const ObjectDate = ({ label, value, styles }) => {
@@ -23,8 +21,8 @@ export const ObjectDetailPanel = ({
   onShowInMap,
   isLightDismiss = true,
   isBlocking = true,
-  imgBaseUrlFull,
   imgBaseUrlPreview,
+  onShowGallery,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
@@ -32,6 +30,10 @@ export const ObjectDetailPanel = ({
   const handleOnShowInMap = useCallback(() => {
     onShowInMap(object.identifier);
   }, [object, onShowInMap]);
+
+  const handleOnShowGallery = useCallback(() => {
+    onShowGallery(object);
+  }, [object, onShowGallery]);
 
   const onOuterClick = () => {};
 
@@ -62,13 +64,13 @@ export const ObjectDetailPanel = ({
             </div>
           )}
         </div>
-        {object.img && (
+        {object.img.length > 0 && (
           <div className={styles.imageWrapper}>
-            <Photo
+            <img
+              onClick={handleOnShowGallery}
               className={styles.image}
-              src={object.img[0]}
-              imgBaseUrlFull={imgBaseUrlFull}
-              imgBaseUrlPreview={imgBaseUrlPreview}
+              src={`${imgBaseUrlPreview}${object.img[0]}`}
+              alt=""
             />
           </div>
         )}
