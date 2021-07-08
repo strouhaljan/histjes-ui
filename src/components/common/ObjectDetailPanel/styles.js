@@ -18,7 +18,7 @@ const getStyles = (theme) =>
     },
     annotation: {
       display: "flex",
-      marginTop: "2rem",
+      marginTop: "1.5rem",
       width: "100%",
       flexDirection: "row",
     },
@@ -32,7 +32,7 @@ const getStyles = (theme) =>
     },
     imageWrapper: {
       maxHeight: "24rem",
-      marginTop: "1rem",
+      marginTop: "1.5rem",
       padding: ".25rem",
       display: "flex",
       borderRadius: ".25rem",
@@ -48,19 +48,21 @@ const getStyles = (theme) =>
       maxWidth: "100%",
     },
     description: {
-      marginTop: "2rem",
+      marginTop: "1.5rem",
       flex: "0 0 100%",
     },
-    objectData: {
-      display: "flex",
-    },
     objectDateWrapper: {
+      marginTop: "1.5rem",
       flex: "1 1 auto",
-      marginTop: ".25rem",
       display: "flex",
+      selectors: {
+        "&:not(:first-child)": {
+          marginTop: ".25rem",
+        },
+      },
     },
     objectDateLabel: {
-      width: "7rem",
+      width: "5.75rem",
       fontWeight: "bold",
     },
     objectDateValue: {
@@ -70,6 +72,7 @@ const getStyles = (theme) =>
     },
     objectDates: {
       display: "flex",
+      flex: "0 0 11rem",
       flexDirection: "column",
     },
     photoGalleryCountWrapper: {
@@ -91,6 +94,29 @@ const getStyles = (theme) =>
       marginLeft: ".25rem",
       marginRight: ".5rem",
       fontSize: "1rem",
+    },
+    objectLinksWrapper: {
+      marginTop: "1.5rem",
+      flex: "1 0 auto",
+    },
+    objectLinksLabel: {
+      fontWeight: "bold",
+    },
+    objectLinks: {
+      selectors: {
+        ul: {
+          margin: 0,
+          padding: 0,
+          marginTop: ".25rem",
+          listStyleType: "none",
+        },
+        a: {
+          color: theme.palette.themeDark,
+        },
+        "a:hover": {
+          color: theme.palette.themeSecondary,
+        },
+      },
     },
   });
 

@@ -1,5 +1,11 @@
 import React, { useMemo, useCallback } from "react";
-import { Panel, PanelType, PrimaryButton, Icon } from "@fluentui/react";
+import {
+  Panel,
+  PanelType,
+  PrimaryButton,
+  Icon,
+  Separator,
+} from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
@@ -53,18 +59,7 @@ export const ObjectDetailPanel = ({
       onOuterClick={onOuterClick}
     >
       <div className={styles.content}>
-        <div className={styles.annotation}>
-          <div className={styles.annotationText}>{object.annotation}</div>
-          {onShowInMap && (
-            <div className={styles.annotationActionButton}>
-              <PrimaryButton
-                onClick={handleOnShowInMap}
-                text="Ukázat v Časomapě"
-              />
-            </div>
-          )}
-        </div>
-        {object.img.length > 0 && (
+        {object?.img?.length > 0 && (
           <div onClick={handleOnShowGallery} className={styles.imageWrapper}>
             <img
               className={styles.image}
@@ -86,27 +81,79 @@ export const ObjectDetailPanel = ({
             </div>
           </div>
         )}
-        <div className={styles.objectData}>
-          <div className={styles.objectDates}>
-            <ObjectDate
-              styles={styles}
-              label={"vznik:"}
-              value={object.yearBuilt}
-            />
-            <ObjectDate
-              styles={styles}
-              label={"zánik funkce:"}
-              value={object.yearPerishFunction}
-            />
-            <ObjectDate
-              styles={styles}
-              label={"zánik fyzický:"}
-              value={object.yearPerishPhysical}
-            />
-          </div>
-          <div className={styles.objectLinks}>Odkaz:{object.link}</div>
-        </div>
-        <div className={styles.description}>{object.description}</div>
+
+        {object?.annotation ? (
+          <>
+            <div className={styles.annotation}>
+              <div className={styles.annotationText}>{object.annotation}</div>
+              {onShowInMap && (
+                <div className={styles.annotationActionButton}>
+                  <PrimaryButton
+                    onClick={handleOnShowInMap}
+                    text="Ukázat v Časomapě"
+                  />
+                </div>
+              )}
+            </div>
+          </>
+        ) : null}
+
+        {object?.yearBuilt ||
+        object?.yearPerishFunction ||
+        object?.yearPerishPhysical ? (
+          <>
+            <div className={styles.objectDates}>
+              {object?.yearBuilt ? (
+                <>
+                  <ObjectDate
+                    styles={styles}
+                    label={"vznik:"}
+                    value={object.yearBuilt}
+                  />
+                </>
+              ) : null}
+              {object?.yearPerishFunction ? (
+                <ObjectDate
+                  styles={styles}
+                  label={"zánik funkce:"}
+                  value={object.yearPerishFunction}
+                />
+              ) : null}
+              {object?.yearPerishPhysical ? (
+                <>
+                  <ObjectDate
+                    styles={styles}
+                    label={"zánik fyzický:"}
+                    value={object.yearPerishPhysical}
+                  />
+                </>
+              ) : null}
+            </div>
+          </>
+        ) : null}
+
+        {object?.description ? (
+          <>
+            <div className={styles.description}>{object.description}</div>
+          </>
+        ) : null}
+
+        {object?.link?.length > 0 ? (
+          <>
+            <div className={styles.objectLinksWrapper}>
+              <span className={styles.objectLinksLabel}>Zajímavé odkazy:</span>
+              <div className={styles.objectLinks}>
+                <ul>
+                  {object.link.map((link) => (
+                    <li>
+                      - <a href={link}>{link}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
     </Panel>
   );
