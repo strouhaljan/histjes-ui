@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from "react";
-import { Panel, PanelType, PrimaryButton } from "@fluentui/react";
+import { Panel, PanelType, PrimaryButton, Icon } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import getStyles from "./styles";
@@ -65,13 +65,25 @@ export const ObjectDetailPanel = ({
           )}
         </div>
         {object.img.length > 0 && (
-          <div className={styles.imageWrapper}>
+          <div onClick={handleOnShowGallery} className={styles.imageWrapper}>
             <img
-              onClick={handleOnShowGallery}
               className={styles.image}
               src={`${imgBaseUrlPreview}${object.img[0]}`}
               alt=""
             />
+            <div className={styles.photoGalleryCountWrapper}>
+              {object.img.length > 1 ? (
+                <>
+                  <Icon
+                    className={styles.photoGalleryCountIcon}
+                    iconName={"PhotoCollection"}
+                  />
+                  <span className={styles.photoGalleryCountLabel}>
+                    {object.img.length}
+                  </span>
+                </>
+              ) : null}
+            </div>
           </div>
         )}
         <div className={styles.objectData}>

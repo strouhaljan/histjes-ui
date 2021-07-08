@@ -1,4 +1,5 @@
 import { mergeStyleSets } from "@fluentui/react";
+import { isAbsolute } from "path";
 
 const getStyles = (theme) =>
   mergeStyleSets({
@@ -37,13 +38,14 @@ const getStyles = (theme) =>
       borderRadius: ".25rem",
       backgroundColor: theme.palette.neutralLighter,
       overflow: "hidden",
+      position: "relative",
+      cursor: "pointer",
     },
     image: {
       objectFit: "cover",
       margin: "auto",
       height: "100%",
       maxWidth: "100%",
-      cursor: "pointer",
     },
     description: {
       marginTop: "2rem",
@@ -69,6 +71,20 @@ const getStyles = (theme) =>
     objectDates: {
       display: "flex",
       flexDirection: "column",
+    },
+    photoGalleryCountWrapper: {
+      position: "absolute",
+      bottom: ".5rem",
+      right: ".75rem",
+      display: "flex",
+      alignItems: "center",
+    },
+    photoGalleryCountIcon: {
+      fontSize: "1rem",
+    },
+    photoGalleryCountLabel: {
+      marginLeft: ".25rem",
+      fontSize: "1rem",
     },
   });
 
