@@ -74,16 +74,22 @@ const getStyles = (theme) =>
     },
     photoGalleryCountWrapper: {
       position: "absolute",
-      bottom: ".5rem",
-      right: ".75rem",
+      bottom: 0,
+      left: 0,
       display: "flex",
       alignItems: "center",
+      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      width: "calc(100% - .5rem)",
+      height: "1.75rem",
+      justifyContent: "flex-end",
+      margin: "0 .25rem .25rem .25rem",
     },
     photoGalleryCountIcon: {
       fontSize: "1rem",
     },
     photoGalleryCountLabel: {
       marginLeft: ".25rem",
+      marginRight: ".5rem",
       fontSize: "1rem",
     },
   });
