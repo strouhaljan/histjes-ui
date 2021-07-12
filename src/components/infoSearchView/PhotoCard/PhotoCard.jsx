@@ -16,6 +16,7 @@ export const PhotoCard = ({
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleOnChange = useCallback((_event, checked) => {
     onChange(photo.identifier, checked);
   });

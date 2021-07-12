@@ -3,8 +3,7 @@ import {
   Panel,
   PanelType,
   PrimaryButton,
-  Icon,
-  Separator,
+  Icon
 } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 

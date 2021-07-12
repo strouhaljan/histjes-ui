@@ -59,6 +59,7 @@ export const View = ({
     if (galleryItems.length > 0) {
       openLightbox();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [galleryItems]);
 
   const handleOnShowSelectedPhotos = useCallback(() => {
@@ -70,6 +71,7 @@ export const View = ({
         caption: photo.name,
       }));
     setGalleryItems(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPhotos, photos]);
 
   const handleOnShowObjectGallery = useCallback(
@@ -80,6 +82,7 @@ export const View = ({
       }));
       setGalleryItems(items);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedPhotos, photos]
   );
 

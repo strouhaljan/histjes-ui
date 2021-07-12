@@ -1,5 +1,4 @@
 import { mergeStyleSets } from "@fluentui/react";
-import { isAbsolute } from "path";
 
 const getStyles = (theme) =>
   mergeStyleSets({
