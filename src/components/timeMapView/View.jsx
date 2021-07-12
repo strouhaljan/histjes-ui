@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { SRLWrapper, useLightbox } from "simple-react-lightbox";
 
 import { ObjectDetailPanel } from "../common/ObjectDetailPanel";
 import { SidePanel } from "./sidePanel/SidePanel";
@@ -27,6 +28,29 @@ export const View = ({
   showObjectWithoutDate,
   onShowObjectsWithoutDateChanged,
 }) => {
+
+  const [galleryItems, setGalleryItems] = useState([]);
+  const { openLightbox } = useLightbox();
+
+  useEffect(() => {
+    if (galleryItems.length > 0) {
+      openLightbox();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [galleryItems]);
+
+  const handleOnShowObjectGallery = useCallback(
+    (object) => {
+      const items = object.img.map((photo) => ({
+        src: `${imgBaseUrlFull}${photo}`,
+        thumbnail: `${imgBaseUrlPreview}${photo}`,
+      }));
+      setGalleryItems(items);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   return (
     <div className="histjes-main">
       <div className="histjes-panel">
@@ -61,6 +85,20 @@ export const View = ({
         isLightDismiss={false}
         imgBaseUrlFull={imgBaseUrlFull}
         imgBaseUrlPreview={imgBaseUrlPreview}
+        onShowGallery={handleOnShowObjectGallery}
+      />
+
+      <SRLWrapper
+        options={{
+          lightboxTransitionSpeed: 0,
+          buttons: {
+            showAutoplayButton: false,
+            showDownloadButton: false,
+            showFullscreenButton: false,
+            showThumbnailsButton: false,
+          },
+        }}
+        elements={galleryItems}
       />
     </div>
   );
