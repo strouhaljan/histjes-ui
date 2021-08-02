@@ -30,6 +30,7 @@ const getStyles = (theme) =>
       marginLeft: "3rem",
     },
     imageWrapper: {
+      width: "100%",
       maxHeight: "24rem",
       marginTop: "1.5rem",
       padding: ".25rem",

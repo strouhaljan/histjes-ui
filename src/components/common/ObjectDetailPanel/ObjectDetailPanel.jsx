@@ -65,19 +65,17 @@ export const ObjectDetailPanel = ({
               src={`${imgBaseUrlPreview}${object.img[0]}`}
               alt=""
             />
-            <div className={styles.photoGalleryCountWrapper}>
-              {object.img.length > 1 ? (
-                <>
-                  <Icon
-                    className={styles.photoGalleryCountIcon}
-                    iconName={"PhotoCollection"}
-                  />
-                  <span className={styles.photoGalleryCountLabel}>
-                    {object.img.length}
-                  </span>
-                </>
-              ) : null}
-            </div>
+            {object.img.length > 1 ? (
+              <div className={styles.photoGalleryCountWrapper}>
+                <Icon
+                  className={styles.photoGalleryCountIcon}
+                  iconName={"PhotoCollection"}
+                />
+                <span className={styles.photoGalleryCountLabel}>
+                  {object.img.length}
+                </span>
+              </div>
+            ) : null}
           </div>
         )}
 
