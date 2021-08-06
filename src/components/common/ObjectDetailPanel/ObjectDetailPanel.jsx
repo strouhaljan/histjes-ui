@@ -79,7 +79,7 @@ export const ObjectDetailPanel = ({
           </div>
         )}
 
-        {object?.annotation ? (
+        {(object?.annotation || onShowInMap) ? (
           <>
             <div className={styles.annotation}>
               <div className={styles.annotationText}>{object.annotation}</div>
