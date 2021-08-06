@@ -141,9 +141,9 @@ export const ObjectDetailPanel = ({
               <span className={styles.objectLinksLabel}>Zajímavé odkazy:</span>
               <div className={styles.objectLinks}>
                 <ul>
-                  {object.link.map((link) => (
-                    <li>
-                      - <a href={link}>{link}</a>
+                  {object.link.map((link, index) => (
+                    <li key={index}>
+                      - <a href={link} target="extlink">{link}</a>
                     </li>
                   ))}
                 </ul>
