@@ -62,7 +62,7 @@ const getStyles = (theme) =>
       },
     },
     objectDateLabel: {
-      width: "5.75rem",
+      flex: "0 0 5.75rem",
       fontWeight: "bold",
     },
     objectDateValue: {
@@ -72,7 +72,7 @@ const getStyles = (theme) =>
     },
     objectDates: {
       display: "flex",
-      flex: "0 0 11rem",
+      flex: "1 0 auto",
       flexDirection: "column",
     },
     photoGalleryCountWrapper: {
@@ -96,6 +96,7 @@ const getStyles = (theme) =>
       fontSize: "1rem",
     },
     objectLinksWrapper: {
+      width: "100%",
       marginTop: "1.5rem",
       flex: "1 0 auto",
     },
@@ -105,10 +106,8 @@ const getStyles = (theme) =>
     objectLinks: {
       selectors: {
         ul: {
-          margin: 0,
+          margin: "0.25rem 0px 0 1rem",
           padding: 0,
-          marginTop: ".25rem",
-          listStyleType: "none",
         },
         a: {
           color: theme.palette.themeDark,

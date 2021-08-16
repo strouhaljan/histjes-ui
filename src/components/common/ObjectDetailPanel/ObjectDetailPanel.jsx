@@ -79,7 +79,7 @@ export const ObjectDetailPanel = ({
           </div>
         )}
 
-        {(object?.annotation || onShowInMap) ? (
+        {object?.annotation || onShowInMap ? (
           <>
             <div className={styles.annotation}>
               <div className={styles.annotationText}>{object.annotation}</div>
@@ -143,7 +143,9 @@ export const ObjectDetailPanel = ({
                 <ul>
                   {object.link.map((link, index) => (
                     <li key={index}>
-                      - <a href={link} target="extlink">{link}</a>
+                      <a href={link} target="extlink">
+                        {link}
+                      </a>
                     </li>
                   ))}
                 </ul>

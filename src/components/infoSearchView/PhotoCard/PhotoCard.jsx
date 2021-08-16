@@ -42,9 +42,11 @@ export const PhotoCard = ({
               }}
             />
           </div>
-          <div className={styles.created}>
-            Rok pořízení: <b>{photo.created}</b>
-          </div>
+          {photo.created && (
+            <div className={styles.created}>
+              Rok pořízení: <b>{photo.created}</b>
+            </div>
+          )}
           {photo.objects.length > 0 && (
             <div className={styles.objects}>
               Zachycené objekty: {photo.objects.join(", ")}
