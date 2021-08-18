@@ -117,6 +117,20 @@ const getStyles = (theme) =>
         },
       },
     },
+    objectModelWrapper: {
+      width: "100%",
+      marginTop: "1.5rem",
+      flex: "1 0 auto",
+    },
+    objectModelLabel: {
+      fontWeight: "bold",
+    },
+    objectModel: {
+      marginTop: ".5rem",
+      width: "100%",
+      height: "20rem",
+      borderRadius: ".25rem",
+    },
   });
 
 export default getStyles;

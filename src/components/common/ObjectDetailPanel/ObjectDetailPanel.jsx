@@ -153,6 +153,24 @@ export const ObjectDetailPanel = ({
             </div>
           </>
         ) : null}
+
+        {object?.modelUrl ? (
+          <>
+            <div className={styles.objectModelWrapper}>
+              <span className={styles.objectModelLabel}>Model:</span>
+              <iframe
+                className={styles.objectModel}
+                title="Uga X skeleton"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="fullscreen; autoplay; vr"
+                src={object.modelUrl}
+              ></iframe>
+            </div>
+          </>
+        ) : null}
       </div>
     </Panel>
   );
