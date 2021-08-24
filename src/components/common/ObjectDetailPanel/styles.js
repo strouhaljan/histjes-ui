@@ -108,6 +108,7 @@ const getStyles = (theme) =>
         ul: {
           margin: "0.25rem 0px 0 1rem",
           padding: 0,
+          wordBreak: "break-word",
         },
         a: {
           color: theme.palette.themeDark,
