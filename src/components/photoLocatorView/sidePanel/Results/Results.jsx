@@ -49,6 +49,13 @@ const Result = ({ result, styles }) => {
           suffix="°"
         />
       </div>
+      {(result.focalLength && result.sensorSize) && (
+        <div className={styles.resultValues}>
+          <ResultValue styles={styles} label={"OV:"} value={Math.round(result.focalLength)} />
+          <ResultValue styles={styles} label={"Š:"} value={Math.round(result.sensorSize[0])} />
+          <ResultValue styles={styles} label={"V:"} value={Math.round(result.sensorSize[1])} />
+        </div>
+      )}
     </div>
   );
 }
@@ -65,13 +72,13 @@ export const Results = ({ calculatedCameraParams, adjustedCameraParams }) => {
     <div>
       {calculatedCameraParams && (
         <>
-          <div className={styles.resultLabel}>Vypočítaná orientace kamery:</div>
+          <div className={styles.resultLabel}>Vypočítané parametry kamery:</div>
           <Result result={calculatedCameraParams} styles={styles} />
         </>
       )}
       {adjustedCameraParams && (
         <>
-          <div className={styles.resultLabel}>Upravená orientace kamery:</div>
+          <div className={styles.resultLabel}>Upravené parametry kamery:</div>
           <Result result={adjustedCameraParams} styles={styles} />
         </>
       )}
