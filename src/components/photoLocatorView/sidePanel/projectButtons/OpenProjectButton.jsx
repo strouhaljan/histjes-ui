@@ -1,7 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { DefaultButton } from "office-ui-fabric-react";
 
-export const OpenProjectButton = ({ styles, onClick }) => {
+export const OpenProjectButton = ({
+  styles,
+  onClick,
+  examples,
+  onOpenExampleProject,
+}) => {
   const fileUploadInput = useRef(null);
   const handleOpenProject = (e) => {
     onClick(e?.target?.files[0] || undefined);
@@ -9,14 +14,31 @@ export const OpenProjectButton = ({ styles, onClick }) => {
       e.target.value = null;
     }
   };
+
   const clickUpload = () => {
     if (fileUploadInput.current) {
       fileUploadInput.current.click();
     }
   };
+
+  const examplesMenu = useMemo(() => {
+    const items = examples?.map((example) => ({
+      key: example.key,
+      text: example.name,
+      onClick: (_e, item) => {
+        onOpenExampleProject(item.data);
+      },
+      data: example.data,
+    }));
+    return {
+      items,
+    };
+  }, [examples, onOpenExampleProject]);
+
   return (
     <div className={styles.projectButton}>
       <DefaultButton
+        menuProps={examples && examplesMenu}
         onClick={clickUpload}
         text={"Otevřít"}
         iconProps={{ iconName: "OpenFolderHorizontal" }}

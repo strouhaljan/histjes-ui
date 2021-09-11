@@ -9,10 +9,24 @@ const getStyles = (theme) =>
     },
     projectButton: {
       flex: "1 1 auto",
+      display: "flex",
       selectors: {
         ".ms-Button": {
-          padding: "0 .5rem",
+          padding: "0 .25rem",
           width: "100%",
+        },
+        ".ms-Button-textContainer": {
+          flexGrow: 0,
+        },
+        ".ms-Button-label": {
+          margin: 0,
+        },
+        ".ms-Button-icon": {
+          marginRight: ".5rem",
+        },
+        ".ms-Button-menuIcon": {
+          marginLeft: ".5rem",
+          fontSize: "0.75rem",
         },
       },
     },
@@ -64,13 +78,14 @@ const getStyles = (theme) =>
       fontSize: ".9rem",
       color: theme.palette.themePrimary,
     },
-    actionIcon: {
+    actionElements: {
       position: "absolute",
       right: 0,
       top: 0,
       height: "2rem",
-      width: "1.5rem",
+      display: "flex",
       paddingTop: ".25rem",
+      paddingLeft: ".5rem",
       fontSize: ".9rem",
       backgroundColor: "#fff",
       color: theme.palette.themePrimary,
@@ -82,6 +97,9 @@ const getStyles = (theme) =>
           marginTop: ".2rem",
         },
       },
+    },
+    toggleCheckbox: {
+      marginLeft: ".25rem",
     },
     fileNameWrapper: {
       margin: "0 .5rem",

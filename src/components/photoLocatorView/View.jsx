@@ -44,15 +44,17 @@ export const View = ({
   onSetCameraParameters,
   heightCorrection,
   onHeightCorrectionChange,
+  cameraParametersSectionEnabled,
+  toggleCameraParametersSection,
+  examples,
+  onOpenExampleProject,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   const [editedPoint, setEditedPoint] = useState(null);
-  const [
-    cameraParametersDialogDisplayed,
-    setCameraParametersDialogDisplayed,
-  ] = useState(false);
+  const [cameraParametersDialogDisplayed, setCameraParametersDialogDisplayed] =
+    useState(false);
   const editingPoint = points.find((point) => point.identifier === editedPoint);
 
   const handleOnApplyCameraParameters = (cameraParameters) => {
@@ -88,6 +90,10 @@ export const View = ({
         file={file}
         adjustedCameraParams={adjustedCameraParams}
         calculatedCameraParams={calculatedCameraParams}
+        cameraParametersSectionEnabled={cameraParametersSectionEnabled}
+        toggleCameraParametersSection={toggleCameraParametersSection}
+        examples={examples}
+        onOpenExampleProject={onOpenExampleProject}
       />
       <div className={styles.locator}>
         <Photo

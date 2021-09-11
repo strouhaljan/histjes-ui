@@ -223,6 +223,26 @@ export const PhotoLocatorPage = () => {
     roll: 2,
   };
 
+  const [cameraParametersSectionEnabled, toggleCameraParametersSection] =
+    useState(true);
+
+  const examples = [
+    {
+      key: "firstExample",
+      name: "First example",
+      data: "jsonabc",
+    },
+    {
+      key: "secondExample",
+      name: "Second example",
+      data: "jsonxyz",
+    },
+  ];
+
+  const onOpenExampleProject = (item) => {
+    alert(`Open example project: ${item}`);
+  };
+
   return (
     <View
       file={file}
@@ -254,6 +274,10 @@ export const PhotoLocatorPage = () => {
       onHeightCorrectionChange={setHeightCorrection}
       calculatedCameraParams={calculatedCameraParams}
       adjustedCameraParams={adjustedCameraParams}
+      cameraParametersSectionEnabled={cameraParametersSectionEnabled}
+      toggleCameraParametersSection={toggleCameraParametersSection}
+      examples={examples}
+      onOpenExampleProject={onOpenExampleProject}
     />
   );
 };

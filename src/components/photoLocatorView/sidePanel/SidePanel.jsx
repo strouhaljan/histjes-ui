@@ -1,5 +1,10 @@
 import React, { useMemo } from "react";
-import { PrimaryButton, Icon, Separator } from "office-ui-fabric-react";
+import {
+  PrimaryButton,
+  Icon,
+  Separator,
+  Checkbox,
+} from "office-ui-fabric-react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
 import { Panel } from "../../common/panel/Panel";
@@ -23,7 +28,7 @@ const CalculateButton = ({ onClick, points, styles, calculating }) => {
       <PrimaryButton
         className={styles.calculateButton}
         disabled={usedPoints < 3 || calculating}
-        text={calculating ? "Přepočítávám..." : "Přepočítat"}
+        text={calculating ? "Přepočítávám..." : "Vypočítat"}
         onClick={onClick}
       />
     </div>
@@ -31,6 +36,8 @@ const CalculateButton = ({ onClick, points, styles, calculating }) => {
 };
 
 const SectionSeparator = ({
+  onToggle,
+  enabled = true,
   icon,
   label,
   styles,
@@ -45,15 +52,20 @@ const SectionSeparator = ({
         <span className={styles.sectionText}>{label}</span>
       </div>
     </Separator>
-    {action && (
-      <div className={styles.actionIcon}>
+    <div className={styles.actionElements}>
+      {enabled && action && (
         <Icon
           onClick={action}
           iconName={actionIcon}
           className={iconClassName}
         />
-      </div>
-    )}
+      )}
+      {onToggle && (
+        <div className={styles.toggleCheckbox}>
+          <Checkbox checked={enabled} onChange={onToggle} />
+        </div>
+      )}
+    </div>
   </div>
 );
 
@@ -79,9 +91,16 @@ export const SidePanel = ({
   onDisablePoint,
   calculatedCameraParams,
   adjustedCameraParams,
+  cameraParametersSectionEnabled,
+  toggleCameraParametersSection,
+  examples,
+  onOpenExampleProject,
 }) => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
+
+  const onCameraParametersSectionToggle = (_e, enabled) =>
+    toggleCameraParametersSection(enabled);
 
   const MAX_POINT_COUNT = 8;
 
@@ -93,7 +112,12 @@ export const SidePanel = ({
     >
       <div className={styles.projectButtonsWrapper}>
         <NewProjectButton onClick={onNewProject} styles={styles} />
-        <OpenProjectButton onClick={onOpenProject} styles={styles} />
+        <OpenProjectButton
+          onClick={onOpenProject}
+          styles={styles}
+          examples={examples}
+          onOpenExampleProject={onOpenExampleProject}
+        />
         <SaveProjectButton
           getProjectData={getProjectData}
           styles={styles}
@@ -134,19 +158,23 @@ export const SidePanel = ({
           />
           <SectionSeparator
             icon="Camera"
-            label="Parametry kamery"
+            label="Parametry kamery pro výpočet"
             styles={styles}
             action={onEditCameraParameters}
             actionIcon={"Edit"}
+            enabled={cameraParametersSectionEnabled}
+            onToggle={onCameraParametersSectionToggle}
           />
-          <Parameters
-            parameters={cameraParameters}
-            loadingDmt={loadingDmt}
-            points={points}
-            onAddPoint={onAddPoint}
-            onRemovePoint={onRemovePoint}
-            onEditPoint={onEditPoint}
-          />
+          {cameraParametersSectionEnabled && (
+            <Parameters
+              parameters={cameraParameters}
+              loadingDmt={loadingDmt}
+              points={points}
+              onAddPoint={onAddPoint}
+              onRemovePoint={onRemovePoint}
+              onEditPoint={onEditPoint}
+            />
+          )}
           {(calculatedCameraParams || adjustedCameraParams) && (
             <>
               <SectionSeparator
