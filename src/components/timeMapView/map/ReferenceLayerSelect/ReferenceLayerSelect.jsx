@@ -16,12 +16,12 @@ const referenceLayers = [
     text: "1840 - II. vojenské mapování",
     bg: layer_1_bg,
   },
-  {
+  /*{
     key: "c",
     identifier: "1917_voj",
     text: "1917 - III. vojenské mapování",
     bg: layer_2_bg,
-  },
+  },*/
   {
     key: "d",
     identifier: "1930_voj",
