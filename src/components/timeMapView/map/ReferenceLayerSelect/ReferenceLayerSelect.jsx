@@ -5,7 +5,7 @@ import { useTheme } from "@fluentui/react-theme-provider";
 import getStyles from "./styles";
 
 import layer_1_bg from "./assets/1840_voj.png";
-import layer_2_bg from "./assets/1917_voj.png";
+//import layer_2_bg from "./assets/1917_voj.png";
 import layer_3_bg from "./assets/1930_voj.png";
 import layer_4_bg from "./assets/2019_zagabed.png";
 
