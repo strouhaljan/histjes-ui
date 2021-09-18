@@ -38,6 +38,15 @@ export const OpenProjectButton = ({
   return (
     <div className={styles.projectButton}>
       <DefaultButton
+        split
+        styles={{
+          splitButtonDivider: {
+            right: "21px",
+          },
+          splitButtonMenuButton: {
+            width: "16px",
+          },
+        }}
         menuProps={examples && examplesMenu}
         onClick={clickUpload}
         text={"Otevřít"}

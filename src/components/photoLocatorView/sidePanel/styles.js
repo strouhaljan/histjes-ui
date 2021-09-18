@@ -11,9 +11,17 @@ const getStyles = (theme) =>
       flex: "1 1 auto",
       display: "flex",
       selectors: {
+        "> div": {
+          flex: "1 1 auto",
+          selectors: {
+            "> span": {
+              flex: "1 1 auto",
+            },
+          },
+        },
         ".ms-Button": {
           padding: "0 .25rem",
-          width: "100%",
+          flex: "1 1 auto",
         },
         ".ms-Button-textContainer": {
           flexGrow: 0,
