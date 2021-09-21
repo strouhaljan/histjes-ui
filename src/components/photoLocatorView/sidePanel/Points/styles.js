@@ -46,7 +46,7 @@ export const getPointStyles = (theme, index, point) =>
       display: "flex",
       selectors: {
         ":last-of-type": {
-          width: "3rem",
+          width: "4rem",
         },
       },
     },
