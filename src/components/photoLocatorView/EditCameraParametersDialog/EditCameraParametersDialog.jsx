@@ -50,7 +50,7 @@ export const EditCameraParametersDialog = ({
 
   const {
     focalLength: originalFocalLength,
-    sensorDimensions: originalSensorDimensions,
+    /*sensorDimensions: originalSensorDimensions,*/
   } = cameraParameters;
 
   const dialogContentProps = {
@@ -65,6 +65,7 @@ export const EditCameraParametersDialog = ({
   const [focalLength, setFocalLength] = useState(originalFocalLength);
   const [focalLengthValid, setFocalLengthValid] = useState(true);
 
+  /*
   const [sensorHeight, setSensorHeight] = useState(
     originalSensorDimensions.height
   );
@@ -74,26 +75,29 @@ export const EditCameraParametersDialog = ({
     originalSensorDimensions.width
   );
   const [sensorWidthValid, setSensorWidthValid] = useState(true);
+  */
 
   const handleOnApply = useCallback(() => {
     onApply({
       focalLength: Math.round(focalLength * 100) / 100,
+      /*
       sensorDimensions: {
         height: Math.round(sensorHeight * 100) / 100,
         width: Math.round(sensorWidth * 100) / 100,
       },
+      */
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [focalLength, sensorHeight, sensorWidth]);
+  }, [focalLength/*, sensorHeight, sensorWidth*/]);
 
   const validate = useCallback((value, callback) => {
     callback(value.length === 0 || isNaN(value) ? false : true);
   }, []);
 
   const applyButtonDisabled =
-    focalLengthValid === false ||
+    focalLengthValid === false/* ||
     sensorHeightValid === false ||
-    sensorWidthValid === false;
+    sensorWidthValid === false*/;
 
   return (
     <Dialog
@@ -117,6 +121,7 @@ export const EditCameraParametersDialog = ({
           }}
           valid={focalLengthValid}
         />
+        {/*
         <PointInput
           styles={styles}
           label="Rozměry snímače:"
@@ -145,6 +150,7 @@ export const EditCameraParametersDialog = ({
           }}
           valid={sensorWidthValid}
         />
+        */}
       </div>
       <DialogFooter>
         <PrimaryButton

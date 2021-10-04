@@ -53,7 +53,7 @@ const Point = ({
           <FontIcon className={styles.icon} iconName="Nav2DMapView" />
           <PointValue styles={styles} label={"N:"} value={wgsMap[1]} />
           <PointValue styles={styles} label={"E:"} value={wgsMap[0]} />
-          <PointValue styles={styles} label={"Z:"} value={map.z} />
+          <PointValue styles={styles} label={"Z:"} value={Math.round(map.z)} />
         </div>
         <div className={`${styles.pointValues} ${styles.deviation}`}>
           <FontIcon className={styles.icon} iconName="TriangleUp12" />
