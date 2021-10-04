@@ -20,7 +20,7 @@ export const getStyles = (theme) =>
       },
     },
     modalContainer: {
-      width: "50rem",
+      width: "36rem",
       height: modalHeight,
       overflowY: "hidden",
     },
@@ -36,8 +36,8 @@ export const getStyles = (theme) =>
       },
     ],
     modalBody: {
-      flex: "4 4 auto",
-      padding: "0 2rem 2rem 2rem",
+      flex: "1 1 auto",
+      padding: "0 2rem 4rem 2rem",
       textAlign: "justify",
       selectors: {
         p: { margin: "1rem 0" },
@@ -47,6 +47,17 @@ export const getStyles = (theme) =>
     },
     scrollableContent: {
       maxHeight: modalHeight,
+    },
+    legendItem: {
+      display: "flex",
+      marginTop: ".5rem",
+    },
+    legendIcon: {
+      height: "2rem",
+    },
+    legendLabel: {
+      marginLeft: ".5rem",
+      lineHeight: "2rem",
     },
   });
 

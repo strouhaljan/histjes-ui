@@ -3,15 +3,41 @@ import { useBoolean } from "@uifabric/react-hooks";
 import { DefaultButton, Modal, IconButton } from "@fluentui/react";
 import { useTheme } from "@fluentui/react-theme-provider";
 
+import icon_1_1 from "../../../../assets/map_icons/1_1.png";
+import icon_1_2 from "../../../../assets/map_icons/1_2.png";
+import icon_1_3 from "../../../../assets/map_icons/1_3.png";
+import icon_1_4 from "../../../../assets/map_icons/1_4.png";
+import icon_2 from "../../../../assets/map_icons/2_1.png";
+import icon_3 from "../../../../assets/map_icons/3_1.png";
+import icon_5 from "../../../../assets/map_icons/5_1.png";
+import icon_6 from "../../../../assets/map_icons/6_1.png";
+import icon_7 from "../../../../assets/map_icons/7_1.png";
+import icon_8 from "../../../../assets/map_icons/8_1.png";
+import icon_9 from "../../../../assets/map_icons/9_1.png";
+import icon_10 from "../../../../assets/map_icons/10_1.png";
+import icon_11 from "../../../../assets/map_icons/11_1.png";
+import icon_12 from "../../../../assets/map_icons/12_1.png";
+import icon_13 from "../../../../assets/map_icons/13_1.png";
+import icon_14 from "../../../../assets/map_icons/14_1.png";
+import icon_15 from "../../../../assets/map_icons/15_1.png";
+import icon_16 from "../../../../assets/map_icons/16_1.png";
+import icon_17 from "../../../../assets/map_icons/17_1.png";
+
 import { getStyles, getIconButtonStyles } from "./styles";
+
+const LegendItem = ({ styles, name, icon }) => (
+  <div className={styles.legendItem}>
+    <img className={styles.legendIcon} src={icon} alt={name} />
+    <span className={styles.legendLabel}>{name}</span>
+  </div>
+);
 
 export const Help = () => {
   const theme = useTheme();
   const styles = useMemo(() => getStyles(theme), [theme]);
   const iconButtonStyles = useMemo(() => getIconButtonStyles(theme), [theme]);
-  const [isModalOpen, { setTrue: showModal, setFalse: hideModal }] = useBoolean(
-    false
-  );
+  const [isModalOpen, { setTrue: showModal, setFalse: hideModal }] =
+    useBoolean(false);
 
   return (
     <div className={styles.help}>
@@ -28,7 +54,7 @@ export const Help = () => {
         scrollableContentClassName={styles.scrollableContent}
       >
         <div className={styles.modalHeader}>
-          <span>Lorem Ipsum</span>
+          <div>Legenda</div>
           <IconButton
             styles={iconButtonStyles}
             iconProps={{ iconName: "Cancel" }}
@@ -37,63 +63,50 @@ export const Help = () => {
           />
         </div>
         <div className={styles.modalBody}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            lorem nulla, malesuada ut sagittis sit amet, vulputate in leo.
-            Maecenas vulputate congue sapien eu tincidunt. Etiam eu sem turpis.
-            Fusce tempor sagittis nunc, ut interdum ipsum vestibulum non. Proin
-            dolor elit, aliquam eget tincidunt non, vestibulum ut turpis. In hac
-            habitasse platea dictumst. In a odio eget enim porttitor maximus.
-            Aliquam nulla nibh, ullamcorper aliquam placerat eu, viverra et dui.
-            Phasellus ex lectus, maximus in mollis ac, luctus vel eros. Vivamus
-            ultrices, turpis sed malesuada gravida, eros ipsum venenatis elit,
-            et volutpat eros dui et ante. Quisque ultricies mi nec leo ultricies
-            mollis. Vivamus egestas volutpat lacinia. Quisque pharetra eleifend
-            efficitur.
-          </p>
-          <p>
-            Mauris at nunc eget lectus lobortis facilisis et eget magna.
-            Vestibulum venenatis augue sapien, rhoncus faucibus magna semper
-            eget. Proin rutrum libero sagittis sapien aliquet auctor.
-            Suspendisse tristique a magna at facilisis. Duis rhoncus feugiat
-            magna in rutrum. Suspendisse semper, dolor et vestibulum lacinia,
-            nunc felis malesuada ex, nec hendrerit justo ex et massa. Quisque
-            quis mollis nulla. Nam commodo est ornare, rhoncus odio eu, pharetra
-            tellus. Nunc sed velit mi.
-          </p>
-          <p>
-            Sed condimentum ultricies turpis convallis pharetra. Sed sagittis
-            quam pharetra luctus porttitor. Cras vel consequat lectus. Sed nec
-            fringilla urna, a aliquet libero. Aenean sed nisl purus. Vivamus
-            vulputate felis et odio efficitur suscipit. Ut volutpat dictum
-            lectus, ac rutrum massa accumsan at. Sed pharetra auctor finibus. In
-            augue libero, commodo vitae nisi non, sagittis convallis ante.
-            Phasellus malesuada eleifend mollis. Curabitur ultricies leo ac
-            metus venenatis elementum.
-          </p>
-          <p>
-            Aenean egestas quam ut erat commodo blandit. Mauris ante nisl,
-            pellentesque sed venenatis nec, aliquet sit amet enim. Praesent
-            vitae diam non diam aliquet tristique non ut arcu. Pellentesque et
-            ultrices eros. Fusce diam metus, mattis eu luctus nec, facilisis vel
-            erat. Nam a lacus quis tellus gravida euismod. Nulla sed sem eget
-            tortor cursus interdum. Sed vehicula tristique ultricies. Aenean
-            libero purus, mollis quis massa quis, eleifend dictum massa. Fusce
-            eu sapien sit amet odio lacinia placerat. Mauris varius risus sed
-            aliquet cursus. Aenean lectus magna, tincidunt sit amet sodales a,
-            volutpat ac leo. Morbi nisl sapien, tincidunt sit amet mauris quis,
-            sollicitudin auctor est.
-          </p>
-          <p>
-            Nam id mi justo. Nam vehicula vulputate augue, ac pretium enim
-            rutrum ultricies. Sed aliquet accumsan varius. Quisque ac auctor
-            ligula. Fusce fringilla, odio et dignissim iaculis, est lacus
-            ultrices risus, vitae condimentum enim urna eu nunc. In risus est,
-            mattis non suscipit at, mattis ut ante. Maecenas consectetur urna
-            vel erat maximus, non molestie massa consequat. Duis a feugiat nibh.
-            Sed a hendrerit diam, a mattis est. In augue dolor, faucibus vel
-            metus at, convallis rhoncus dui.
-          </p>
+          <LegendItem styles={styles} name="turistická chata" icon={icon_1_1} />
+          <LegendItem styles={styles} name="lovecká chata" icon={icon_2} />
+          <LegendItem
+            styles={styles}
+            name="kostel, kaple, poutní místo"
+            icon={icon_3}
+          />
+          <LegendItem styles={styles} name="přístřešek, útulna" icon={icon_5} />
+          <LegendItem styles={styles} name="vysílač" icon={icon_6} />
+          <LegendItem styles={styles} name="větrná elektrárna" icon={icon_7} />
+          <LegendItem styles={styles} name="vodní dílo" icon={icon_8} />
+          <LegendItem styles={styles} name="mlýn" icon={icon_9} />
+          <LegendItem styles={styles} name="štola, důlní dílo" icon={icon_10} />
+          <LegendItem styles={styles} name="hrad, zřícenina" icon={icon_11} />
+          <LegendItem styles={styles} name="mezník" icon={icon_12} />
+          <LegendItem styles={styles} name="smírčí kříž" icon={icon_13} />
+          <LegendItem styles={styles} name="osada" icon={icon_14} />
+          <LegendItem styles={styles} name="vojenský objekt" icon={icon_15} />
+          <LegendItem styles={styles} name="samota" icon={icon_16} />
+          <LegendItem styles={styles} name="pomník, socha" icon={icon_17} />
+          <br />
+          <h4>Každá ikona může dle své datace nabývat 4 podob vyobrazení:</h4>
+          <LegendItem
+            styles={styles}
+            name="bílé kolečko, tmavý obrázek – objekt je v daném roce funkční"
+            icon={icon_1_1}
+          />
+          <LegendItem
+            styles={styles}
+            name="bílé kolečko, šedý obrázek – objekt je v daném roce nefunkční"
+            icon={icon_1_2}
+          />
+          <LegendItem
+            styles={styles}
+            name="bílé kolečko, šedý obrázek, přeškrtlé – objekt v daném roce již
+            neexistuje"
+            icon={icon_1_4}
+          />
+          <LegendItem
+            styles={styles}
+            name="tmavé kolečko, bílý obrázek – objekt nemá dataci (nemá uveden rok
+            vzniku)"
+            icon={icon_1_3}
+          />
         </div>
       </Modal>
     </div>
